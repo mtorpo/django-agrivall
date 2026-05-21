@@ -1,0 +1,27 @@
+<h1>Formulario de producto</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {% comment %} as_p renderiza todos los campos del form en párrafos {% endcomment %}
+
+    {% comment %} 
+    <p>
+        <label for="id_stock">Stock:</label>
+        <input type="number" name="stock" required="" id="id_stock"> 
+    </p> 
+    
+    existe el as_table, as_ul
+    {% endcomment %}
+    {{ form.as_p }} 
+
+    
+    {% comment %}
+
+    Esto genera solo el label input de tipo text:
+     <input type="text" name="nombre" maxlength="255" required="" id="id_nombre"> 
+    
+    {% endcomment %}
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="{% url 'producto_list' %}">Volver</a>

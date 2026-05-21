@@ -1,0 +1,9 @@
+pip install django
+
+pip install python-dotenv -> para poder leer las variables del .env en el settings.py
+
+mysqlclient -> driver de mysql
+
+pip install factory_boy faker -> para crear datos de ejemplo como una factory
+
+Pillow para poder usar el models.ImageField

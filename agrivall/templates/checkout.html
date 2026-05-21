@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Pedido</title>
+</head>
+<body>
+    <h2>Finalizar Pedido</h2>
+
+    <h3>Resumen del carrito</h3>
+    {% for linea in lineas %}
+        <div>
+            <p>Producto: {{ linea.producto.nombre }}</p>
+            <p>Variedad: {{ linea.variedad }}</p>
+            <p>Cajas: {{ linea.caja }}</p>
+            <p>Precio unidad: {{ linea.precio_unidad }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+    <p>Total: {{ total }}</p>
+
+    <h3>Datos de envío</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="number" value="{{ total }}">
+        <button type="submit">Confirmar Pedido</button>
+    </form>
+
+    <a href="{% url 'productos' %}">Cancelar</a>
+</body>
+</html>

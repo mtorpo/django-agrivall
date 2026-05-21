@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Resumen del carrito</h2>
+
+    {% if lineas %}
+        {% for linea in lineas %}
+            <div>
+                <p>Producto: {{ linea.producto.nombre }}</p>
+                <p>Variedad: {{ linea.variedad }}</p>
+                <p>Cajas: {{ linea.caja }}</p>
+                <p>Precio unidad: {{ linea.precio_unidad }}</p>
+            </div>
+            <form method="post" action="{% url 'eliminar-linea-pedido' %}">
+                {% csrf_token %}
+                <input type="hidden" name="linea_pedido_id" value="{{ linea.id }}">
+
+                <button type="submit">Eliminar producto</button>
+            </form>
+            <hr>
+        {% endfor %}
+
+        <p>Total: {{ total }}</p>
+        <a href="{% url 'checkout' %}">Finalizar pedido</a>
+    {% else %}
+        <p>No hay productos en el carrito.</p>
+        <p><a href="{% url 'productos' %}">Volver al inicio</a></p>
+    {% endif %}
+
+    <a href="{% url 'productos' %}">Cancelar</a>
+
+</body>
+</html>

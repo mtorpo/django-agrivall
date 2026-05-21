@@ -1,0 +1,16 @@
+#mainNav {
+    background-color: #fdfdfb;
+}
+
+#mainNav .nav-link {
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+#mainNav .nav-link:hover {
+    color: #3d7a45 !important;
+}
+
+#mainNav .navbar-brand {
+    letter-spacing: 1px;
+}

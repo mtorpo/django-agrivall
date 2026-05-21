@@ -1,0 +1,13 @@
+<h1>Pedidos</h1>
+
+<a href="{% url 'pedido_create' %}">Crear pedido</a>
+
+<ul>
+    {% for pedido in pedidos %}
+        <li>
+            {{ pedido.usuario.username }} - {{ pedido.producto.nombre }} - {{ pedido.cantidad }}
+            <a href="{% url 'pedido_update' pedido.pk %}">Editar</a>
+            <a href="{% url 'pedido_delete' pedido.pk %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>

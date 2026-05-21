@@ -1,0 +1,10 @@
+<h1>Eliminar pedido</h1>
+
+<p>¿Seguro que quieres eliminar este pedido?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+
+<a href="{% url 'pedido_list' %}">Cancelar</a>

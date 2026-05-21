@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+<body>
+    
+    <header>
+        {% if user.is_authenticated %}
+            Sigue por donde lo dejaste {{ user.username }}
+            <!-- Si no hay producto, se muestra un tooltip indicando que no hay pedidos -->
+            <a href="{% url 'cart' %}" title="Carrito">
+                <!-- id para js, hacerlo ajax -->
+                🛒 <span id="cart-count">{{ carrito_total }}</span>
+            </a>
+            
+        {% else %}
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+        {% endif %}
+    </header>
+
+    {% include "partials/nav.html" %}
+    
+
+
+    {% comment %} <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- popper y bs -->
+</body>
+</html>

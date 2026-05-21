@@ -1,0 +1,14 @@
+<h1>Productos</h1>
+
+<a href="{% url 'producto_create' %}">Crear producto</a>
+
+<ul>
+    {% for producto in productos %}
+        <li>
+            {{ producto.nombre }} - {{ producto.precio_unidad }}
+            {% comment %} Esto inserta la url indicada en urls, por nombre, y le pasa el parámetro pk {% endcomment %}
+            <a href="{% url 'producto_update' producto.pk %}">Editar</a>
+            <a href="{% url 'producto_delete' producto.pk %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
