@@ -12,8 +12,7 @@
         {% for linea in lineas %}
             <div>
                 <p>Producto: {{ linea.producto.nombre }}</p>
-                <p>Variedad: {{ linea.variedad }}</p>
-                <p>Cajas: {{ linea.caja }}</p>
+                <p>Peso Kg: {{ linea.peso_kg }}</p>
                 <p>Precio unidad: {{ linea.precio_unidad }}</p>
             </div>
             <form method="post" action="{% url 'eliminar-linea-pedido' %}">

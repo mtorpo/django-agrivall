@@ -57,12 +57,9 @@
                     </form>
 
                     <!-- Carrito, span para que cuando actualice no se pierda el carro -->
-                    <span>
-                    🛒 
-                        <a href="{% url 'cart' %}" class="text-decoration-none text-dark" id="cart-count">
-                            {{ carrito_total }}
-                        </a>
-                    </span>
+                    <a href="{% url 'cart' %}" class="text-decoration-none text-dark" >
+                        🛒 <span id="cart-count"> {{ carrito_total }} </span>
+                    </a>
                     <!-- Usuario -->
                     <span class="text-muted small">
                         {{ user.username }}

@@ -64,7 +64,7 @@ def cart(request):
     try:
         cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
         lineas = cart.lineas.all()
-        total = sum(linea.caja * linea.precio_unidad for linea in lineas)
+        total = sum(linea.precio_unidad for linea in lineas)
     except Pedido.DoesNotExist:
         cart = None
         lineas = []
