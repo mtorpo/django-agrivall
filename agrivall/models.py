@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# TIPOS
 # models.CharField(max_length=255)
 # models.IntegerField()
 # models.DecimalField(max_digits=10, decimal_places=2)
