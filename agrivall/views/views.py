@@ -39,9 +39,10 @@ def register(request):
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Producto, id=product_id)
-    variedad = request.POST.get('variedad', product.variedad[0] if product.variedad else '')
-    cantidad = int(request.POST.get('cantidad', 1))
+    peso_kg = int(request.POST.get('peso_kg', 1))
 
+    # busca un Pedido con esos valores, si no existe, lo crea"
+    # created True si acaba de crearlo, False si ya existía
     cart, created = Pedido.objects.get_or_create(
         usuario_web=request.user,
         estado='carrito'
@@ -50,11 +51,10 @@ def add_to_cart(request, product_id):
     linea, created = LineaPedido.objects.get_or_create(
         pedido=cart,
         producto=product,
-        variedad=variedad,
-        defaults={'caja': cantidad, 'precio_unidad': product.precio_unidad, 'peso': 1}  # assuming peso default
+        defaults={'precio_unidad': product.precio_unidad, 'peso_kg': peso_kg}
     )
     if not created:
-        linea.caja += cantidad
+        linea.peso_kg += peso_kg
         linea.save()
 
     return redirect('cart')
@@ -193,12 +193,7 @@ def crear_linea_pedido(request):
         return redirect("index")
 
     producto_id = request.POST.get("producto_id")
-    variedad = request.POST.get("variedad")
-    cantidad = request.POST.get("cantidad")
-
     producto = get_object_or_404(Producto, id=producto_id)
-
-    peso = request.POST.get("peso")
 
     pedido, creado = Pedido.objects.get_or_create(
         usuario_web=request.user,
@@ -208,10 +203,8 @@ def crear_linea_pedido(request):
     LineaPedido.objects.create(
         pedido=pedido,
         producto=producto,
-        variedad=variedad,
-        caja=int(cantidad),
         precio_unidad=producto.precio_unidad,
-        peso=int(peso)
+        peso_kg=producto.peso_kg
     )
 
     # sacamos el contador de productos que tiene el usuario en el carrito
