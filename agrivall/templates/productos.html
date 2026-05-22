@@ -10,23 +10,10 @@
 </head>
 <body>
     
-    <header>
-        {% if user.is_authenticated %}
-            Sigue por donde lo dejaste {{ user.username }}
-            <!-- Si no hay producto, se muestra un tooltip indicando que no hay pedidos -->
-            <a href="{% url 'cart' %}" title="Carrito">
-                <!-- id para js, hacerlo ajax -->
-                🛒 <span id="cart-count">{{ carrito_total }}</span>
-            </a>
-            
-        {% else %}
-            <a href="{% url 'login' %}">Iniciar sesión</a>
-        {% endif %}
-    </header>
-
     {% include "partials/nav.html" %}
-    
 
+
+    <h1> Productos <h1>
 
     {% comment %} <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

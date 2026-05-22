@@ -8,18 +8,12 @@
         </a>
 
         <!-- Hamburguesa -->
-        <button
-            class="navbar-toggler border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
-        >
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-
-            <!-- Links -->
+            <!-- Enlaces -->
             <ul class="navbar-nav mx-auto gap-3">
 
                 <li class="nav-item">
@@ -27,37 +21,68 @@
                         Productos
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{% url 'blog' %}" class="nav-link text-dark">
                         Blog
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{% url 'casilla' %}" class="nav-link text-dark">
                         Temporada
                     </a>
                 </li>
-
             </ul>
 
-            <!-- Derecha -->
+            <!-- Derecha, logout y carrito si login -->
             <div class="d-flex align-items-center gap-3">
 
-                <!-- Buscar -->
-                <form class="d-none d-lg-flex">
-                    <input
-                        class="form-control form-control-sm rounded-pill"
-                        type="search"
-                        placeholder="Buscar"
-                    >
-                </form>
+                {% if user.is_authenticated %}
+                    <!-- Buscar -->
+                    <form class="d-none d-lg-flex">
+                        <input
+                            class="form-control form-control-sm rounded-pill"
+                            type="search"
+                            placeholder="Buscar"
+                        >
+                    </form>
 
-                <!-- Carrito -->
-                <a href="{% url 'cart' %}" class="text-decoration-none text-dark">
-                    🛒 {{ carrito_total }}
-                </a>
+                    <!-- Carrito -->
+                    <a href="{% url 'cart' %}" class="text-decoration-none text-dark">
+                        🛒 {{ carrito_total }}
+                    </a>
+
+                    <!-- Usuario -->
+                    <span class="text-muted small">
+                        {{ user.username }}
+                    </span>
+
+                    <!-- Logout -->
+                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                        {% csrf_token %}
+                        <button
+                            type="submit"
+                            class="btn btn-sm btn-outline-success rounded-pill"
+                        >
+                            Cerrar sesión
+                        </button>
+                    </form>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                        class="btn btn-sm btn-outline-dark rounded-pill"
+                    >
+                        Iniciar sesión
+                    </a>
+
+                    <a
+                        href="{% url 'register' %}"
+                        class="btn btn-sm btn-success rounded-pill"
+                    >
+                        Registrarse
+                    </a>
+
+                {% endif %}
 
             </div>
 
