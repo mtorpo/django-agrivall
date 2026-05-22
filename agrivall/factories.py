@@ -12,14 +12,13 @@ class UserFactory(factory.django.DjangoModelFactory):
     # no soporta unique, tan solo podemos hacerlo así para que sea único
     username = factory.Sequence(lambda n: f"user{n}")
     email = factory.LazyAttribute(lambda obj: f"{obj.username}@mail.com")
+
+    # usamos Lazy function para que cada vez que se llame a la clase, el random sample se ejecute, si no
+    # se ejecuta una sola vez al cargar la clase, y aun que se llame, los valores son los mismos.
     password = factory.LazyAttribute(lambda obj: make_password(obj.username))
     
-        # email = factory.Faker("email")
+    # email = factory.Faker("email")
 
-
-# lo definimos fuera para que pylance en el random.sample no se queje de que no lo ve, ya que la función
-# y el lambda no comparten scope
-variedades_list = ["arábica", "china", "verde", "cruda", "tostada"]
 
 
 class ProductoFactory(factory.django.DjangoModelFactory):
@@ -33,12 +32,8 @@ class ProductoFactory(factory.django.DjangoModelFactory):
     descripcion = factory.Faker("sentence")
     precio_unidad = factory.Faker("pydecimal", left_digits=3, right_digits=2, positive=True)
     imagen = factory.django.ImageField(color="blue")
+    peso_kg = factory.Faker("random_int", min=1, max=5)
 
-    # usamos Lazy function para que cada vez que se llame a la clase, el random sample se ejecute, si no
-    # se ejecuta una sola vez al cargar la clase, y aun que se llame, los valores son los mismos.
-    variedad = factory.LazyFunction(
-        lambda: random.sample(variedades_list, random.randint(1, 3))
-    )
 
 
 class PedidoFactory(factory.django.DjangoModelFactory):
@@ -61,16 +56,9 @@ class LineaPedidoFactory(factory.django.DjangoModelFactory):
     pedido = factory.SubFactory(PedidoFactory)
     producto = factory.SubFactory(ProductoFactory)
 
-    # elegimos una variedad válida del producto
-    variedad = factory.LazyAttribute(
-        lambda obj: random.choice(obj.producto.variedad)
-    )
-
-    caja = factory.Faker("random_int", min=1, max=5)
-
     # usamos el precio del producto para mantener coherencia
     precio_unidad = factory.LazyAttribute(
         lambda obj: obj.producto.precio_unidad
     )
 
-    peso = factory.Faker("random_int", min=1, max=3)
+    peso_kg = factory.Faker("random_int", min=1, max=3)

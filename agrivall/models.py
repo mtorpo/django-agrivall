@@ -15,7 +15,7 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=255)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
     imagen = models.ImageField(upload_to="productos/", blank=True, null=True)
-    variedad = models.JSONField()
+    peso_kg = models.IntegerField()
 
     class Meta:
         db_table = "productos"
@@ -58,13 +58,11 @@ class LineaPedido(models.Model):
     #el related name nos permite acceder a un uno a muchos, desde cada Pedido a sus lineaPedido.
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="lineas_pedido")
 
-    variedad = models.CharField(max_length=100)
-    caja = models.IntegerField(default=1)
+    peso_kg = models.IntegerField(default=1)
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
-    peso = models.IntegerField()
     
     class Meta:
         db_table = "lineas_pedido"
 
     def __str__(self):
-        return f"{self.producto.nombre} x {self.caja}"
+        return f"{self.producto.nombre} x {self.peso_kg}"
