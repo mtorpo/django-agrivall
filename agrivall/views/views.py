@@ -38,6 +38,10 @@ def register(request):
 
 @login_required
 def add_to_cart(request, product_id):
+    """
+    Solo para pruebas, no se puede crear un producto directamente si no es a través
+    del proceso de añadir producto (función checkout ahora)
+    """
     product = get_object_or_404(Producto, id=product_id)
     peso_kg = int(request.POST.get('peso_kg', 1))
 
@@ -57,7 +61,7 @@ def add_to_cart(request, product_id):
         linea.peso_kg += peso_kg
         linea.save()
 
-    return redirect('cart')
+    return redirect('checkout')
 
 @login_required
 def cart(request):
@@ -74,12 +78,13 @@ def cart(request):
 @login_required
 def checkout(request):
     """
-    Misma función para resumir carrito y para crear pedido
+    Misma función para resumir carrito y para crear pedido.
     """
     try:
         cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
     except Pedido.DoesNotExist:
-        return redirect('cart')
+        # cuando seleccionan el carrito y no hay productos
+        return redirect('productos')
     
     lineas = cart.lineas.all()
     total = sum(linea.precio_unidad for linea in lineas)
@@ -97,7 +102,7 @@ def checkout(request):
         # Aquí se piden los datos para crear un pedido y generar el formulario
         form = PedidoForm(instance=cart)
 
-    return render(request, 'checkout.html', {'pedido_form': form, 'lineas': lineas, 'total': total})
+    return render(request, 'resumen_carrito.html', {'pedido_form': form, 'lineas': lineas, 'total': total})
 
 @login_required
 def pedido_confirmado(request):
@@ -105,7 +110,7 @@ def pedido_confirmado(request):
     try:
         pedido = Pedido.objects.filter(usuario_web=request.user, estado='confirmado').latest('fecha_creacion')
     except Pedido.DoesNotExist:
-        return redirect('cart')
+        return redirect('checkout')
     return render(request, 'pedido_confirmado.html', {'pedido': pedido})
 
 
@@ -247,7 +252,7 @@ def eliminar_linea_pedido(request):
         if not pedido.lineas.exists():
             pedido.delete()
 
-        return redirect('cart')
+        return redirect('checkout')
 
 
 # RESUMEN CARRITO ANTES DE COMPRAR

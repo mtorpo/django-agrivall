@@ -65,9 +65,14 @@
                                 <span class="fs-4 fw-bold text-success">{{ total }} €</span>
                             </div>
 
-                            <a href="{% url 'checkout' %}" class="btn btn-success rounded-pill w-100 mb-2">
+                            <button
+                                type="button"
+                                class="btn btn-success rounded-pill w-100 mb-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                            >
                                 Finalizar pedido
-                            </a>
+                            </button>
 
                             <a href="{% url 'productos' %}" class="btn btn-outline-dark rounded-pill w-100">
                                 Seguir comprando
@@ -93,6 +98,113 @@
             </div>
 
         {% endif %}
+    
+    
+    {% comment %} PRUEBA DE MODAL {% endcomment %}
+        <div class="modal fade" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Datos de entrega
+                        </h5>
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                        ></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            {{ pedido_form.nombre }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Dirección
+                            </label>
+
+                            {{ pedido_form.direccion }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Código Postal
+                            </label>
+
+                            {{ pedido_form.cp }}
+                        </div>
+
+                        <div class="border-top pt-3">
+
+                            <div class="d-flex justify-content-between">
+
+                                <span>Total</span>
+
+                                <span class="fw-bold text-success">
+                                    {{ total }} €
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary rounded-pill"
+                            data-bs-dismiss="modal"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-success rounded-pill"
+                        >
+                            Confirmar pedido
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+        const myModal = document.getElementById('exampleModal')
+
+        const myModalI = bootstrap.Modal.getOrCreateInstance(myModal)
+
+        myModal.addEventListener('show.bs.modal', event => {
+            console.log('abierto')
+        })
+        myModal.addEventListener('hide.bs.modal', event => {
+            console.log('cerrado')
+        })
+
+    </script>
 
     </main>
 
