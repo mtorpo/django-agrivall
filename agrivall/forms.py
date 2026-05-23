@@ -35,8 +35,6 @@ class PedidoForm(forms.ModelForm):
 
 
 
-# forms.py
-
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 
@@ -67,6 +65,41 @@ class LoginForm(AuthenticationForm):
             attrs={
                 "class": "form-control rounded-pill",
                 "placeholder": "Contraseña"
+            }
+        )
+    )
+
+
+# Con el register solo para el bootstrap
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+
+
+class RegisterForm(UserCreationForm):
+
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class":"form-control rounded-pill",
+                "placeholder":"Usuario"
+            }
+        )
+    )
+
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "class":"form-control rounded-pill",
+                "placeholder":"Contraseña"
+            }
+        )
+    )
+
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "class":"form-control rounded-pill",
+                "placeholder":"Repetir contraseña"
             }
         )
     )

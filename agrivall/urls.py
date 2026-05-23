@@ -19,7 +19,7 @@ urlpatterns = [
     path("crear-linea-pedido/", crear_linea_pedido, name="crear_linea_pedido"),
     path("eliminar-linea-pedido/", eliminar_linea_pedido, name="eliminar-linea-pedido"),
 
-    path('casilla', casilla, name='casilla'),
+    path('casilla/', casilla, name='casilla'),
 
-    path('blog', blog, name='blog')
+    path('blog/', blog, name='blog')
 ]

@@ -27,7 +27,7 @@ from agrivall.forms import LoginForm
 # LOGIN
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from agrivall.views.views import register
+from agrivall.views.register import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
