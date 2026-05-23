@@ -1,24 +1,316 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reserva casa rural</title>
+
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/casilla.css' %}">
 
 </head>
+
 <body>
-    
-    {% include "partials/nav.html" %}
 
+{% include "partials/nav.html" %}
 
-    <h1> Casilla <h1>
+<main class="container py-5">
 
-    {% comment %} <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <section class="hero-rural d-flex align-items-end p-4 p-md-5 mb-5 text-white">
+        <div>
+            <span class="badge bg-success rounded-pill mb-3">Casa rural Agrivall</span>
 
-    <!-- popper y bs -->
+            <h1 class="display-5 fw-semibold mb-3">
+                Desconecta entre naturaleza y calma
+            </h1>
+
+            <p class="lead mb-0">
+                Selecciona tus días de estancia y envíanos una solicitud de reserva.
+            </p>
+        </div>
+    </section>
+
+    <section class="row g-4">
+
+        <div class="col-12 col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+
+                    <h3 class="fw-semibold text-success mb-1">
+                        Elige tus fechas
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        Selecciona el día de entrada y el día de salida. Los días intermedios se marcarán automáticamente.
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <button type="button" class="btn btn-outline-success rounded-pill" id="prevMonth">
+                            ‹
+                        </button>
+
+                        <h5 class="mb-0 fw-semibold" id="calendarTitle">
+                            Mayo 2026
+                        </h5>
+
+                        <button type="button" class="btn btn-outline-success rounded-pill" id="nextMonth">
+                            ›
+                        </button>
+                    </div>
+
+                    <div class="calendar-grid mb-3">
+                        <div class="calendar-label">L</div>
+                        <div class="calendar-label">M</div>
+                        <div class="calendar-label">X</div>
+                        <div class="calendar-label">J</div>
+                        <div class="calendar-label">V</div>
+                        <div class="calendar-label">S</div>
+                        <div class="calendar-label">D</div>
+                    </div>
+
+                    <div class="calendar-grid" id="calendarGrid"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+
+                    <h3 class="fw-semibold text-success mb-1">
+                        Solicitar reserva
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        Te confirmaremos la disponibilidad lo antes posible.
+                    </p>
+
+                    <form method="post" action="#">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="fecha_entrada" id="fechaEntrada">
+                        <input type="hidden" name="fecha_salida" id="fechaSalida">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input
+                                type="text"
+                                name="nombre"
+                                class="form-control rounded-pill"
+                                placeholder="Tu nombre"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input
+                                type="tel"
+                                name="telefono"
+                                class="form-control rounded-pill"
+                                placeholder="Teléfono de contacto"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control rounded-pill"
+                                placeholder="tu@email.com"
+                            >
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Entrada</label>
+                                <input
+                                    type="text"
+                                    class="form-control rounded-pill"
+                                    id="entradaVisible"
+                                    placeholder="Selecciona"
+                                    readonly
+                                >
+                            </div>
+
+                            <div class="col-6">
+                                <label class="form-label">Salida</label>
+                                <input
+                                    type="text"
+                                    class="form-control rounded-pill"
+                                    id="salidaVisible"
+                                    placeholder="Selecciona"
+                                    readonly
+                                >
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Notas</label>
+                            <textarea
+                                name="notas"
+                                class="form-control rounded-4"
+                                rows="4"
+                                placeholder="Número de personas, dudas o preferencias..."
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success rounded-pill w-100">
+                            Enviar solicitud de reserva
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+    const calendarGrid = document.getElementById("calendarGrid");
+    const calendarTitle = document.getElementById("calendarTitle");
+
+    const fechaEntrada = document.getElementById("fechaEntrada");
+    const fechaSalida = document.getElementById("fechaSalida");
+    const entradaVisible = document.getElementById("entradaVisible");
+    const salidaVisible = document.getElementById("salidaVisible");
+
+    let currentDate = new Date();
+    let startDate = null;
+    let endDate = null;
+
+    const diasReserva = JSON.parse('{{ dias_reserva_json|escapejs }}');
+
+    const disabledDates = diasReserva
+        .filter(dia => dia.reservado)
+        .map(dia => dia.fecha);
+
+    const monthNames = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ];
+
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    }
+
+    function formatVisible(date) {
+        return date.toLocaleDateString("es-ES", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    function isBetween(date, start, end) {
+        return date > start && date < end;
+    }
+
+    function renderCalendar() {
+        calendarGrid.innerHTML = "";
+
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        calendarTitle.textContent = `${monthNames[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+
+        let startWeekDay = firstDay.getDay();
+        startWeekDay = startWeekDay === 0 ? 7 : startWeekDay;
+
+        for (let i = 1; i < startWeekDay; i++) {
+            calendarGrid.appendChild(document.createElement("div"));
+        }
+
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+            const date = new Date(year, month, day);
+            const isoDate = formatDate(date);
+
+            const dayButton = document.createElement("div");
+            dayButton.className = "calendar-day";
+            dayButton.textContent = day;
+            dayButton.dataset.date = isoDate;
+
+            if (disabledDates.includes(isoDate)) {
+                dayButton.classList.add("disabled");
+            }
+
+            if (
+                startDate &&
+                formatDate(date) === formatDate(startDate)
+            ) {
+                dayButton.classList.add("selected");
+            }
+
+            if (
+                endDate &&
+                formatDate(date) === formatDate(endDate)
+            ) {
+                dayButton.classList.add("selected");
+            }
+
+            if (
+                startDate &&
+                endDate &&
+                isBetween(date, startDate, endDate)
+            ) {
+                dayButton.classList.add("range");
+            }
+
+            dayButton.addEventListener("click", () => {
+                if (dayButton.classList.contains("disabled")) return;
+
+                if (!startDate || endDate) {
+                    startDate = date;
+                    endDate = null;
+                } else if (date > startDate) {
+                    endDate = date;
+                } else {
+                    startDate = date;
+                    endDate = null;
+                }
+
+                fechaEntrada.value = startDate ? formatDate(startDate) : "";
+                fechaSalida.value = endDate ? formatDate(endDate) : "";
+
+                entradaVisible.value = startDate ? formatVisible(startDate) : "";
+                salidaVisible.value = endDate ? formatVisible(endDate) : "";
+
+                renderCalendar();
+            });
+
+            calendarGrid.appendChild(dayButton);
+        }
+    }
+
+    document.getElementById("prevMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+
+    document.getElementById("nextMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
+</script>
+
 </body>
 </html>

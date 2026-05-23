@@ -58,7 +58,8 @@
 
                     <!-- Carrito, span para que cuando actualice no se pierda el carro -->
                     <a href="{% url 'checkout' %}" class="text-decoration-none text-dark" >
-                        🛒 <span id="cart-count"> {{ carrito_total }} </span>
+                        🛒 <span id="cart-count"> {{ carrito_total }} </span> 
+                        <!-- carrito total funciona gracias al context processor de settings.py -->
                     </a>
                     <!-- Usuario -->
                     <span class="text-muted small">

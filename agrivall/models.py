@@ -66,3 +66,14 @@ class LineaPedido(models.Model):
 
     def __str__(self):
         return f"{self.producto.nombre} x {self.peso_kg}"
+    
+# Fechas de reserva CASILLA
+class DiaReserva(models.Model):
+    fecha = models.DateField(unique=True)
+    reservado = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = "dias_reserva"
+
+    def __str__(self):
+        return f"{self.fecha} - {'Reservado' if self.reservado else 'Libre'}"

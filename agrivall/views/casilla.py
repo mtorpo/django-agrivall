@@ -1,5 +1,21 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
+from django.core.serializers.json import DjangoJSONEncoder
+import json
+
+from agrivall.models import DiaReserva
 
 
 def casilla(request):
-    return render(request, 'casilla.html')
+    dias = DiaReserva.objects.all().order_by("fecha")
+
+    dias_reserva = [
+        {
+            "fecha": dia.fecha.isoformat(),
+            "reservado": dia.reservado,
+        }
+        for dia in dias
+    ]
+
+    return render(request, "casilla.html", {
+        "dias_reserva_json": json.dumps(dias_reserva, cls=DjangoJSONEncoder)
+    })

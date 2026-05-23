@@ -1,0 +1,55 @@
+body {
+    background: #f7f7f2;
+}
+
+.hero-rural {
+    background: linear-gradient(rgba(34, 60, 38, .45), rgba(34, 60, 38, .45)),
+                url("{% static 'img/casa-rural.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    border-radius: 2rem;
+    min-height: 360px;
+}
+
+.calendar-day {
+    border: 1px solid #e5e5e5;
+    border-radius: 1rem;
+    padding: 1rem .5rem;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    transition: .2s ease;
+    user-select: none;
+}
+
+.calendar-day:hover {
+    border-color: #198754;
+    transform: translateY(-2px);
+}
+
+.calendar-day.selected,
+.calendar-day.range {
+    background: #198754;
+    color: white;
+    border-color: #198754;
+}
+
+.calendar-day.disabled {
+    background: #f1f1f1;
+    color: #aaa;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .75rem;
+}
+
+.calendar-label {
+    text-align: center;
+    font-size: .85rem;
+    color: #777;
+    font-weight: 600;
+}
