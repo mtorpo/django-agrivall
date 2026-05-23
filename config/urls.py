@@ -21,7 +21,8 @@ from django.urls import include, path
 # static → función que crea las rutas para servir archivos.
 from django.conf import settings
 from django.conf.urls.static import static
-
+# Nuestro login manual para aplicar boostrap en el form.campo
+from agrivall.forms import LoginForm
 
 # LOGIN
 from django.urls import path
@@ -32,7 +33,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("agrivall.urls")),
     # 
-    path("login/", auth_views.LoginView.as_view(template_name="auth/login.html"), name="login"),
+    path("login/", auth_views.LoginView.as_view(template_name="auth/login.html",
+        authentication_form=LoginForm), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("register/", register, name="register"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

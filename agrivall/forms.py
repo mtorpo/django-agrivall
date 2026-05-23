@@ -32,3 +32,41 @@ class PedidoForm(forms.ModelForm):
                 'placeholder':'Código postal'
             })
         }
+
+
+
+# forms.py
+
+from django.contrib.auth.forms import AuthenticationForm
+from django import forms
+
+
+# CREAMOS UN FORM PARA LOGIN, y no usamos el propio, para aplicar boostrap sobre los form.campos
+# por que con el por defecto, form.campo ya crea un input lo que sea, no podemos poner la class
+# Aprovechamos y definimos los textos para los errores
+class LoginForm(AuthenticationForm):
+    
+    error_messages = {
+        "invalid_login": (
+            "Usuario o contraseña incorrectos."
+        )
+    }
+
+    # Bootstrap
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control rounded-pill",
+                "placeholder": "Usuario"
+            }
+        )
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control rounded-pill",
+                "placeholder": "Contraseña"
+            }
+        )
+    )

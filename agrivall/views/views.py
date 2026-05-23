@@ -66,18 +66,6 @@ def add_to_cart(request, product_id):
     return redirect('checkout')
 
 @login_required
-def cart(request):
-    try:
-        cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
-        lineas = cart.lineas.all()
-        total = sum(linea.precio_unidad for linea in lineas)
-    except Pedido.DoesNotExist:
-        cart = None
-        lineas = []
-        total = 0
-    return render(request, 'resumen_carrito.html', {'cart': cart, 'lineas': lineas, 'total': total})
-
-@login_required
 def checkout(request):
     """
     Misma función para resumir carrito y para crear pedido.
@@ -85,8 +73,12 @@ def checkout(request):
     try:
         cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
     except Pedido.DoesNotExist:
-        # cuando seleccionan el carrito y no hay productos
-        return redirect('productos')
+        # cuando seleccionan el carrito y no hay productos, no se pasa formulario, y con el lineas vacío
+        # el resumen carrito indica que no hay productos
+        cart = None
+        lineas = []
+        total = 0
+        return render(request, 'resumen_carrito.html', {'cart': cart, 'lineas': lineas, 'total': total})
     
     lineas = cart.lineas.all()
     total = sum(linea.precio_unidad for linea in lineas)
