@@ -7,23 +7,34 @@
 <body>
     <h2>Finalizar Pedido</h2>
 
-    <h3>Resumen del carrito</h3>
+    <h2>Resumen del carrito</h2>
+
     {% for linea in lineas %}
         <div>
             <p>Producto: {{ linea.producto.nombre }}</p>
-            <p>Variedad: {{ linea.variedad }}</p>
-            <p>Cajas: {{ linea.caja }}</p>
+            <p>Peso Kg: {{ linea.peso_kg }}</p>
             <p>Precio unidad: {{ linea.precio_unidad }}</p>
         </div>
+        <form method="post" action="{% url 'eliminar-linea-pedido' %}">
+            {% csrf_token %}
+            <input type="hidden" name="linea_pedido_id" value="{{ linea.id }}">
+
+            <button type="submit">Eliminar producto</button>
+        </form>
         <hr>
     {% endfor %}
-    <p>Total: {{ total }}</p>
+
+        <p>Total: {{ total }}</p>
 
     <h3>Datos de envío</h3>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="number" value="{{ total }}">
+        {{ pedido_form.as_p }}
+        
+        <span>Total: {{ total }}</span>
+        
+        <input type="hidden" name="total" value="{{ total }}">
+        
         <button type="submit">Confirmar Pedido</button>
     </form>
 

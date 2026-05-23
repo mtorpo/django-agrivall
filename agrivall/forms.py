@@ -10,4 +10,5 @@ class ProductoForm(forms.ModelForm):
 class PedidoForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        fields = ['nombre', 'direccion', 'cp', 'total']
+        fields = ['nombre', 'direccion', 'cp']
+        # campo total a mano

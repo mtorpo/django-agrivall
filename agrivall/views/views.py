@@ -73,25 +73,31 @@ def cart(request):
 
 @login_required
 def checkout(request):
+    """
+    Misma función para resumir carrito y para crear pedido
+    """
     try:
         cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
     except Pedido.DoesNotExist:
         return redirect('cart')
+    
+    lineas = cart.lineas.all()
+    total = sum(linea.precio_unidad for linea in lineas)
 
     if request.method == 'POST':
         form = PedidoForm(request.POST, instance=cart)
         if form.is_valid():
-            # crea el objeto pedido pero no lo guarda en la bdd, por el commit = False
+            # crea el objeto pedido con los datos del cliente pero no lo guarda en la bdd, por el commit = False
             pedido = form.save(commit=False) 
+            pedido.total = total
             pedido.estado = 'confirmado'
             pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
             return redirect('pedido_confirmado')
     else:
+        # Aquí se piden los datos para crear un pedido y generar el formulario
         form = PedidoForm(instance=cart)
 
-    lineas = cart.lineas.all()
-    total = sum(linea.caja * linea.precio_unidad for linea in lineas)
-    return render(request, 'checkout.html', {'form': form, 'lineas': lineas, 'total': total})
+    return render(request, 'checkout.html', {'pedido_form': form, 'lineas': lineas, 'total': total})
 
 @login_required
 def pedido_confirmado(request):
