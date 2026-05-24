@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Agrivall</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+
+</head>
+<body>
+
+    {% include "partials/nav.html" %}
+
+    <main>
+
+        <section class="container py-5 text-center">
+
+            <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2 mb-3">
+                🌱 Blog Agrivall
+            </span>
+
+            <h1 class="display-5 fw-bold text-success mb-3">
+                Consejos para una vida más sostenible
+            </h1>
+
+            <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                Ideas, recetas y consejos sobre producto ecológico, consumo responsable y agricultura de proximidad.
+            </p>
+
+        </section>
+
+        <section class="container pb-5">
+
+            <div class="row g-4">
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
+                                Alimentación
+                            </span>
+
+                            <h4 class="fw-semibold mb-3">
+                                Cómo elegir frutas y verduras de temporada
+                            </h4>
+
+                            <p class="text-muted">
+                                Consumir productos de temporada ayuda a reducir el impacto ambiental y mejora el sabor de tus platos.
+                            </p>
+
+                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
+                                Leer más
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
+                                Sostenibilidad
+                            </span>
+
+                            <h4 class="fw-semibold mb-3">
+                                Pequeños cambios para consumir mejor
+                            </h4>
+
+                            <p class="text-muted">
+                                Comprar local, planificar la cesta y reducir envases son pasos sencillos hacia un consumo más consciente.
+                            </p>
+
+                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
+                                Leer más
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
+                                Recetas
+                            </span>
+
+                            <h4 class="fw-semibold mb-3">
+                                Recetas fáciles con productos ecológicos
+                            </h4>
+
+                            <p class="text-muted">
+                                Platos sencillos, frescos y saludables preparados con ingredientes de proximidad.
+                            </p>
+
+                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
+                                Leer más
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

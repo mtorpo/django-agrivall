@@ -37,72 +37,30 @@
         <section class="container pb-5">
 
             <div class="row g-4">
+                {% for post in posts %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
+                                <span class="badge rounded-pill bg-success-subtle text-success mb-3">
+                                    {{ post.tipo.tipo }}
+                                </span>
 
-                <div class="col-12 col-md-6 col-lg-4">
-                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4">
-                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
-                                Alimentación
-                            </span>
+                                <h4 class="fw-semibold mb-3">
+                                    {{ post.titulo}}
+                                </h4>
 
-                            <h4 class="fw-semibold mb-3">
-                                Cómo elegir frutas y verduras de temporada
-                            </h4>
+                                <p class="text-muted">
+                                    {{ post.noticia}}
+                                </p>
 
-                            <p class="text-muted">
-                                Consumir productos de temporada ayuda a reducir el impacto ambiental y mejora el sabor de tus platos.
-                            </p>
+                                <a href="#" class="btn btn-outline-success rounded-pill mt-2">
+                                    Leer más
+                                </a>
+                            </div>
+                        </article>
+                    </div>
 
-                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
-                                Leer más
-                            </a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4">
-                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
-                                Sostenibilidad
-                            </span>
-
-                            <h4 class="fw-semibold mb-3">
-                                Pequeños cambios para consumir mejor
-                            </h4>
-
-                            <p class="text-muted">
-                                Comprar local, planificar la cesta y reducir envases son pasos sencillos hacia un consumo más consciente.
-                            </p>
-
-                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
-                                Leer más
-                            </a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <article class="card soft-card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4">
-                            <span class="badge rounded-pill bg-success-subtle text-success mb-3">
-                                Recetas
-                            </span>
-
-                            <h4 class="fw-semibold mb-3">
-                                Recetas fáciles con productos ecológicos
-                            </h4>
-
-                            <p class="text-muted">
-                                Platos sencillos, frescos y saludables preparados con ingredientes de proximidad.
-                            </p>
-
-                            <a href="#" class="btn btn-outline-success rounded-pill mt-2">
-                                Leer más
-                            </a>
-                        </div>
-                    </article>
-                </div>
+                {% endfor %}
 
             </div>
 

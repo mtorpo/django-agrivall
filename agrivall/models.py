@@ -8,11 +8,16 @@ from django.contrib.auth.models import User
 # models.DecimalField(max_digits=10, decimal_places=2)
 # models.ImageField(upload_to="productos/", blank=True, null=True)
 # models.JSONField()
+# models.TextField()
+
+# on_delete=models.SET_NULL
+# on_delete=models.CASCADE
+# on_delete=models.PROTECT
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     stock = models.IntegerField()
-    descripcion = models.CharField(max_length=255)
+    descripcion = models.TextField()
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
     imagen = models.ImageField(upload_to="productos/", blank=True, null=True)
     peso_kg = models.IntegerField()
@@ -89,3 +94,26 @@ class SemanaCasilla(models.Model):
 
     def __str__(self):
         return f"Semana {self.numero_sem} / {self.ano} - {self.estado}"
+    
+
+class TipoPost(models.Model):
+    class Meta:
+        db_table = "tipo_post"
+
+    TIPOS = [
+        ("cultivos", "Cultivos"),
+        ("ecología", "Ecología"),
+        ("cursos", "Cursos"),
+    ]
+    tipo = models.CharField(max_length=255, choices=TIPOS, default="libre")
+
+class PostBlog(models.Model):
+    class Meta:
+        db_table = "posts_blog"
+
+    titulo =  models.CharField(max_length=100, blank=False)
+    noticia = models.TextField()
+    imagen = models.ImageField(upload_to="blog/", blank=True, null=True)
+    fecha_public = models.DateTimeField(auto_now_add=True)
+    # blank y null a True para permitir el on_delete set_null
+    tipo = models.ForeignKey(TipoPost, on_delete=models.SET_NULL, related_name="posts",null=True,blank=True)
