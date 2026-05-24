@@ -9,53 +9,8 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
 
-    <style>
-        body {
-            background: #f7f7f2;
-        }
-
-        .hero-home {
-            min-height: 520px;
-            border-radius: 2rem;
-            background:
-                linear-gradient(rgba(30, 64, 38, .55), rgba(30, 64, 38, .55)),
-                url("{% static 'images/hero-agrivall.jpg' %}");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .soft-card {
-            border: 0;
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,.06);
-            transition: .25s ease;
-        }
-
-        .soft-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 32px rgba(0,0,0,.10);
-        }
-
-        .section-label {
-            color: #198754;
-            font-weight: 600;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-            font-size: .85rem;
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #e8f5ec;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -85,7 +40,7 @@
 
             <div class="d-flex flex-column flex-sm-row gap-3">
 
-                <a href="{% url 'productos' %}" class="btn btn-success rounded-pill px-4">
+                <a href="{% url 'productos' %}" class="btn btn-green rounded-pill px-4">
                     Ver productos
                 </a>
 
@@ -186,7 +141,7 @@
                 cercana de consumir.
             </p>
 
-            <a href="{% url 'productos' %}" class="btn btn-success rounded-pill px-4">
+            <a href="{% url 'productos' %}" class="btn btn-green rounded-pill px-4">
                 Ir a la tienda
             </a>
 
@@ -207,7 +162,7 @@
                             </p>
                         </div>
 
-                        <span class="badge bg-success-subtle text-success rounded-pill">
+                        <span class="badge-green rounded-pill">
                             Temporada
                         </span>
                     </div>
