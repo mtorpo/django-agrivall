@@ -6,6 +6,7 @@
     --primary: #198754;
     --primary-dark: #145c38;
     --primary-soft: #e8f5ec;
+    --primary-soft-dark: #c0c0bd;
 
     /* Fondos */
     --bg-main: #f7f7f2;
@@ -27,6 +28,12 @@
                  BlinkMacSystemFont,
                  "Segoe UI",
                  sans-serif;
+}
+
+/* quitar decoración de anchors */
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
 /* ===== BASE ===== */
@@ -74,6 +81,57 @@ h1,h2,h3,h4,h5,h6{
 
 /* ===== BOTONES ===== */
 
+/* color crema */
+.btn-light{
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+    border: 1px solid rgba(0,0,0,.05);
+
+    border-radius: 999px;
+
+    padding: .7rem 1.5rem;
+
+    box-shadow: var(--shadow-soft);
+
+    transition: .3s;
+}
+
+.btn-light:hover{
+
+    background: var(--primary-soft-dark);
+
+    box-shadow: var(--shadow-hover);
+}
+
+/* color crema inverso */
+.btn-light-outline{
+
+    background: transparent;
+
+    color: var(--primary-soft);
+
+    border: 1px solid var(--primary-soft);
+
+    border-radius: 999px;
+
+    padding: .7rem 1.5rem;
+
+    transition: .3s;
+}
+
+.btn-light-outline:hover{
+
+    background: var(--bg-main);
+
+    color: black;
+
+    box-shadow: var(--primary-soft);
+}
+
+/* color verde */
 .btn-green{
 
     background:var(--primary);
@@ -94,18 +152,21 @@ h1,h2,h3,h4,h5,h6{
     color:white;
 }
 
-
+/* color verde inverso */
 .btn-green-outline{
 
     border:1px solid var(--primary);
     color:var(--primary);
 
     border-radius:999px;
+
+    padding:.7rem 1.5rem;
 }
 
 .btn-green-outline:hover{
 
     background:var(--primary);
+    transition: 0.3s;
     color:white;
 }
 
@@ -122,6 +183,27 @@ h1,h2,h3,h4,h5,h6{
     border-radius:999px;
 }
 
+
+.badge-light{
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+    padding: .45rem .9rem;
+
+    border-radius:999px;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    box-shadow: var(--shadow-soft);
+
+    transition:.25s;
+}
 
 /* ===== ICONOS ===== */
 
