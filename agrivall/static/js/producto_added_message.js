@@ -1,17 +1,15 @@
 function mostrarProductoAñadido(message) {
+    // Esta función quita el d-none del div del mensaje, espera X segundos y lo vuelve a esconder
+    if (!message || message.trim() === "") return;
 
-    const toastElement = document.getElementById("cartToast");
+    const toast = document.getElementById("cartToast");
     const toastBody = document.getElementById("cartToastBody");
 
-    toastBody.innerHTML = `✓ ${message}`;
+    toastBody.textContent = `✓ ${message}`;
+    toast.classList.remove("d-none");
 
-    const toast = bootstrap.Toast.getOrCreateInstance(
-        toastElement,
-        {
-            autohide: true,
-            delay: 1500
-        }
-    );
-
-    toast.show();
+    setTimeout(() => {
+        toast.classList.add("d-none");
+        toastBody.textContent = "";
+    }, 1500);
 }

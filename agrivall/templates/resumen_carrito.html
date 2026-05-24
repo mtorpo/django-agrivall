@@ -106,7 +106,7 @@
 
             <div class="modal-content">
 
-                <form method="post">
+                <form method="post" action="{% url 'checkout' %}">
 
                     {% csrf_token %}
 

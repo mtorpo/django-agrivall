@@ -104,10 +104,13 @@
                 const data = await response.json();
                 
                 // AJAX, actualizar contador producto + mensaje producto añadido
-            if (data.ok) {
-                contadorCarrito.textContent = data.cart_count;
-                mostrarProductoAñadido(data.message); // función de js/producto_added_message.js
-            }
+                if (data.ok) {
+                    contadorCarrito.textContent = data.cart_count;
+
+                    if (data.message && data.message.trim() !== "") {
+                        mostrarProductoAñadido(data.message);
+                    }
+                }
             });
         });
     </script>
