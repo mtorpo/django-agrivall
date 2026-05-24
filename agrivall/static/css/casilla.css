@@ -1,42 +1,47 @@
-.calendar-day {
-    border: 1px solid #e5e5e5;
-    border-radius: 1rem;
-    padding: 1rem .5rem;
-    text-align: center;
+/* Pointer al seleccionar semana */
+.semana-card{
     cursor: pointer;
-    background: white;
-    transition: .2s ease;
-    user-select: none;
 }
 
-.calendar-day:hover {
-    border-color: #198754;
-    transform: translateY(-2px);
+.semana-card.seleccionada{
+    border: 2px solid var(--primary) !important;
+    box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
-.calendar-day.selected,
-.calendar-day.range {
-    background: #198754;
-    color: white;
-    border-color: #198754;
-}
 
-.calendar-day.disabled {
-    background: #f1f1f1;
-    color: #aaa;
-    cursor: not-allowed;
-    text-decoration: line-through;
-}
+/* ESTADOS CASILLA */
+.estado_casilla{
 
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: .75rem;
-}
+    padding: .1rem .5rem;
+    border-radius: 999px;
 
-.calendar-label {
-    text-align: center;
     font-size: .85rem;
-    color: #777;
     font-weight: 600;
 }
+
+/* Libre */
+
+.estado_casilla.libre{
+
+    background:#e8f5ec;
+    color:#198754;
+}
+
+
+/* Pre-reserva */
+
+.estado_casilla.pre-reserva{
+
+    background:#fff3cd;
+    color:#997404;
+}
+
+
+/* Reservado */
+
+.estado_casilla.reservado{
+
+    background:#f8d7da;
+    color:#842029;
+}
+

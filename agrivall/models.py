@@ -68,12 +68,24 @@ class LineaPedido(models.Model):
         return f"{self.producto.nombre} x {self.peso_kg}"
     
 # Fechas de reserva CASILLA
-class DiaReserva(models.Model):
-    fecha = models.DateField(unique=True)
-    reservado = models.BooleanField(default=False)
+class SemanaCasilla(models.Model):
+    # valor bdd, valor visual admin
+    ESTADOS = [
+        ("libre", "Libre"),
+        ("pre-reserva", "Pre-reserva"),
+        ("reservado", "Reservado"),
+    ]
+
+    ano = models.IntegerField()
+    numero_sem = models.IntegerField()
+    estado = models.CharField(max_length=20, choices=ESTADOS, default="libre")
+    precio = models.DecimalField(max_digits=8, decimal_places=2)
+    descriptor = models.CharField(max_length=100, blank=True)
 
     class Meta:
-        db_table = "dias_reserva"
+        db_table = "semanas_casilla"
+        unique_together = ("ano", "numero_sem")
+        ordering = ["ano", "numero_sem"]
 
     def __str__(self):
-        return f"{self.fecha} - {'Reservado' if self.reservado else 'Libre'}"
+        return f"Semana {self.numero_sem} / {self.ano} - {self.estado}"
