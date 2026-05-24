@@ -217,9 +217,11 @@ def crear_linea_pedido(request):
 
     cart_count = pedido.lineas.count()
 
+    # Como comprar productos es AJAX para no cargar la página entera, la alerta la mandamos nosotros
     return JsonResponse({
         'ok': True,
-        "cart_count": cart_count
+        "cart_count": cart_count,
+        "message": "Producto añadido al carrito 🌱"
     })
 
 

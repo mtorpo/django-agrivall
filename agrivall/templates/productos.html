@@ -14,11 +14,13 @@
     
     {% include "partials/nav.html" %}
 
-    {% include "partials/message.html" %}
+    <!-- Mensaje de pedido finalizado -->
+    {% include "partials/pedido_finalizado_message.html" %}
 
-    <h1> Productos </h1>
+    <!-- Producto añadido -->
+    {% include "partials/producto_added_message.html" %}
 
-    {% comment %} CARTAS PRODUCTOS {% endcomment %}
+    <!-- CARTAS PRODUCTOS -->
     <section class="categoria-lista">
         <div class="container py-5">
             <div class="row g-4">
@@ -77,14 +79,14 @@
         </div>
     </section>
 
-    {% comment %} <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}">
-        {% comment %} Lo de dentro no se ejecuta, por eso se separa {% endcomment %}
-    </script>
+    <!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
+    <!-- Lógica JS para mostrar el mensaje AJAX de pedido añadido, viene de crear_linea_pedido al añadir un producto -->
+    <script src="{% static 'js/producto_added_message.js' %}"></script>
     <script>
     
-        {% comment %} JS Para capturar el action del form y el contador de productos en carro {% endcomment %}
+        // JS Para capturar el action del form y el contador de productos en carro 
         const formsAddCart = document.querySelectorAll(".form-add-cart");
         const contadorCarrito = document.getElementById("cart-count");
 
@@ -100,10 +102,12 @@
                 });
 
                 const data = await response.json();
-
-                if (data.ok) {
-                    contadorCarrito.textContent = data.cart_count;
-                }
+                
+                // AJAX, actualizar contador producto + mensaje producto añadido
+            if (data.ok) {
+                contadorCarrito.textContent = data.cart_count;
+                mostrarProductoAñadido(data.message); // función de js/producto_added_message.js
+            }
             });
         });
     </script>
