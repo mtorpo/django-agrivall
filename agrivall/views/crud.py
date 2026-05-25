@@ -26,22 +26,15 @@ def dashboard(request):
 @user_passes_test(es_superuser)
 def crear_producto(request):
 
-    mensaje = "Error al crear producto"
-
-    if request.method != "POST":
-        raise Http404("Ups! Parece que te has perdido")
-
     form = ProductoForm(request.POST)
 
-    producto = None
-
-    if form.is_valid():
-
+    if form.is_valid() and request.method == "POST":
         producto = form.save()
+    
+    else:
+        return render(request, "crud/ver_producto.html")
 
-        mensaje = "Producto creado correctamente"
-
-    redirect('dashboard')
+    return redirect('dashboard')
 
 @user_passes_test(es_superuser)
 def ver_producto(request):

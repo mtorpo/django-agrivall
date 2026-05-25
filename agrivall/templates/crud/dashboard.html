@@ -73,13 +73,23 @@
             <p class="text-secondary fs-5 mx-auto" style="max-width: 650px;">
                 Cualquier acción realizada no será reversible.
             </p>
-
-            <a
-                href="{% url 'index' %}"
-                class="btn btn-success w-50"
-            >
-                Inicio
-            </a>
+            <div class="d-flex justify-content-center mt-4">
+                <div class="w-100" style="max-width:420px;">
+                    <a
+                        href="{% url 'index' %}"
+                        class="btn btn-success btn-lg w-100 mb-3"
+                    >
+                        Inicio
+                    </a>
+                    <a
+                        href="{% url 'crear_producto' %}"
+                        class="btn btn-outline-primary btn-lg w-100"
+                    >
+                        Crear producto
+                    </a>
+                    
+                </div>
+            </div>
         </section>
 
         <section>

@@ -22,10 +22,21 @@
                     <div class="card-body p-4">
 
                         <h2 class="text-center mb-4">
-                            Editar producto
+                            {% if producto.id %}
+                                Editar producto    
+                            {% else %}
+                                Nuevo producto
+                            {% endif %}
                         </h2>
 
-                        <form method="post" enctype="multipart/form-data" action="{% url "editar_producto" %}">
+                        <form method="post" enctype="multipart/form-data" 
+                        action="
+                        {% if producto.id %}
+                                {% url 'editar_producto' %}
+                        {% else %}
+                            {% url 'crear_producto' %}
+                        {% endif %}"
+                        >
 
                             {% csrf_token %}
 
