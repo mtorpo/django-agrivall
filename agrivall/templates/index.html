@@ -17,21 +17,21 @@
 
 {% include "partials/nav.html" %}
 
-<main class="page-container">
+<main class="pagina">
 
-    <section class="hero-home">
-        <div class="hero-content">
+    <section class="portada">
+        <div class="portada-cuerpo">
 
-            <h1 class="hero-title">
+            <h1 class="portada-titulo">
                 Agrivall, sabor de la tierra y calma entre montañas
             </h1>
 
-            <p class="hero-text">
+            <p class="portada-texto">
                 Descubre productos ecológicos de temporada y reserva una estancia rural
                 pensada para desconectar, respirar y volver a lo esencial.
             </p>
 
-            <div class="button-group">
+            <div class="acciones">
                 <a href="{% url 'productos' %}" class="btn-green">
                     Ver productos
                 </a>
@@ -45,66 +45,34 @@
     </section>
 
 
-    <section class="grid-3">
+    <section class="sobre">
+        <div class="sobre-cuerpo">
+            <span class="etiqueta">
+                Sobre nosotros
+            </span>
 
-        <article class="soft-card">
-            <div class="card-content">
-                <img
-                    src="{% static 'icons/plant.png' %}"
-                    alt="Hoja"
-                    style="width:40px;height:40px;"
-                >
+            <h2>
+                Una forma cercana de vivir el campo
+            </h2>
 
-                <h3>Producto ecológico</h3>
+            <p class="texto-secundario">
+                Agrivall nace de la unión entre la agricultura ecológica y el amor por
+                un entorno rural tranquilo. Cuidamos productos de temporada y ofrecemos
+                una casa rural pensada para disfrutar de la naturaleza con sencillez.
+            </p>
 
-                <p class="text-soft">
-                    Fruta y productos de temporada, cultivados con mimo y respeto
-                    por el ritmo natural del campo.
-                </p>
-            </div>
-        </article>
-
-        <article class="soft-card">
-            <div class="card-content">
-                <img
-                    src="{% static 'icons/house.png' %}"
-                    alt="Hoja"
-                    style="width:40px;height:40px;"
-                >
-
-                <h3>Escapada rural</h3>
-
-                <p class="text-soft">
-                    Una casita tranquila para descansar, compartir y disfrutar del entorno
-                    sin prisas.
-                </p>
-            </div>
-        </article>
-
-        <article class="soft-card">
-            <div class="card-content">
-                <img
-                    src="{% static 'icons/delivery.png' %}"
-                    alt="Hoja"
-                    style="width:40px;height:40px;"
-                >
-
-                <h3>Pedido sencillo</h3>
-
-                <p class="text-soft">
-                    Añade productos al carrito, confirma tus datos y prepara tu pedido
-                    de forma rápida.
-                </p>
-            </div>
-        </article>
-
+            <p class="texto-secundario">
+                Nuestro objetivo es acercarte al sabor auténtico de la tierra y a una
+                experiencia pausada, honesta y respetuosa con el paisaje que nos rodea.
+            </p>
+        </div>
     </section>
 
 
-    <section class="grid-2">
+    <section class="bloque-doble">
 
         <div>
-            <span class="section-label">
+            <span class="etiqueta">
                 Tienda ecológica
             </span>
 
@@ -112,7 +80,7 @@
                 Productos frescos, sencillos y de temporada
             </h2>
 
-            <p class="text-soft">
+            <p class="texto-secundario">
                 En nuestra tienda encontrarás productos pensados para quienes valoran
                 el origen, el sabor y la calidad. Cada caja representa una forma más
                 cercana de consumir.
@@ -123,32 +91,29 @@
             </a>
         </div>
 
-        <article class="soft-card">
-            <div class="card-content">
+        <article class="ficha">
+            <div class="ficha-cuerpo">
 
-                <div class="info-header">
-                    <div>
-                        <h3>Productos destacados</h3>
+                <div>
+                    <h3>Productos destacados</h3>
 
-                        <p class="text-soft small-text">
-                            Consulta la disponibilidad actual en la tienda.
-                        </p>
-                    </div>
-
+                    <p class="texto-secundario texto-pequeno">
+                        Consulta la disponibilidad actual en la tienda.
+                    </p>
                 </div>
 
-                <div class="info-list">
-                    <div class="info-row">
+                <div>
+                    <div class="dato">
                         <span>Naranjas ecológicas</span>
                         <strong>Caja</strong>
                     </div>
 
-                    <div class="info-row">
+                    <div class="dato">
                         <span>Producto local</span>
                         <strong>Fresco</strong>
                     </div>
 
-                    <div class="info-row">
+                    <div class="dato">
                         <span>Pedido online</span>
                         <strong>Disponible</strong>
                     </div>
@@ -160,16 +125,16 @@
     </section>
 
 
-    <section class="grid-2 rural-section">
+    <section class="bloque-doble">
 
-        <article class="soft-card">
-            <div class="card-content">
+        <article class="ficha">
+            <div class="ficha-cuerpo">
 
                 <h3>
                     Selecciona tus días y envía una solicitud
                 </h3>
 
-                <p class="text-soft">
+                <p class="texto-secundario">
                     La zona de reserva permite elegir días consecutivos en calendario
                     y enviar una solicitud para confirmar disponibilidad.
                 </p>
@@ -178,7 +143,7 @@
         </article>
 
         <div>
-            <span class="section-label">
+            <span class="etiqueta">
                 Casa rural
             </span>
 
@@ -186,7 +151,7 @@
                 Una estancia para desconectar
             </h2>
 
-            <p class="text-soft">
+            <p class="texto-secundario">
                 Reserva una escapada en un entorno tranquilo, rodeado de campo y aire libre.
                 Ideal para quienes buscan una experiencia sencilla, natural y cercana.
             </p>
@@ -201,7 +166,6 @@
 </main>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
 
     {% include "partials/footer.html" %}
 </body>

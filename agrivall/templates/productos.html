@@ -22,7 +22,7 @@
 
     <main>
 
-        <section class="productos-header">
+        <section class="cabecera-productos">
             <span class="badge-green">
                 Green-commerce
             </span>
@@ -34,48 +34,48 @@
             </p>
         </section>
 
-        <section class="productos-section">
+        <section class="zona-productos">
 
-            <div class="productos-grid">
+            <div class="rejilla-productos">
 
                 {% for producto in productos %}
 
-                    <form method="post" action="{% url 'crear_linea_pedido' %}" class="form-add-cart">
+                    <form method="post" action="{% url 'crear_linea_pedido' %}" class="formulario-carrito">
                         {% csrf_token %}
 
                         <input type="hidden" name="producto_id" value="{{ producto.id }}">
 
-                        <article class="soft-card producto-card">
+                        <article class="soft-card tarjeta-producto">
 
                             {% if producto.imagen %}
                                 <img
                                     src="{{ producto.imagen.url }}"
-                                    class="producto-img"
+                                    class="imagen-producto"
                                     alt="{{ producto.nombre }}"
                                 >
                             {% endif %}
 
-                            <div class="producto-content">
+                            <div class="contenido-producto">
 
-                                <h2 class="producto-title">
+                                <h2 class="titulo-producto">
                                     {{ producto.nombre }}
                                 </h2>
 
-                                <p class="text-soft producto-description">
+                                <p class="text-soft descripcion-producto">
                                     {{ producto.descripcion }}
                                 </p>
 
-                                <div class="producto-info">
-                                    <span class="producto-price">
+                                <div class="datos-producto">
+                                    <span class="precio-producto">
                                         {{ producto.precio_unidad }} €
                                     </span>
 
-                                    <span class="producto-weight">
+                                    <span class="peso-producto">
                                         {{ producto.peso_kg }} kg
                                     </span>
                                 </div>
 
-                                <button type="submit" class="btn-green producto-btn">
+                                <button type="submit" class="btn-green boton-producto">
                                     Añadir al carrito
                                 </button>
 
@@ -97,10 +97,10 @@
     <script src="{% static 'js/producto_added_message.js' %}"></script>
 
     <script>
-        const formsAddCart = document.querySelectorAll(".form-add-cart");
+        const formulariosCarrito = document.querySelectorAll(".formulario-carrito");
         const contadorCarrito = document.getElementById("cart-count");
 
-        formsAddCart.forEach(form => {
+        formulariosCarrito.forEach(form => {
             form.addEventListener("submit", async function (e) {
                 e.preventDefault();
 
