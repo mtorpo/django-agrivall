@@ -5,56 +5,35 @@
 }
 
 .hero-home {
-
     min-height: 520px;
-
     border-radius: 2rem;
-
     padding: 2rem;
-
     margin-bottom: 3rem;
-
     display: flex;
     align-items: center;
-
     color: white;
-
     background-image: url("../images/house_forest.jpg");
     background-size: cover;
     background-position: center;
-
     position: relative;
     overflow: hidden;
 }
 
-
-/* oscurece ligeramente la imagen */
-
-.hero-home::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:rgba(0,0,0,.35);
-}
-
-
-/* mantiene el contenido por encima */
-
-.hero-content{
-
-    position:relative;
-    z-index:1;
+.hero-home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     max-width: 680px;
 }
 
 .hero-title {
+    color: var(--primary);
     font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
 }
@@ -62,18 +41,12 @@
 .hero-text {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
-    color: grey;
 }
 
 .button-group {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-}
-
-.button-group.center {
-    justify-content: center;
-    align-items: center;
 }
 
 .grid-3 {
@@ -102,14 +75,6 @@
     margin-bottom: .7rem;
 }
 
-.cta-section {
-    background: var(--primary);
-    color: white;
-    text-align: center;
-    padding: 3rem 1.5rem;
-    margin-bottom: 3rem;
-}
-
 @media (min-width: 768px) {
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
@@ -117,9 +82,5 @@
 
     .grid-2 {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .reverse-mobile {
-        order: -1;
     }
 }

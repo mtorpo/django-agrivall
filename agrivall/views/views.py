@@ -80,7 +80,7 @@ def checkout(request):
             pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
             messages.success(
                 request,
-                "Pedido confirmado correctamente 🌱"
+                "Pedido confirmado correctamente"
             )
 
             return redirect('productos')
@@ -221,7 +221,7 @@ def crear_linea_pedido(request):
     return JsonResponse({
         'ok': True,
         "cart_count": cart_count,
-        "message": "Producto añadido al carrito 🌱"
+        "message": "Producto añadido al carrito"
     })
 
 

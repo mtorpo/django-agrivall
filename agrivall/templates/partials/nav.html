@@ -41,20 +41,21 @@
             <div class="d-flex align-items-center gap-3">
 
                 {% if user.is_authenticated %}
-                    <!-- Buscar -->
-                    <form class="d-none d-lg-flex">
-                        <input
-                            class="form-control form-control-sm rounded-pill"
-                            type="search"
-                            placeholder="Buscar"
-                        >
-                    </form>
 
                     <!-- Carrito, span para que cuando actualice no se pierda el carro -->
                     <a href="{% url 'checkout' %}" class="text-decoration-none text-dark" >
                         🛒 <span id="cart-count"> {{ carrito_total }} </span> 
                         <!-- carrito total funciona gracias al context processor de settings.py -->
                     </a>
+                    {% if user.is_superuser %}
+                        <a
+                            href="{% url 'dashboard' %}"
+                            class="btn btn-sm btn-outline-primary rounded-pill"
+                        >
+                            Dashboard
+                        </a>
+                    {% endif %}
+
                     <!-- Usuario -->
                     <span class="text-muted small">
                         {{ user.username }}
