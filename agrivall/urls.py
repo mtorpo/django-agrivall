@@ -5,7 +5,7 @@ from .views.casilla import *
 from .views.crud import dashboard, ver_producto, editar_producto, eliminar_producto
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('agrivall/', index, name='index'),
 
     path('productos/', productos, name='productos'),
     

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/tema.css' %}">
     <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 </head>
 
 <body>
@@ -89,7 +90,8 @@
             </div>
 
         </section>
-
+    
+    {% include "partials/footer.html" %}
     </main>
 
     <script src="{% static 'js/producto_added_message.js' %}"></script>
