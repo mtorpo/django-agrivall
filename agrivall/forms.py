@@ -4,7 +4,7 @@ from .models import Producto, Pedido
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'stock', 'descripcion', 'precio_unidad']
+        fields = ['nombre', 'stock', 'descripcion', 'precio_unidad', 'imagen']
 
 
 class PedidoForm(forms.ModelForm):

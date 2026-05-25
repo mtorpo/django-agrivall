@@ -1,35 +1,188 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos | Agrivall</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Editar producto | Agrivall</title>
 
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
-    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
-<body>
+<body class="bg-dark">
 
-    
-    <form method="post" action="{% url 'editar_producto' %}">
-        {% csrf_token %} 
-        {% if producto %}
+<div class="container py-5">
 
-            <input type="hidden" name="producto_id" value="{{ producto_id }}">
-            
-            {{ producto.as_p }}
-        
-        {% endif %}
+    <div class="row justify-content-center">
 
-        <button type="submit">Actualizar</button>
-    </form>
+        <div class="col-md-8 col-lg-6">
 
-    <a href="{% url "dashboard" %}">Cancelar</a>
+            <div class="card bg-black border-secondary shadow-lg rounded-4">
 
+                <div class="card-body p-4">
+
+                    <h2 class="text-center mb-4">
+                        Editar producto
+                    </h2>
+
+                    <form method="post" enctype="multipart/form-data" action="{% url "editar_producto" %}">
+
+                        {% csrf_token %}
+
+                        <input
+                            type="hidden"
+                            name="producto_id"
+                            value="{{ producto.id }}"
+                        >
+
+                        {% if producto.imagen %}
+                            <div class="text-center mb-4">
+
+                                <img
+                                    src="{{ producto.imagen.url }}"
+                                    class="img-fluid rounded-4 shadow"
+                                    style="max-height:250px;"
+                                >
+
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nombre"
+                                value="{{ producto.nombre }}"
+                                class="form-control"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Descripción
+                            </label>
+
+                            <textarea
+                                name="descripcion"
+                                class="form-control"
+                                rows="4"
+                            >{{ producto.descripcion }}</textarea>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+                                    Precio (€)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    name="precio_unidad"
+                                    value="{{ producto.precio_unidad }}"
+                                    class="form-control"
+                                >
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+                                    Peso (kg)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="peso_kg"
+                                    value="{{ producto.peso_kg }}"
+                                    class="form-control"
+                                >
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+                                    Stock
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="stock"
+                                    value="{{ producto.stock }}"
+                                    class="form-control"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nueva imagen
+                            </label>
+
+                            <input
+                                type="file"
+                                name="imagen"
+                                class="form-control"
+                            >
+
+                        </div>
+
+                        <div class="form-check mb-4">
+
+                            <input
+                                type="checkbox"
+                                name="borrar_imagen"
+                                class="form-check-input"
+                                id="borrar"
+                            >
+
+                            <label
+                                class="form-check-label"
+                                for="borrar"
+                            >
+                                Eliminar imagen actual
+                            </label>
+
+                        </div>
+
+                        <div class="d-flex gap-2">
+
+                            <button
+                                type="submit"
+                                class="btn btn-success w-100"
+                            >
+                                Guardar cambios
+                            </button>
+
+                            <a
+                                href="{% url 'dashboard' %}"
+                                class="btn btn-outline-secondary w-100"
+                            >
+                                Cancelar
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

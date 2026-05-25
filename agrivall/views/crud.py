@@ -47,10 +47,8 @@ def ver_producto(request):
 
     producto = Producto.objects.get(id=producto_id)
 
-    form = ProductoForm(instance=producto)
-
     if producto:
-        return render(request, "crud/ver_producto.html", {"producto": form, "producto_id": producto_id})
+        return render(request, "crud/ver_producto.html", {"producto": producto, "producto_id": producto_id})
     
 
 def editar_producto(request):
@@ -59,12 +57,22 @@ def editar_producto(request):
         raise Http404("Ups! Parece que te has perdido")
 
     id_producto = int(request.POST.get("producto_id"))
-    producto = get_object_or_404(Producto, id = id_producto)
+    producto = get_object_or_404(Producto, id=id_producto)
 
-    form = ProductoForm(request.POST, instance=producto)
+    form = ProductoForm(
+        request.POST,
+        request.FILES,
+        instance=producto
+    )
 
     if form.is_valid():
-        form.save()
+        producto = form.save(commit=False)
+
+        if request.POST.get("borrar_imagen"):
+            producto.imagen.delete(save=False)
+            producto.imagen = None
+
+        producto.save()
 
     return redirect('dashboard')
 
