@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Agrivall</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+</head>
+
+<body>
+
+    
+    <form method="post" action="{% url 'editar_producto' %}">
+        {% csrf_token %} 
+        {% if producto %}
+
+            <input type="hidden" name="producto_id" value="{{ producto_id }}">
+            
+            {{ producto.as_p }}
+        
+        {% endif %}
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <a href="{% url "dashboard" %}">Cancelar</a>
+
+
+</body>
+</html>
