@@ -7,6 +7,12 @@ from agrivall.models import Producto
 from agrivall.forms import ProductoForm
 
 
+from django.contrib.auth.decorators import user_passes_test
+
+def es_superuser(user):
+    return user.is_authenticated and user.is_superuser
+
+@user_passes_test(es_superuser)
 def dashboard(request):
 
     productos = Producto.objects.all()
@@ -17,9 +23,9 @@ def dashboard(request):
 
 
 # CRUD PARA PRODUCTOS
+@user_passes_test(es_superuser)
 def crear_producto(request):
 
-    
     mensaje = "Error al crear producto"
 
     if request.method != "POST":
@@ -35,9 +41,9 @@ def crear_producto(request):
 
         mensaje = "Producto creado correctamente"
 
-    return "hola"
+    redirect('dashboard')
 
-
+@user_passes_test(es_superuser)
 def ver_producto(request):
 
     if request.method != "POST":
@@ -50,7 +56,7 @@ def ver_producto(request):
     if producto:
         return render(request, "crud/ver_producto.html", {"producto": producto, "producto_id": producto_id})
     
-
+@user_passes_test(es_superuser)
 def editar_producto(request):
 
     if request.method != "POST":
@@ -76,7 +82,7 @@ def editar_producto(request):
 
     return redirect('dashboard')
 
-
+@user_passes_test(es_superuser)
 def eliminar_producto(request):
     if request.method != "POST":
         raise Http404("Ups! Parece que te has perdido")
