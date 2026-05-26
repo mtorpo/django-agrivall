@@ -55,6 +55,10 @@
                                     class="imagen-producto"
                                     alt="{{ producto.nombre }}"
                                 >
+                            {% else %}
+                                <img src="{% static 'images/logo-agrivall.png' %}"
+                                class="imagen-producto"
+                                alt="imagen por defecto">
                             {% endif %}
 
                             <div class="contenido-producto">
