@@ -1,3 +1,6 @@
+
+Configuración dependencias servidor Ubuntu 24.04
+
 # ==================================
 # ACTUALIZAR SISTEMA
 # ==================================
