@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     "212.227.98.78",
     "localhost",
     "127.0.0.1",
+    "daw-agrivall.es",
+    "www.daw-agrivall.es",
 ]
 
 

@@ -14,7 +14,7 @@ class Command(BaseCommand):
         User.objects.filter(is_superuser=False).delete() # no nos cargamos el super user
 
         usuarios = UserFactory.create_batch(2)
-        productos = ProductoFactory.create_batch(10)
+        productos = ProductoFactory.create_batch(3)
 
         for usuario in usuarios:
             for i in range(1):
