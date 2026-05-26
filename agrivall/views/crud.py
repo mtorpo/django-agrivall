@@ -68,8 +68,8 @@ def editar_producto(request):
         producto = form.save(commit=False)
 
         if request.POST.get("borrar_imagen"):
-            producto.imagen.delete(save=False)
-            producto.imagen = None
+            producto.imagen.delete(save=False) # borra la imagen de /media/, pero no inserta en la bdd
+            producto.imagen = None # borramos la referencia (esto lo hace automático, pero se deja por facilidad visual)
 
         producto.save()
 

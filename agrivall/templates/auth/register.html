@@ -6,133 +6,124 @@
     <meta charset="UTF-8">
     <title>Registro</title>
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
 <body>
 
     {% include "partials/nav.html" %}
 
-    <main class="container py-5">
+    <main class="register-page">
 
-        <div class="row justify-content-center">
+        <section class="register-card" aria-labelledby="register-title">
 
-            <div class="col-12 col-md-6 col-lg-4">
+            <header class="register-header">
 
-                <div class="card border-0 shadow-sm rounded-4">
+                <span class="section-label">
+                    Área privada
+                </span>
 
-                    <div class="card-body p-4">
+                <h1 id="register-title">
+                    Crear cuenta
+                </h1>
 
-                        <h2 class="fw-semibold text-success mb-2">
-                            Crear cuenta
-                        </h2>
+                <p class="register-description">
+                    Únete y empieza a realizar tus pedidos ecológicos
+                </p>
 
-                        <p class="text-muted mb-4">
-                            Únete y empieza a realizar tus pedidos ecológicos
-                        </p>
+            </header>
 
-                        <form method="post">
+            <form method="post" class="register-form">
 
-                            {% csrf_token %}
+                {% csrf_token %}
 
-                            {% if form.errors %}
-                                <div class="alert alert-danger rounded-4">
+                {% if form.errors %}
+                    <div class="form-error" role="alert">
 
-                                    {% for field in form %}
-                                        {% for error in field.errors %}
-                                            <div>{{ error }}</div>
-                                        {% endfor %}
-                                    {% endfor %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
 
-                                    {% for error in form.non_field_errors %}
-                                        <div>{{ error }}</div>
-                                    {% endfor %}
-
-                                </div>
-                            {% endif %}
-
-
-                            <div class="mb-3">
-
-                                <label class="form-label">
-                                    Nombre de usuario
-                                </label>
-
-                                {{ form.username }}
-
-                            </div>
-
-
-                            <div class="mb-3">
-
-                                <label class="form-label">
-                                    Contraseña
-                                </label>
-
-                                {{ form.password1 }}
-
-                            </div>
-
-
-                            <div class="mb-4">
-
-                                <label class="form-label">
-                                    Repetir contraseña
-                                </label>
-
-                                {{ form.password2 }}
-
-                            </div>
-
-
-                            <button
-                                type="submit"
-                                class="btn btn-green rounded-pill w-100"
-                            >
-                                Registrarse
-                            </button>
-
-                        </form>
-
-
-                        <div class="text-center mt-4">
-
-                            <p class="mb-2 text-muted">
-
-                                ¿Ya tienes cuenta?
-
-                                <a
-                                    href="{% url 'login' %}"
-                                    class="text-success fw-semibold text-decoration-none"
-                                >
-                                    Inicia sesión
-                                </a>
-
-                            </p>
-
-                            <a
-                                href="{% url 'index' %}"
-                                class="small text-muted text-decoration-none"
-                            >
-                                Volver al menú principal
-                            </a>
-
-                        </div>
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
 
                     </div>
+                {% endif %}
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+                        Nombre de usuario
+                    </label>
+
+                    {{ form.username }}
 
                 </div>
 
-            </div>
 
-        </div>
+                <div class="form-group">
+
+                    <label for="{{ form.password1.id_for_label }}">
+                        Contraseña
+                    </label>
+
+                    {{ form.password1 }}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.password2.id_for_label }}">
+                        Repetir contraseña
+                    </label>
+
+                    {{ form.password2 }}
+
+                </div>
+
+
+                <button type="submit" class="register-button">
+                    Registrarse
+                </button>
+
+            </form>
+
+
+            <footer class="register-footer">
+
+                <p>
+
+                    ¿Ya tienes cuenta?
+
+                    <a href="{% url 'login' %}">
+                        Inicia sesión
+                    </a>
+
+                </p>
+
+                <a
+                    href="{% url 'index' %}"
+                    class="register-back-link"
+                >
+                    Volver al menú principal
+                </a>
+
+            </footer>
+
+        </section>
 
     </main>
 
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>

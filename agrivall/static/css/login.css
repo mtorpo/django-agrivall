@@ -1,0 +1,136 @@
+.login-page {
+    min-height: calc(100vh - 90px);
+    padding: 3rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+
+    padding: 2rem;
+}
+
+.login-header {
+    margin-bottom: 2rem;
+}
+
+.login-title {
+    margin: .5rem 0;
+    font-size: 2rem;
+}
+
+.login-description {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.login-form input {
+    width: 100%;
+
+    padding: .85rem 1rem;
+
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 999px;
+
+    background: var(--bg-main);
+    color: var(--text-main);
+
+    font-family: var(--font-main);
+    font-size: 1rem;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.login-button {
+    margin-top: .5rem;
+
+    background: var(--primary);
+    color: white;
+
+    border: none;
+    border-radius: 999px;
+
+    padding: .85rem 1.5rem;
+
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-button:hover {
+    background: var(--primary-dark);
+}
+
+.form-error {
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    background: #fdecec;
+    color: #9f1c1c;
+
+    font-weight: 500;
+}
+
+.form-error p,
+.field-error {
+    margin: 0;
+}
+
+.field-error {
+    color: #b42318;
+    font-size: .9rem;
+}
+
+.login-footer {
+    margin-top: 2rem;
+    text-align: center;
+
+    color: var(--text-muted);
+}
+
+.login-footer p {
+    margin: 0 0 .8rem;
+}
+
+.login-footer a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.login-back-link {
+    font-size: .9rem;
+    color: var(--text-muted) !important;
+}
