@@ -1,95 +1,79 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom py-3" id="mainNav">
+<nav class="main-nav" id="mainNav">
 
-    <div class="container">
+    <div class="nav-content">
 
-        <!-- Logo -->
-        <a href="{% url 'index' %}" class="navbar-brand fw-semibold text-success fs-2">
+        <a href="{% url 'index' %}" class="nav-logo">
             AGRIVALL
         </a>
 
-        <!-- Hamburguesa -->
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
 
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <!-- Enlaces -->
-            <ul class="navbar-nav mx-auto gap-3">
-                <li class="nav-item">
-                    <a href="{% url 'index' %}" class="nav-link text-dark">
-                        Inicio
-                    </a>
+        <label for="nav-toggle" class="nav-toggle-label">
+            ☰
+        </label>
+
+        <div class="nav-menu">
+
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'index' %}">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'productos' %}" class="nav-link text-dark">
-                        Productos
-                    </a>
+
+                <li>
+                    <a href="{% url 'productos' %}">Productos</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'casilla' %}" class="nav-link text-dark">
-                        Casilla
-                    </a>
+
+                <li>
+                    <a href="{% url 'casilla' %}">Casilla</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'blog' %}" class="nav-link text-dark">
-                        Blog
-                    </a>
+
+                <li>
+                    <a href="{% url 'blog' %}">Blog</a>
                 </li>
             </ul>
 
-            <!-- Derecha, logout y carrito si login -->
-            <div class="d-flex align-items-center gap-3">
+            <div class="nav-actions">
 
                 {% if user.is_authenticated %}
 
-                    <!-- Carrito, span para que cuando actualice no se pierda el carro -->
-                    <a href="{% url 'checkout' %}" class="text-decoration-none text-dark" >
-                        🛒 <span id="cart-count"> {{ carrito_total }} </span> 
-                        <!-- carrito total funciona gracias al context processor de settings.py -->
+                    <a href="{% url 'checkout' %}" class="nav-cart">
+                        🛒 <span id="cart-count">{{ carrito_total }}</span>
                     </a>
+
                     {% if user.is_superuser %}
-                        <a
-                            href="{% url 'dashboard' %}"
-                            class="btn btn-sm btn-outline-primary rounded-pill"
-                        >
+                        <a href="{% url 'dashboard' %}" class="nav-button nav-button-outline">
                             Dashboard
                         </a>
                     {% endif %}
 
-                    <!-- Usuario -->
-                    <span class="text-muted small">
+                    <span class="nav-user">
                         {{ user.username }}
                     </span>
 
-                    <!-- Logout -->
-                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                    <form method="post" action="{% url 'logout' %}" class="nav-form">
                         {% csrf_token %}
-                        <button
-                            type="submit"
-                            class="btn btn-sm btn-outline-success rounded-pill"
-                        >
+
+                        <button type="submit" class="nav-button nav-button-outline">
                             Cerrar sesión
                         </button>
                     </form>
 
                 {% else %}
 
-                    <a href="{% url 'login' %}"
-                        class="btn btn-sm btn-outline-dark rounded-pill"
-                    >
+                    <a href="{% url 'login' %}" class="nav-button nav-button-light">
                         Iniciar sesión
                     </a>
 
-                    <a
-                        href="{% url 'register' %}"
-                        class="btn btn-sm btn-success rounded-pill"
-                    >
+                    <a href="{% url 'register' %}" class="nav-button nav-button-green">
                         Registrarse
                     </a>
 
                 {% endif %}
+
             </div>
 
         </div>
+
     </div>
+
 </nav>
