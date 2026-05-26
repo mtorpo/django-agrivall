@@ -23,4 +23,4 @@ Thumbs.db
 
 reboot*.bat
 
-migrations/
+!**/migrations/__init__.py
