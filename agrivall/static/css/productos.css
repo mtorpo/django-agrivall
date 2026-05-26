@@ -95,3 +95,93 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+
+/* MENSAJE PRODUCTO AÑADIDO */
+.toast-producto{
+    position: fixed;
+
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+
+    z-index: 9999;
+
+    background: white;
+    color: var(--primary);
+
+    padding: .9rem 1.5rem;
+
+    border-radius: 999px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+
+    font-weight: 600;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .3s,
+        transform .3s,
+        visibility .3s;
+}
+
+.toast-producto.visible{
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* MENSAJE PEDIDO FINALIZADO */
+
+/* MENSAJE PEDIDO FINALIZADO */
+
+.toast-finalizado{
+
+    position:fixed;
+
+    top:5.5rem;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(-20px);
+
+    z-index:9999;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:.9rem 1.5rem;
+
+    border-radius:999px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+
+    font-weight:600;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .3s,
+        transform .3s,
+        visibility .3s;
+}
+
+.toast-finalizado.visible{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}

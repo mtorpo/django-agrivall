@@ -1,9 +1,23 @@
-<div
-    id="cartToast"
-    class="position-fixed top-0 start-50 translate-middle-x mt-5 d-none"
-    style="z-index: 9999;"
->
-    <div class="bg-white text-success fw-semibold rounded-pill shadow-sm px-4 py-2">
-        <span id="cartToastBody"></span>
-    </div>
+<div id="cartToast" class="toast-producto">
+    <span id="cartToastBody"></span>
 </div>
+
+<script>
+function mostrarProductoAñadido(message) {
+    // Si no hay mensaje, no hacemos nada
+    if (!message || message.trim() === "") return;
+
+    const toast = document.getElementById("cartToast");
+    const toastBody = document.getElementById("cartToastBody");
+
+    toastBody.textContent = `✓ ${message}`;
+
+    toast.classList.add("visible");
+
+    setTimeout(() => {
+        toast.classList.remove("visible");
+        toastBody.textContent = "";
+    }, 1500);
+}
+
+</script>

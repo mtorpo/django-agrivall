@@ -1,4 +1,7 @@
 /* ===== PALETA GLOBAL ===== */
+*{
+    box-sizing: border-box;
+}
 
 :root {
 
