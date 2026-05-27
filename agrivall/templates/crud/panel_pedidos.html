@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Agrivall</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body class="bg-dark text-light">
+
+    <main class="container py-5">
+
+        <section class="text-center mb-5">
+
+            <h1 class="display-5 fw-bold">
+                Gestión de pedidos
+            </h1>
+
+            <p class="text-secondary fs-5 mx-auto" style="max-width: 650px;">
+                Cualquier acción realizada no será reversible.
+            </p>
+            <div class="d-flex justify-content-center mt-4">
+                <div class="w-100" style="max-width:420px;">
+                    <a
+                        href="{% url 'dashboard' %}"
+                        class="btn btn-success btn-lg w-100 mb-3"
+                    >
+                        Volver
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+
+            <div class="card shadow border-0 bg-black">
+
+                <div class="card-body p-0">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-dark table-hover align-middle mb-0">
+
+                            <thead class="table-success">
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cliente</th>
+                                    <th>Dirección</th>
+                                    <th>CP</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th class="text-center">
+                                        Acción
+                                    </th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {% for pedido in pedidos %}
+
+                                    <tr>
+
+                                        <td>
+                                            {{ pedido.id }}
+                                        </td>
+
+                                        <td class="fw-semibold">
+                                            {{ pedido.nombre }}
+                                        </td>
+
+                                        <td>
+                                            {{ pedido.direccion }}
+                                        </td>
+
+                                        <td>
+                                            {{ pedido.cp }}
+                                        </td>
+
+                                        <td>
+                                            {{ pedido.fecha_creacion|date:"d/m/Y H:i" }}
+                                        </td>
+
+                                        <td>
+
+                                            {% if pedido.estado == "iniciado" %}
+                                                <span class="badge bg-secondary">
+                                                    Iniciado
+                                                </span>
+
+                                            {% elif pedido.estado == "en proceso" %}
+                                                <span class="badge bg-warning text-dark">
+                                                    En proceso
+                                                </span>
+
+                                            {% elif pedido.estado == "en reparto" %}
+                                                <span class="badge bg-info">
+                                                    En reparto
+                                                </span>
+
+                                            {% elif pedido.estado == "finalizado" %}
+                                                <span class="badge bg-success">
+                                                    Finalizado
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+                                        <td style="width:260px">
+
+                                            <form
+                                                method="post"
+                                                action="{% url 'editar_estado_pedido' %}"
+                                                class="d-flex gap-2"
+                                            >
+
+                                                {% csrf_token %}
+
+                                                <input
+                                                    type="hidden"
+                                                    name="pedido_id"
+                                                    value="{{ pedido.id }}"
+                                                >
+
+                                                <select
+                                                    name="nuevo_estado"
+                                                    class="form-select"
+                                                    required
+                                                >
+                                                    <option value="" selected disabled>
+                                                        ACCIÓN
+                                                    </option>
+                                                    <option value="iniciado">
+                                                        INICIADO
+                                                    </option>
+
+                                                    <option value="en proceso">
+                                                        EN PROCESO
+                                                    </option>
+
+                                                    <option value="en reparto">
+                                                        EN REPARTO
+                                                    </option>
+
+                                                    <option value="finalizado">
+                                                        FINALIZADO
+                                                    </option>
+
+                                                </select>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-success"
+                                                >
+                                                    Guardar
+                                                </button>
+
+                                            </form>
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-
+# para la fecha de creación de un pedido confirmado
+from django.utils import timezone
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from ..models import Producto, Pedido, LineaPedido
@@ -77,6 +78,8 @@ def checkout(request):
             pedido = form.save(commit=False) 
             pedido.total = total
             pedido.estado = 'confirmado'
+            #actualizamos la fecha de creación para que sea la de confirmación de pedido y no la de carrito
+            pedido.fecha_creacion = timezone.now() 
             pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
             messages.success(
                 request,

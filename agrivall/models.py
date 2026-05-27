@@ -30,15 +30,23 @@ class Producto(models.Model):
 
 # pedido final, con datos de dirección...
 class Pedido(models.Model):
+    """
+    Los estados web se gestionan a partir de las funcionalidades de la web, los estaos pedido, tan solo son modificables por el administrador
+    """
     ESTADOS = [
+        # estados web
         ("carrito", "Carrito"),
         ("confirmado", "Confirmado"),
-        ("enviado", "Enviado"),
-        ("entregado", "Entregado"),
+        # estados paquete
+        ("iniciado", "Iniciado"),
+        ("en proceso", "En proceso"),
+        ("reparto", "Reparto"),
+        ("finalizado", "Finalizado"),
     ]
 
     usuario_web = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pedidos")
-    estado = models.CharField(max_length=20, choices=ESTADOS, default="carrito")
+    # ESTADO WEB, carrito o confirmado
+    estado = models.CharField(max_length=20, choices=ESTADOS, default="carrito", null=False)
 
     nombre = models.CharField(max_length=255, blank=True, null=True)
     direccion = models.CharField(max_length=255, blank=True, null=True)
