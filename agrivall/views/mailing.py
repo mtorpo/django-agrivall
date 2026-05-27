@@ -1,30 +1,18 @@
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
-
-# para resolver la url a dashboard fuera de django
 from django.urls import reverse
 
-def mail_functionality(new_subject = "Pedido registrado", new_message = ""):
 
-    send_mail(
-        subject=new_subject,
-        message=new_message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=[settings.EMAIL_HOST_USER],
-                    fail_silently=False
-                )
-    
-
-# =================================
-# MAILING PERSONALIZADO PARA PEDIDO
-# =================================
 def enviar_mail_pedido(request, pedido):
 
     dashboard_url = request.build_absolute_uri(
-    reverse("dashboard")
+        reverse("dashboard")
     )
 
-    mensaje =  f"""
+    asunto = f"Nuevo pedido confirmado #{pedido.id}"
+
+    # Texto plano (fallback)
+    mensaje_texto = f"""
 Nuevo pedido confirmado
 
 ID pedido: #{pedido.id}
@@ -33,9 +21,48 @@ Código postal: {pedido.cp}
 Total: {pedido.total} €
 Fecha: {pedido.fecha_creacion}
 
-Revisa el pedido completo desde el panel de administración:
+Panel:
 {dashboard_url}
 """
-    tema = f"Nuevo pedido confirmado #{pedido.id}"
-    
-    mail_functionality(tema, mensaje)
+
+    # HTML con botón
+    mensaje_html = f"""
+    <html>
+        <body style="font-family: Arial, sans-serif;">
+            
+            <h2>Nuevo pedido confirmado</h2>
+
+            <p><strong>ID pedido:</strong> #{pedido.id}</p>
+            <p><strong>Cliente:</strong> {pedido.nombre}</p>
+            <p><strong>Código postal:</strong> {pedido.cp}</p>
+            <p><strong>Total:</strong> {pedido.total} €</p>
+            <p><strong>Fecha:</strong> {pedido.fecha_creacion}</p>
+
+            <br>
+
+            <a href="{dashboard_url}"
+               style="
+                    background-color:#000;
+                    color:#fff;
+                    padding:12px 20px;
+                    text-decoration:none;
+                    border-radius:6px;
+                    display:inline-block;
+                    font-weight:bold;
+               ">
+                Ver pedido en el dashboard
+            </a>
+
+        </body>
+    </html>
+    """
+
+    email = EmailMultiAlternatives(
+        subject=asunto,
+        body=mensaje_texto,
+        from_email=settings.EMAIL_HOST_USER,
+        to=[settings.EMAIL_HOST_USER]
+    )
+
+    email.attach_alternative(mensaje_html, "text/html")
+    email.send()
