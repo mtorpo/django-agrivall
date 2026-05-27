@@ -1,6 +1,8 @@
 from django.core.mail import send_mail
 from django.conf import settings
 
+# para resolver la url a dashboard fuera de django
+from django.urls import reverse
 
 def mail_functionality(new_subject = "Pedido registrado", new_message = ""):
 
@@ -16,9 +18,13 @@ def mail_functionality(new_subject = "Pedido registrado", new_message = ""):
 # =================================
 # MAILING PERSONALIZADO PARA PEDIDO
 # =================================
-def montar_mensaje_pedido(pedido):
+def enviar_mail_pedido(request, pedido):
 
-    return f"""
+    dashboard_url = request.build_absolute_uri(
+    reverse("dashboard")
+    )
+
+    mensaje =  f"""
 Nuevo pedido confirmado
 
 ID pedido: #{pedido.id}
@@ -27,17 +33,9 @@ Código postal: {pedido.cp}
 Total: {pedido.total} €
 Fecha: {pedido.fecha_creacion}
 
-Revisa el pedido completo desde el panel de administración.
+Revisa el pedido completo desde el panel de administración:
+{dashboard_url}
 """
-
-def enviar_mail_pedido(pedido):
-
-    mensaje = montar_mensaje_pedido(pedido)
-
-    send_mail(
-        subject=f"Nuevo pedido confirmado #{pedido.id}",
-        message=mensaje,
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[settings.EMAIL_HOST_USER],
-        fail_silently=False
-    )
+    tema = f"Nuevo pedido confirmado #{pedido.id}"
+    
+    mail_functionality(tema, mensaje)

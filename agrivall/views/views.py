@@ -87,7 +87,7 @@ def checkout(request):
             pedido.fecha_creacion = timezone.now() 
             pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
 
-            enviar_mail_pedido(pedido) # notificar al admin del pedido
+            enviar_mail_pedido(request, pedido) # notificar al admin del pedido
 
             messages.success(
                 request,
