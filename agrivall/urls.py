@@ -6,8 +6,8 @@ from .views.crud import dashboard, ver_producto, editar_producto, eliminar_produ
 
 urlpatterns = [
     # MAIN
-    path('', index, name='home'),
-    path('agrivall/', index, name='index'),
+    path('', index, name='index'),
+    # path('agrivall/', index, name='index'),
 
     # PRODUCTOS
     # VIsta
