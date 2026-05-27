@@ -1,74 +1,56 @@
-.casilla-page {
-    max-width: 1100px;
+.cabecera-casilla {
+    width: min(900px, 92%);
     margin: 0 auto;
-    padding: 3rem 1.5rem;
-}
-
-.casilla-hero {
-    min-height: 159px;
-
-    margin-bottom: 2rem;
-    padding: 2rem;
-
-    border-radius: var(--border-radius);
-
-    /* background: var(--primary-soft); */
-
-    display: flex;
-    align-items: flex-end;
+    padding: 3rem 0 2rem;
     text-align: center;
-    justify-content: center;
 }
 
-.casilla-hero h1 {
-    max-width: 650px;
-    margin: 1rem 0;
-
+.titulo-casilla {
+    margin: 1rem 0 .75rem;
     font-size: clamp(2rem, 4vw, 3rem);
 }
 
-.casilla-hero p {
-    max-width: 620px;
-    margin: 0;
-
-    color: var(--text-main);
+.entradilla-casilla {
+    max-width: 700px;
+    margin: 0 auto;
     font-size: 1.1rem;
 }
 
-.casilla-layout {
+.zona-casilla {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+}
+
+.rejilla-casilla {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 1.5rem;
 }
 
-.casilla-card {
-    background: var(--bg-card);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-
+.bloque-casilla {
     padding: 1.5rem;
 }
 
-.casilla-card-header {
+.cabecera-bloque-casilla {
     margin-bottom: 1.5rem;
 }
 
-.casilla-card-header h2 {
+.cabecera-bloque-casilla h2 {
     margin: 0 0 .4rem;
 }
 
-.casilla-card-header p {
+.cabecera-bloque-casilla p {
     margin: 0;
-    color: var(--text-muted);
 }
 
-.semanas-lista {
+.lista-semanas {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.semana-card {
+.tarjeta-semana {
     cursor: pointer;
 
     padding: 1.2rem;
@@ -86,32 +68,30 @@
     gap: 1rem;
 }
 
-/* evita el movimiento tipo hover de soft-card */
-.semana-card:hover {
+.tarjeta-semana:hover {
     transform: none;
 }
 
-.semana-card.seleccionada {
-    border: 2px solid var(--primary);
+.tarjeta-semana.seleccionada {
+    border-color: var(--primary);
     box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
-.semana-card h3 {
+.titulo-semana {
     margin: 0 0 .4rem;
     font-size: 1.1rem;
 }
 
-.semana-card p {
+.texto-semana {
     margin: 0 0 .6rem;
-    color: var(--text-muted);
 }
 
-.semana-precio {
+.precio-semana {
     color: var(--primary);
     white-space: nowrap;
 }
 
-.estado_casilla {
+.estado-casilla {
     padding: .1rem .5rem;
     border-radius: 999px;
 
@@ -119,22 +99,22 @@
     font-weight: 600;
 }
 
-.estado_casilla.libre {
+.estado-casilla.libre {
     background: #e8f5ec;
     color: #198754;
 }
 
-.estado_casilla.pre-reserva {
+.estado-casilla.pre-reserva {
     background: #fff3cd;
     color: #997404;
 }
 
-.estado_casilla.reservado {
+.estado-casilla.reservado {
     background: #f8d7da;
     color: #842029;
 }
 
-.paginacion {
+.paginacion-casilla {
     margin-top: 1.5rem;
 
     display: flex;
@@ -143,8 +123,8 @@
     gap: .7rem;
 }
 
-.paginacion a,
-.paginacion span {
+.paginacion-casilla a,
+.paginacion-casilla span {
     padding: .55rem .9rem;
 
     border-radius: 999px;
@@ -156,28 +136,28 @@
     font-weight: 600;
 }
 
-.paginacion a {
+.paginacion-casilla a {
     color: var(--primary);
 }
 
-.reserva-form {
+.formulario-reserva {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.form-group {
+.campo-formulario {
     display: flex;
     flex-direction: column;
     gap: .4rem;
 }
 
-.form-group label {
+.campo-formulario label {
     font-weight: 600;
 }
 
-.form-group input,
-.form-group textarea {
+.campo-formulario input,
+.campo-formulario textarea {
     width: 100%;
 
     padding: .8rem 1rem;
@@ -192,18 +172,19 @@
     font-size: 1rem;
 }
 
-.form-group input {
+.campo-formulario input {
     border-radius: 999px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.campo-formulario input:focus,
+.campo-formulario textarea:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
-.reserva-button {
+.boton-reserva {
+    width: 100%;
     margin-top: .5rem;
 
     background: var(--primary);
@@ -221,17 +202,17 @@
     cursor: pointer;
 }
 
-.reserva-button:hover {
+.boton-reserva:hover {
     background: var(--primary-dark);
 }
 
 @media (max-width: 850px) {
 
-    .casilla-layout {
+    .rejilla-casilla {
         grid-template-columns: 1fr;
     }
 
-    .semana-card {
+    .tarjeta-semana {
         align-items: flex-start;
         flex-direction: column;
     }

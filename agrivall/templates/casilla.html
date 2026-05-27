@@ -17,172 +17,185 @@
 
 {% include "partials/nav.html" %}
 
-<main class="casilla-page">
+<main>
 
-    <section class="casilla-hero">
-        <div>
-            <span class="badge-green">Casa rural Agrivall</span>
+    <section class="cabecera-casilla">
+        <span class="badge-green">
+            Casa rural Agrivall
+        </span>
 
-            <h1>Desconecta entre naturaleza y calma</h1>
+        <h1 class="titulo-casilla">
+            Desconecta entre naturaleza y calma
+        </h1>
 
-            <p>
-                Selecciona tus días de estancia y envíanos una solicitud de reserva.
-            </p>
-        </div>
+        <p class="text-soft entradilla-casilla">
+            Selecciona tus días de estancia y envíanos una solicitud de reserva.
+        </p>
     </section>
 
-    <section class="casilla-layout">
+    <section class="zona-casilla">
 
-        <section class="casilla-card" aria-labelledby="fechas-title">
+        <div class="rejilla-casilla">
 
-            <header class="casilla-card-header">
-                <h2 id="fechas-title">Elige tus fechas</h2>
+            <section class="soft-card bloque-casilla" aria-labelledby="fechas-title">
 
-                <p>
-                    Selecciona el día de entrada y el día de salida. Los días intermedios se marcarán automáticamente.
-                </p>
-            </header>
+                <header class="cabecera-bloque-casilla">
+                    <h2 id="fechas-title">
+                        Elige tus fechas
+                    </h2>
 
-            <div class="semanas-lista">
+                    <p class="text-soft">
+                        Selecciona el día de entrada y el día de salida. Los días intermedios se marcarán automáticamente.
+                    </p>
+                </header>
 
-                {% for semana in page_obj %}
+                <div class="lista-semanas">
 
-                    <article
-                        class="semana-card"
-                        data-id="{{ semana.id }}"
-                        data-semana="{{ semana.numero_sem }}"
-                    >
+                    {% for semana in page_obj %}
 
-                        <div>
-                            <h3>Semana {{ semana.numero_sem }}</h3>
+                        <article
+                            class="tarjeta-semana"
+                            data-id="{{ semana.id }}"
+                            data-semana="{{ semana.numero_sem }}"
+                        >
 
-                            <p>
-                                {{ semana.descriptor }}
-                            </p>
+                            <div class="contenido-semana">
 
-                            <span class="estado_casilla {{ semana.estado }}">
-                                {{ semana.estado }} ●
-                            </span>
-                        </div>
+                                <h3 class="titulo-semana">
+                                    Semana {{ semana.numero_sem }}
+                                </h3>
 
-                        <strong class="semana-precio">
-                            {{ semana.precio }} €
-                        </strong>
+                                <p class="text-soft texto-semana">
+                                    {{ semana.descriptor }}
+                                </p>
 
-                    </article>
+                                <span class="estado-casilla {{ semana.estado }}">
+                                    {{ semana.estado }} ●
+                                </span>
 
-                {% endfor %}
+                            </div>
 
-            </div>
+                            <strong class="precio-semana">
+                                {{ semana.precio }} €
+                            </strong>
 
-            <nav class="paginacion" aria-label="Paginación de semanas">
+                        </article>
 
-                {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}">
-                        Anterior
-                    </a>
-                {% endif %}
+                    {% endfor %}
 
-                <span>
-                    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">
-                        Siguiente
-                    </a>
-                {% endif %}
-
-            </nav>
-
-        </section>
-
-
-        <section class="casilla-card" aria-labelledby="reserva-title">
-
-            <header class="casilla-card-header">
-                <h2 id="reserva-title">Solicitar reserva</h2>
-
-                <p>
-                    Te confirmaremos la disponibilidad lo antes posible.
-                </p>
-            </header>
-
-            <form method="post" action="{% url 'casilla' %}" class="reserva-form">
-                {% csrf_token %}
-
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Tu nombre"
-                        required
-                    >
                 </div>
 
-                <div class="form-group">
-                    <label for="telefono">Teléfono</label>
+                <nav class="paginacion-casilla" aria-label="Paginación de semanas">
 
-                    <input
-                        type="tel"
-                        id="telefono"
-                        name="telefono"
-                        placeholder="Teléfono de contacto"
-                        required
-                    >
-                </div>
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">
+                            Anterior
+                        </a>
+                    {% endif %}
 
-                <div class="form-group">
-                    <label for="email">Email</label>
+                    <span>
+                        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                    </span>
 
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="tu@email.com"
-                        required
-                    >
-                </div>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">
+                            Siguiente
+                        </a>
+                    {% endif %}
 
-                <div class="form-group">
-                    <label for="semanaVisible">Semana</label>
+                </nav>
 
-                    <input
-                        type="number"
-                        id="semanaVisible"
-                        placeholder="Semana"
-                        readonly
-                        required
-                    >
+            </section>
 
-                    <input
-                        type="hidden"
-                        name="semana_id"
-                        id="semanaId"
-                    >
-                </div>
+            <section class="soft-card bloque-casilla" aria-labelledby="reserva-title">
 
-                <div class="form-group">
-                    <label for="notas">Notas</label>
+                <header class="cabecera-bloque-casilla">
+                    <h2 id="reserva-title">
+                        Solicitar reserva
+                    </h2>
 
-                    <textarea
-                        id="notas"
-                        name="notas"
-                        rows="4"
-                        placeholder="Número de personas, dudas o preferencias..."
-                    ></textarea>
-                </div>
+                    <p class="text-soft">
+                        Te confirmaremos la disponibilidad lo antes posible.
+                    </p>
+                </header>
 
-                <button type="submit" class="reserva-button">
-                    Enviar solicitud de reserva
-                </button>
+                <form method="post" action="{% url 'casilla' %}" class="formulario-reserva">
+                    {% csrf_token %}
 
-            </form>
+                    <div class="campo-formulario">
+                        <label for="nombre">Nombre</label>
 
-        </section>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Tu nombre"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-formulario">
+                        <label for="telefono">Teléfono</label>
+
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="Teléfono de contacto"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-formulario">
+                        <label for="email">Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="tu@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-formulario">
+                        <label for="semanaVisible">Semana</label>
+
+                        <input
+                            type="number"
+                            id="semanaVisible"
+                            placeholder="Semana"
+                            readonly
+                            required
+                        >
+
+                        <input
+                            type="hidden"
+                            name="semana_id"
+                            id="semanaId"
+                        >
+                    </div>
+
+                    <div class="campo-formulario">
+                        <label for="notas">Notas</label>
+
+                        <textarea
+                            id="notas"
+                            name="notas"
+                            rows="4"
+                            placeholder="Número de personas, dudas o preferencias..."
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="boton-reserva">
+                        Enviar solicitud de reserva
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
 
     </section>
 
@@ -191,29 +204,27 @@
 {% include "partials/footer.html" %}
 
 <script>
-
-    const cards = document.querySelectorAll(".semana-card");
+    const tarjetasSemana = document.querySelectorAll(".tarjeta-semana");
 
     const semanaVisible = document.getElementById("semanaVisible");
     const semanaId = document.getElementById("semanaId");
 
-    cards.forEach(card => {
+    tarjetasSemana.forEach(tarjeta => {
 
-        card.addEventListener("click", () => {
+        tarjeta.addEventListener("click", () => {
 
-            cards.forEach(c =>
-                c.classList.remove("seleccionada")
+            tarjetasSemana.forEach(item =>
+                item.classList.remove("seleccionada")
             );
 
-            card.classList.add("seleccionada");
+            tarjeta.classList.add("seleccionada");
 
-            semanaVisible.value = card.dataset.semana;
-            semanaId.value = card.dataset.id;
+            semanaVisible.value = tarjeta.dataset.semana;
+            semanaId.value = tarjeta.dataset.id;
 
         });
 
     });
-
 </script>
 
 </body>
