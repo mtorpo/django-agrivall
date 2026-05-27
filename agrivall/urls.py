@@ -31,7 +31,7 @@ urlpatterns = [
     path('blog/', blog, name='blog'),
 
     # CRUD
-    path('dashboard/', dashboard, name='dashboard'),
+    path('admin_dashboard/', dashboard, name='dashboard'),
 
     # CRUD - productos
     path('panel_productos/', panel_productos, name="panel_productos"),
