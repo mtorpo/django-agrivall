@@ -118,6 +118,16 @@ button.nav-button {
     font-family: var(--font-main);
 }
 
+.dashboard {
+    background: transparent;
+    color: rgb(54, 54, 212);
+    border: 1px solid rgb(54, 54, 212);
+}
+
+.dashboard:hover {
+    background: rgb(54, 54, 212);
+    color: white;
+}
 
 /* móvil estilo Bootstrap */
 @media (max-width: 800px) {
