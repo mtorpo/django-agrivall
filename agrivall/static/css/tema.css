@@ -3,6 +3,17 @@
     box-sizing: border-box;
 }
 
+/* QUITAR BARRA DE SCROL VERTICAL */
+html{
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+html::-webkit-scrollbar{
+    display:none;
+}
+/* END QUITAR BARRA DE SCROL VERTICAL */
+
 :root {
 
     /* Colores principales */
