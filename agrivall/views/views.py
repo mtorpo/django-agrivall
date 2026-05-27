@@ -14,6 +14,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib import messages # para alertas
 
+# mailing al admin
+from agrivall.views.mailing import enviar_mail_pedido
+
+
 
 def index(request):
     return render(request, "index.html")
@@ -53,6 +57,7 @@ def add_to_cart(request, product_id):
 
     return redirect('checkout')
 
+
 @login_required
 def checkout(request):
     """
@@ -81,6 +86,9 @@ def checkout(request):
             #actualizamos la fecha de creación para que sea la de confirmación de pedido y no la de carrito
             pedido.fecha_creacion = timezone.now() 
             pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
+
+            enviar_mail_pedido(pedido) # notificar al admin del pedido
+
             messages.success(
                 request,
                 "Pedido confirmado correctamente"
