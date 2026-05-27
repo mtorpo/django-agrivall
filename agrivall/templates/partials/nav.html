@@ -15,21 +15,43 @@
         <div class="nav-menu">
 
             <ul class="nav-links">
+
                 <li>
-                    <a href="{% url 'index' %}">Inicio</a>
+                    <a
+                        href="{% url 'index' %}"
+                        class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}"
+                    >
+                        Inicio
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{% url 'productos' %}">Productos</a>
+                    <a
+                        href="{% url 'productos' %}"
+                        class="{% if request.resolver_match.url_name == 'productos' %}nav-active{% endif %}"
+                    >
+                        Productos
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{% url 'casilla' %}">Casilla</a>
+                    <a
+                        href="{% url 'casilla' %}"
+                        class="{% if request.resolver_match.url_name == 'casilla' %}nav-active{% endif %}"
+                    >
+                        Casilla
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{% url 'blog' %}">Blog</a>
+                    <a
+                        href="{% url 'blog' %}"
+                        class="{% if request.resolver_match.url_name == 'blog' %}nav-active{% endif %}"
+                    >
+                        Blog
+                    </a>
                 </li>
+
             </ul>
 
             <div class="nav-actions">

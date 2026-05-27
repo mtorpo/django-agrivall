@@ -163,3 +163,29 @@ button.nav-button {
         gap: .8rem;
     }
 }
+
+/* INDICADOR página seleccionada en el nav */
+.nav-links a{
+    position: relative;
+}
+
+.nav-active{
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nav-active::after{
+    content: "";
+
+    position: absolute;
+
+    bottom: -6px;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    border-radius: 999px;
+
+    background: var(--primary);
+}

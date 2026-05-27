@@ -65,3 +65,17 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+
+/* Para que cuando no haya blog el main ocupe como mínimo el alto visible */
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+}
+
+main{
+    flex:1;
+}

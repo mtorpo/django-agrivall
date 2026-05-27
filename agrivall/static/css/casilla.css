@@ -5,7 +5,7 @@
 }
 
 .casilla-hero {
-    min-height: 360px;
+    min-height: 159px;
 
     margin-bottom: 2rem;
     padding: 2rem;
@@ -16,6 +16,8 @@
 
     display: flex;
     align-items: flex-end;
+    text-align: center;
+    justify-content: center;
 }
 
 .casilla-hero h1 {
