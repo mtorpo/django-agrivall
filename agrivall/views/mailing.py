@@ -5,8 +5,8 @@ from django.urls import reverse
 
 def enviar_mail_pedido(request, pedido):
 
-    dashboard_url = request.build_absolute_uri(
-        reverse("dashboard")
+    panel_pedidos_url = request.build_absolute_uri(
+        reverse("panel_pedidos")
     )
 
     asunto = f"Nuevo pedido confirmado #{pedido.id}"
@@ -22,7 +22,7 @@ Total: {pedido.total} €
 Fecha: {pedido.fecha_creacion}
 
 Panel:
-{dashboard_url}
+{panel_pedidos_url}
 """
 
     # HTML con botón
@@ -40,7 +40,7 @@ Panel:
 
             <br>
 
-            <a href="{dashboard_url}"
+            <a href="{panel_pedidos_url}"
                style="
                     background-color:#000;
                     color:#fff;
