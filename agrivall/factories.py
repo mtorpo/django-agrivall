@@ -32,8 +32,7 @@ class ProductoFactory(factory.django.DjangoModelFactory):
     precio_unidad = factory.Faker("pydecimal", left_digits=3, right_digits=2, positive=True)
     imagen = factory.django.ImageField(color="blue")
     peso_kg = factory.Faker("random_int", min=1, max=5)
-
-
+    variedad = factory.Sequence(lambda n: f"variedad {n}")
 
 class PedidoFactory(factory.django.DjangoModelFactory):
     class Meta:
