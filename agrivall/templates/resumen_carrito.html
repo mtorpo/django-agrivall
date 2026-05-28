@@ -126,6 +126,24 @@
                             {{ pedido_form.cp }}
                         </div>
 
+                        <div class="form-group">
+                            <label for="{{ pedido_form.cp.id_for_label }}">
+                                Teléfono
+                            </label>
+                            {{ pedido_form.telefono }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ pedido_form.cp.id_for_label }}">
+                                Método de pago
+                            </label>
+                            <select name="metodo_pago" id="id_metodo_pago" required>
+                                <option value="" selected disabled>Método de pago</option>
+                                <option value="bizum">Bizum</option>
+                                <option value="transferencia">Transferencia</option>
+                            </select>                   
+                        </div>
+
                         <div class="modal-total">
                             <span>Total</span>
                             <strong>{{ total }} €</strong>

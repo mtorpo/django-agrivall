@@ -10,28 +10,21 @@ class ProductoForm(forms.ModelForm):
 class PedidoForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        fields = ['nombre', 'direccion', 'cp']
+        fields = ['nombre', 'direccion', 'cp', 'telefono', 'metodo_pago']
         # campo total a mano
 
-
-        # Esto nos permite que cuando django genere los campos de manera automática
-        # con el form.as_p, que use estas configuraciones, tipo texto y con la clase indicada
-        widgets = {
-            'nombre': forms.TextInput(attrs={
-                'class':'form-control rounded-pill',
-                'placeholder':'Nombre'
-            }),
-
-            'direccion': forms.TextInput(attrs={
-                'class':'form-control rounded-pill',
-                'placeholder':'Dirección'
-            }),
-
-            'cp': forms.TextInput(attrs={
-                'class':'form-control rounded-pill',
-                'placeholder':'Código postal'
-            })
-        }
+    # Esto es para indicar, que sean los campos REQUIRED SOLO en el form. Con django la forma habitual es no hacer blank ni null en el 
+    # model, eso lo hace automáticamente required por defecto. Pero como en la BDD sí pueden ser null, pero queremos que al crear el form
+    # NO, entonces aquí interceptamos el form una vez creado el modelo, y le cambiamos solo ese campo. La otra alternativa es redefinir aquí
+    # todas las variables y ponerle el required, pero hay que duplicar el entramado de Charfield, max min... etc. Y digo duplicar por que sí o sí
+    # en ese caso tendríamos que tener también el modelo existiendo.
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombre'].required = True
+        self.fields['direccion'].required = True
+        self.fields['cp'].required = True
+        self.fields['telefono'].required = True
+        self.fields['metodo_pago'].required = True
 
 
 
@@ -50,56 +43,10 @@ class LoginForm(AuthenticationForm):
         )
     }
 
-    # Bootstrap
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control rounded-pill",
-                "placeholder": "Usuario"
-            }
-        )
-    )
-
-    password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control rounded-pill",
-                "placeholder": "Contraseña"
-            }
-        )
-    )
-
 
 # Con el register solo para el bootstrap
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
+# from django.contrib.auth.forms import UserCreationForm
+# from django import forms
 
 
-class RegisterForm(UserCreationForm):
-
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "class":"form-control rounded-pill",
-                "placeholder":"Usuario"
-            }
-        )
-    )
-
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class":"form-control rounded-pill",
-                "placeholder":"Contraseña"
-            }
-        )
-    )
-
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class":"form-control rounded-pill",
-                "placeholder":"Repetir contraseña"
-            }
-        )
-    )
+# class RegisterForm(UserCreationForm):

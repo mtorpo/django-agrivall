@@ -248,7 +248,8 @@
     font-weight: 600;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
     padding: .75rem 1rem;
 
     border: 1px solid rgba(0,0,0,.12);

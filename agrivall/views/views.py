@@ -67,7 +67,7 @@ def checkout(request):
         cart = Pedido.objects.get(usuario_web=request.user, estado='carrito')
     except Pedido.DoesNotExist:
         # cuando seleccionan el carrito y no hay productos, no se pasa formulario, y con el lineas vacío
-        # el resumen carrito indica que no hay productos
+        # el resumen carrito html ya indica que no hay productos
         cart = None
         lineas = []
         total = 0

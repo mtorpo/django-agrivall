@@ -47,6 +47,8 @@ class PedidoFactory(factory.django.DjangoModelFactory):
     direccion = factory.Faker("street_address")
     cp = factory.Faker("postcode")
     total = factory.Faker("pydecimal", left_digits=3, right_digits=2, positive=True)
+    telefono = factory.Faker("phone_number")
+    metodo_pago = "bizum"
 
 
 class LineaPedidoFactory(factory.django.DjangoModelFactory):
