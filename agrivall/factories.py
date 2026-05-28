@@ -28,7 +28,6 @@ class ProductoFactory(factory.django.DjangoModelFactory):
         #como un campo del modelo
 
     nombre = factory.Sequence(lambda n: f"Producto {n}")
-    stock = factory.Faker("random_int", min=1, max=100)
     descripcion = factory.Faker("sentence")
     precio_unidad = factory.Faker("pydecimal", left_digits=3, right_digits=2, positive=True)
     imagen = factory.django.ImageField(color="blue")
