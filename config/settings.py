@@ -131,8 +131,9 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# GESTIÓN DE USUARIOS, LOGIN EN CASO DE NO AUTENTICACIÓN
-LOGIN_REDIRECT_URL = "productos" 
+# GESTIÓN DE USUARIOS, DONDE MANAR EN CASO DE HACER CLICK DIRECTAMENTE SOBRE LOGIN
+# de ser un redirect por el decorador, en la url se marca next= la página a la que se hiba, por lo que se resuelve
+LOGIN_REDIRECT_URL = "index" 
 LOGOUT_REDIRECT_URL = "index" 
 LOGIN_URL = "login"
 
