@@ -28,7 +28,7 @@
                 <li>
                     <a
                         href="{% url 'productos' %}"
-                        class="{% if request.resolver_match.url_name == 'productos' %}nav-active{% endif %}"
+                        class="{% if request.resolver_match.url_name == 'productos' or request.GET.next == '/productos/' %}nav-active{% endif %}"
                     >
                         Productos
                     </a>
