@@ -185,3 +185,17 @@
         translateX(-50%)
         translateY(0);
 }
+
+
+/* NUEVOS CAMPOS VARIEDAD Y DISPONIBLE  */
+.variedad-producto {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.boton-no-disponible {
+    background: #ccc;
+    color: #666;
+    border: none;
+    cursor: not-allowed;
+}

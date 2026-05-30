@@ -80,9 +80,18 @@
                                     </span>
                                 </div>
 
-                                <button type="submit" class="btn-green boton-producto">
-                                    Añadir al carrito
-                                </button>
+                                <p class="variedad-producto">
+                                    Variedad: {{ producto.variedad }}
+                                </p>
+                                {% if producto.disponible %}
+                                    <button type="submit" class="btn-green boton-producto">
+                                        Añadir al carrito
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="boton-producto boton-no-disponible" disabled>
+                                        No disponible
+                                    </button>
+                                {% endif %}
 
                             </div>
 
