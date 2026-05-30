@@ -68,6 +68,7 @@
                                     name="nombre"
                                     value="{{ producto.nombre }}"
                                     class="form-control"
+                                    required
                                 >
                             </div>
 
@@ -80,6 +81,7 @@
                                     name="descripcion"
                                     class="form-control"
                                     rows="4"
+                                    required
                                 >{{ producto.descripcion }}</textarea>
                             </div>
 
@@ -97,6 +99,7 @@
                                         name="precio_unidad"
                                         value="{{ producto.precio_unidad }}"
                                         class="form-control"
+                                        required
                                     >
 
                                 </div>
@@ -112,9 +115,52 @@
                                         name="peso_kg"
                                         value="{{ producto.peso_kg }}"
                                         class="form-control"
+                                        required
                                     >
 
                                 </div>
+
+                                <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Variedad
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="variedad"
+                                        value="{{ producto.variedad }}"
+                                        class="form-control"
+                                    >
+
+                                </div>
+
+                                <div class="col-md-6 mb-3 d-flex align-items-end">
+
+                                    <div class="form-check">
+
+                                        <input
+                                            type="checkbox"
+                                            name="disponible"
+                                            class="form-check-input"
+                                            id="disponible"
+                                            {% if producto.disponible %}checked{% endif %}
+                                        >
+
+                                        <label
+                                            class="form-check-label"
+                                            for="disponible"
+                                        >
+                                            Producto disponible
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                             </div>
 
@@ -160,7 +206,7 @@
                                 </button>
 
                                 <a
-                                    href="{% url 'dashboard' %}"
+                                    href="{% url 'panel_productos' %}"
                                     class="btn btn-outline-secondary w-100"
                                 >
                                     Cancelar

@@ -123,6 +123,23 @@
                                     {{ producto.descripcion }}
                                 </p>
 
+                                <div class="mb-3">
+                                    <p class="fw-semibold mb-2">
+                                        Variedad: {{ producto.variedad }}
+                                    </p>
+
+                                    {% if producto.disponible %}
+                                        <span class="badge text-bg-success">
+                                            Disponible
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary text-light">
+                                            No disponible
+                                        </span>
+                                    {% endif %}
+
+                                </div>
+
                                 <div class="d-flex justify-content-between align-items-center mb-3 mt-auto">
                                     <span class="text-success fw-bold fs-5">
                                         {{ producto.precio_unidad }} €
@@ -138,7 +155,10 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="producto_id" value="{{ producto.id }}">
 
-                                        <button type="submit" class="btn btn-outline-success w-100">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-outline-success w-100"
+                                        >
                                             Editar
                                         </button>
                                     </form>
