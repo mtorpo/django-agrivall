@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# To load uuid image files
+import os
+import uuid
 
 # TIPOS
 # models.CharField(max_length=255)
@@ -14,11 +17,21 @@ from django.contrib.auth.models import User
 # on_delete=models.CASCADE
 # on_delete=models.PROTECT
 
+def uuid_upload_to(directory):
+
+    def create_uuid_path(instance, filename):
+        rest, extension = os.path.splitext(filename)
+
+        return f"{directory}/{uuid.uuid4()}{extension}"
+
+    return create_uuid_path
+
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
-    imagen = models.ImageField(upload_to="productos/", blank=True, null=True)
+    imagen = models.ImageField(upload_to=uuid_upload_to("productos"), blank=True, null=True)
     peso_kg = models.IntegerField()
     variedad = models.CharField(max_length=100, blank=True, null=True)
     disponible = models.BooleanField(default=True, blank=False, null=False)
@@ -133,7 +146,7 @@ class PostBlog(models.Model):
 
     titulo =  models.CharField(max_length=100, blank=False)
     noticia = models.TextField()
-    imagen = models.ImageField(upload_to="blog/", blank=True, null=True)
+    imagen = models.ImageField(upload_to=uuid_upload_to("blog"), blank=True, null=True)
     fecha_public = models.DateTimeField(auto_now_add=True)
     # blank y null a True para permitir el on_delete set_null
     tipo = models.ForeignKey(TipoPost, on_delete=models.SET_NULL, related_name="posts",null=True,blank=True)

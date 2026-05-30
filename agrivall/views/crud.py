@@ -55,7 +55,7 @@ def crear_producto(request):
     else:
         return render(request, "crud/ver_producto.html")
 
-    return redirect('dashboard')
+    return redirect('panel_productos')
 
 @user_passes_test(es_superuser)
 def ver_producto(request):
@@ -76,8 +76,12 @@ def editar_producto(request):
     if request.method != "POST":
         raise Http404("Ups! Parece que te has perdido")
 
-    id_producto = int(request.POST.get("producto_id"))
-    producto = get_object_or_404(Producto, id=id_producto)
+    producto = get_object_or_404(
+        Producto,
+        id=request.POST.get("producto_id")
+    )
+
+    imagen_anterior = producto.imagen.name if producto.imagen else None
 
     form = ProductoForm(
         request.POST,
@@ -86,15 +90,17 @@ def editar_producto(request):
     )
 
     if form.is_valid():
-        producto = form.save(commit=False)
+        producto = form.save()
 
-        if request.POST.get("borrar_imagen"):
-            producto.imagen.delete(save=False) # borra la imagen de /media/, pero no inserta en la bdd
-            producto.imagen = None # borramos la referencia (esto lo hace automático, pero se deja por facilidad visual)
+        imagen_nueva = producto.imagen.name if producto.imagen else None
 
-        producto.save()
+        # borranos la anterior si existe
+        if imagen_anterior:
+            # si se carga una nueva y antes ya había, o si pulsan el botón de borrar
+            if imagen_nueva or request.POST.get("borrar_imagen"):
+                producto.imagen.storage.delete(imagen_anterior)
 
-    return redirect('panel_productos')
+    return redirect("panel_productos")
 
 @user_passes_test(es_superuser)
 def eliminar_producto(request):
