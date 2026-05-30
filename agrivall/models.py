@@ -18,7 +18,11 @@ import uuid
 # on_delete=models.PROTECT
 
 def uuid_upload_to(directory):
-
+    """
+    upload to de Django espera o un string con el nombre del directorio, o una función a la que le pasará
+    instance y filename, y devolverá el path con el nombre del objeto. Esta función en ImageField se llama
+    def generate_filename(self, instance, filename):
+    """
     def create_uuid_path(instance, filename):
         rest, extension = os.path.splitext(filename)
 
