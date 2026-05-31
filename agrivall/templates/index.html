@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static 'css/tema.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 
@@ -20,165 +19,166 @@
 
 <main class="pagina">
 
+
+    <!-- =========================================================
+         HERO — Imagen de fondo con título y llamadas a la acción
+         ========================================================= -->
+
     <section class="portada">
         <div class="portada-cuerpo">
 
+            <span class="etiqueta">Bienvenido a Agrivall</span>
+
             <h1 class="portada-titulo">
-                Agrivall, sabor de la tierra y calma entre montañas
+                Sabor de la tierra y calma entre montañas
             </h1>
 
             <p class="portada-texto">
-                Descubre productos ecológicos de temporada y reserva una estancia rural
-                pensada para desconectar, respirar y volver a lo esencial.
+                Productos ecológicos de temporada y una casa rural pensada
+                para desconectar, respirar y volver a lo esencial.
             </p>
 
             <div class="acciones">
-                <a href="{% url 'productos' %}" class="btn-green">
-                    Ver productos
-                </a>
-
-                <a href="{% url 'casilla' %}" class="btn-light">
-                    Reservar casa rural
-                </a>
+                <a href="{% url 'productos' %}" class="btn-green">Ver productos</a>
+                <a href="{% url 'casilla' %}" class="btn-light">Reservar casa rural</a>
             </div>
 
         </div>
     </section>
 
 
+    <!-- =========================================================
+         SOBRE NOSOTROS — Texto centrado con introducción breve
+         ========================================================= -->
+
     <section class="sobre">
         <div class="sobre-cuerpo">
-            <span class="etiqueta">
-                Sobre nosotros
-            </span>
 
-            <h2>
-                Una forma cercana de vivir el campo
-            </h2>
+            <span class="etiqueta">Sobre nosotros</span>
+
+            <h2>Una forma cercana de vivir el campo</h2>
 
             <p class="texto-secundario">
-                Agrivall nace de la unión entre la agricultura ecológica y el amor por
-                un entorno rural tranquilo. Cuidamos productos de temporada y ofrecemos
-                una casa rural pensada para disfrutar de la naturaleza con sencillez.
+                Agrivall nace de la unión entre la agricultura ecológica y el amor
+                por un entorno rural tranquilo. Cuidamos productos de temporada y
+                ofrecemos una casa rural pensada para disfrutar de la naturaleza
+                con sencillez y honestidad.
             </p>
-
             <p class="texto-secundario">
                 Nuestro objetivo es acercarte al sabor auténtico de la tierra y a una
                 experiencia pausada, honesta y respetuosa con el paisaje que nos rodea.
             </p>
+
         </div>
     </section>
 
+    <!-- =========================================================
+         TIENDA — Imagen izquierda, texto y CTA derecha
+         ========================================================= -->
 
-    <section class="bloque-doble">
+    <section class="seccion-imagen">
 
-        <div>
-            <span class="etiqueta">
-                Tienda ecológica
-            </span>
+        <div class="seccion-imagen-foto">
+            <img src="{% static 'images/productos_index.jpg' %}" alt="Productos ecológicos de temporada">
+        </div>
 
-            <h2>
-                Productos frescos, sencillos y de temporada
-            </h2>
+        <div class="seccion-imagen-texto">
+
+            <span class="etiqueta">Tienda ecológica</span>
+
+            <h2>Productos frescos, sencillos y de temporada</h2>
 
             <p class="texto-secundario">
                 En nuestra tienda encontrarás productos pensados para quienes valoran
                 el origen, el sabor y la calidad. Cada caja representa una forma más
-                cercana de consumir.
+                cercana y honesta de consumir.
             </p>
 
-            <a href="{% url 'productos' %}" class="btn-green">
-                Ir a la tienda
-            </a>
-        </div>
-
-        <article class="ficha">
-            <div class="ficha-cuerpo">
-
-                <div>
-                    <h3>Productos destacados</h3>
-
-                    <p class="texto-secundario texto-pequeno">
-                        Consulta la disponibilidad actual en la tienda.
-                    </p>
+            <div class="ficha-mini">
+                <div class="dato">
+                    <span>Naranjas ecológicas</span>
+                    <strong>Caja</strong>
                 </div>
-
-                <div>
-                    <div class="dato">
-                        <span>Naranjas ecológicas</span>
-                        <strong>Caja</strong>
-                    </div>
-
-                    <div class="dato">
-                        <span>Producto local</span>
-                        <strong>Fresco</strong>
-                    </div>
-
-                    <div class="dato">
-                        <span>Pedido online</span>
-                        <strong>Disponible</strong>
-                    </div>
+                <div class="dato">
+                    <span>Producto local</span>
+                    <strong>Fresco</strong>
                 </div>
-
+                <div class="dato">
+                    <span>Pedido online</span>
+                    <strong>Disponible</strong>
+                </div>
             </div>
-        </article>
+
+            <a href="{% url 'productos' %}" class="btn-green">Ir a la tienda</a>
+
+        </div>
 
     </section>
 
 
-    <section class="bloque-doble">
+    <!-- =========================================================
+         CASA RURAL — Texto izquierda, imagen derecha (invertido)
+         ========================================================= -->
 
-        <article class="ficha">
-            <div class="ficha-cuerpo">
+    <section class="seccion-imagen seccion-imagen--invertida">
 
-                <h3>
-                    Selecciona tus días y envía una solicitud
-                </h3>
+        <div class="seccion-imagen-texto">
 
-                <p class="texto-secundario">
-                    La zona de reserva permite elegir días consecutivos en calendario
-                    y enviar una solicitud para confirmar disponibilidad.
-                </p>
+            <span class="etiqueta">Casa rural</span>
 
-            </div>
-        </article>
-
-        <div>
-            <span class="etiqueta">
-                Casa rural
-            </span>
-
-            <h2>
-                Una estancia para desconectar
-            </h2>
+            <h2>Una estancia para desconectar</h2>
 
             <p class="texto-secundario">
-                Reserva una escapada en un entorno tranquilo, rodeado de campo y aire libre.
-                Ideal para quienes buscan una experiencia sencilla, natural y cercana.
+                Reserva una escapada en un entorno tranquilo, rodeado de campo y
+                aire libre. Elige tus días en el calendario y envía una solicitud
+                para confirmar disponibilidad.
             </p>
 
-            <a href="{% url 'casilla' %}" class="btn-green-outline">
-                Ver disponibilidad
-            </a>
+            <ul class="lista-ventajas">
+                <li>✓ Entorno natural sin ruido</li>
+                <li>✓ Reserva sencilla por calendario</li>
+                <li>✓ Confirmación directa con los propietarios</li>
+            </ul>
+
+            <a href="{% url 'casilla' %}" class="btn-green-outline">Ver disponibilidad</a>
+
+        </div>
+
+        <div class="seccion-imagen-foto">
+            <img src="{% static 'images/house_forest.jpg' %}" alt="Casa rural rodeada de naturaleza">
         </div>
 
     </section>
+
+
+    <!-- =========================================================
+         MAPA — Localización con mapa embebido
+         ========================================================= -->
 
     <section class="map-section">
 
-        <h2>Dónde estamos</h2>
+        <div class="map-header">
+            <span class="etiqueta">Ubicación</span>
+            <h2>Dónde estamos</h2>
+            <p class="texto-secundario">
+                Tavernes de la Valldigna, Valencia. A menos de una hora de la ciudad,
+                en plena naturaleza.
+            </p>
+        </div>
 
         <iframe
             src="https://www.google.com/maps?q=Tavernes%20de%20la%20Valldigna&output=embed"
             loading="lazy"
-            allowfullscreen>
+            allowfullscreen
+            title="Localización de Agrivall">
         </iframe>
 
     </section>
+
+
 </main>
 
 {% include "partials/footer.html" %}
-
 
 </body>
 </html>
