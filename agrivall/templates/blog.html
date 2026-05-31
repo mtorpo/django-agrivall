@@ -35,29 +35,33 @@
         </section>
 
         <section class="seccion-blog">
-            <div class="lista-articulos">
-                {% for post in posts %}
-                    <article class="soft-card tarjeta-articulo">
-                        <div class="contenido-articulo">
-                            <span class="badge-green">
-                                {{ post.tipo.tipo }}
-                            </span>
+            {% if posts %}
+                <div class="lista-articulos">
+                    {% for post in posts %}
+                        <article class="soft-card tarjeta-articulo">
+                            <div class="contenido-articulo">
+                                <span class="badge-green">
+                                    {{ post.tipo.tipo }}
+                                </span>
 
-                            <h2 class="titulo-articulo">
-                                {{ post.titulo }}
-                            </h2>
+                                <h2 class="titulo-articulo">
+                                    {{ post.titulo }}
+                                </h2>
 
-                            <p class="text-soft texto-articulo">
-                                {{ post.noticia }}
-                            </p>
+                                <p class="text-soft texto-articulo">
+                                    {{ post.noticia }}
+                                </p>
 
-                            <a href="#" class="btn-green-outline enlace-articulo">
-                                Leer más
-                            </a>
-                        </div>
-                    </article>
-                {% endfor %}
-            </div>
+                                <a href="#" class="btn-green-outline enlace-articulo">
+                                    Leer más
+                                </a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                    <h3 style="text-align:center;">No hay blogs disponibles</h3>
+            {% endif %}
         </section>
 
     </main>

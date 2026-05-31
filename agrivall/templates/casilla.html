@@ -48,63 +48,63 @@
                         Selecciona el día de entrada y el día de salida. Los días intermedios se marcarán automáticamente.
                     </p>
                 </header>
+                {% if page_obj %}
+                    <div class="lista-semanas">
+                            {% for semana in page_obj %}
 
-                <div class="lista-semanas">
+                                <article
+                                    class="tarjeta-semana"
+                                    data-id="{{ semana.id }}"
+                                    data-semana="{{ semana.numero_sem }}"
+                                >
 
-                    {% for semana in page_obj %}
+                                    <div class="contenido-semana">
 
-                        <article
-                            class="tarjeta-semana"
-                            data-id="{{ semana.id }}"
-                            data-semana="{{ semana.numero_sem }}"
-                        >
+                                        <h3 class="titulo-semana">
+                                            Semana {{ semana.numero_sem }}
+                                        </h3>
 
-                            <div class="contenido-semana">
+                                        <p class="text-soft texto-semana">
+                                            {{ semana.descriptor }}
+                                        </p>
 
-                                <h3 class="titulo-semana">
-                                    Semana {{ semana.numero_sem }}
-                                </h3>
+                                        <span class="estado-casilla {{ semana.estado }}">
+                                            {{ semana.estado }} ●
+                                        </span>
 
-                                <p class="text-soft texto-semana">
-                                    {{ semana.descriptor }}
-                                </p>
+                                    </div>
 
-                                <span class="estado-casilla {{ semana.estado }}">
-                                    {{ semana.estado }} ●
-                                </span>
+                                    <strong class="precio-semana">
+                                        {{ semana.precio }} €
+                                    </strong>
 
-                            </div>
+                                </article>
 
-                            <strong class="precio-semana">
-                                {{ semana.precio }} €
-                            </strong>
+                            {% endfor %}
+                    </div>
 
-                        </article>
+                    <nav class="paginacion-casilla" aria-label="Paginación de semanas">
 
-                    {% endfor %}
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">
+                                Anterior
+                            </a>
+                        {% endif %}
 
-                </div>
+                        <span>
+                            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                        </span>
 
-                <nav class="paginacion-casilla" aria-label="Paginación de semanas">
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">
+                                Siguiente
+                            </a>
+                        {% endif %}
 
-                    {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}">
-                            Anterior
-                        </a>
-                    {% endif %}
-
-                    <span>
-                        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">
-                            Siguiente
-                        </a>
-                    {% endif %}
-
-                </nav>
-
+                    </nav>
+                {% else %}
+                        <h3 style="text-align:center; margin-top: 50%;">No hay semanas disponibles</h3>
+                {% endif %}
             </section>
 
             <section class="soft-card bloque-casilla" aria-labelledby="reserva-title">
