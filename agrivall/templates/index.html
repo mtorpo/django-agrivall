@@ -117,10 +117,10 @@
 
 
     <!-- =========================================================
-         CASA RURAL — Texto izquierda, imagen derecha (invertido)
+         CASA RURAL — Texto izquierda, carousel derecha (invertido)
          ========================================================= -->
 
-    <section class="seccion-imagen seccion-imagen--invertida">
+    <section class="seccion-imagen">
 
         <div class="seccion-imagen-texto">
 
@@ -144,8 +144,15 @@
 
         </div>
 
-        <div class="seccion-imagen-foto">
-            <img src="{% static 'images/house_forest.jpg' %}" alt="Casa rural rodeada de naturaleza">
+        <!-- Carrusel — añade o quita <img> según tus imágenes disponibles -->
+        <div class="carrusel">
+            <div class="carrusel-pista">
+                <img src="{% static 'images/casilla/house_forest.jpg' %}" alt="Casa rural exterior">
+                <img src="{% static 'images/casilla/casilla2.jpg' %}"   alt="Casa rural interior">
+                <img src="{% static 'images/casilla/casilla3.jpg' %}"   alt="Casa rural jardín">
+            </div>
+            <button class="carrusel-btn carrusel-btn--prev">&#8249;</button>
+            <button class="carrusel-btn carrusel-btn--next">&#8250;</button>
         </div>
 
     </section>
@@ -179,6 +186,30 @@
 </main>
 
 {% include "partials/footer.html" %}
+
+
+<!-- =========================================================
+     CARRUSEL — Script autocontenido, sin dependencias
+     ========================================================= -->
+<script>
+document.querySelectorAll('.carrusel').forEach(c => {
+    const imgs = [...c.querySelectorAll('img')];
+    let i = 0;
+
+    function ir(idx) {
+        imgs[i].classList.remove('activo');
+        i = (idx + imgs.length) % imgs.length;
+        imgs[i].classList.add('activo');
+    }
+
+    imgs[0].classList.add('activo');
+
+    c.querySelector('.carrusel-btn--prev').addEventListener('click', () => ir(i - 1));
+    c.querySelector('.carrusel-btn--next').addEventListener('click', () => ir(i + 1));
+
+    setInterval(() => ir(i + 1), 4000);
+});
+</script>
 
 </body>
 </html>

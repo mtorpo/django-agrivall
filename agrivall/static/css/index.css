@@ -15,13 +15,13 @@
 
 .portada {
     min-height: 520px;
-    border-radius: 2rem;
+    border-radius: var(--radius);
     padding: 2rem;
     margin-bottom: 3rem;
     display: flex;
     align-items: flex-end;
     color: white;
-    background: url("../images/house_forest.jpg") center / cover no-repeat;
+    background: url("../images/casilla/house_forest.jpg") center / cover no-repeat;
     position: relative;
     overflow: hidden;
 }
@@ -89,7 +89,7 @@
 }
 
 .seccion-imagen-foto {
-    border-radius: var(--radius);
+    border-radius: var(--small-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
 }
@@ -99,7 +99,7 @@
     height: 380px;
     object-fit: cover;
     display: block;
-    border-radius: 1rem;
+    border-radius: var(--small-radius);
 
 }
 
@@ -205,3 +205,62 @@
 .texto-pequeno {
     font-size: .9rem;
 }
+
+
+/* =========================================================
+   CARRUSEL — Sección casa rural
+   ========================================================= */
+   
+.carrusel {
+    border-radius: var(--small-radius);
+    overflow: hidden;
+    position: relative;
+    height: 380px;
+}
+
+.carrusel-pista {
+    position: relative;
+    height: 100%;
+}
+
+.carrusel-pista img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--small-radius);
+
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform .8s ease, opacity .8s ease;
+
+}
+
+.carrusel-pista img.activo {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(255,255,255,.75);
+    border: none;
+    border-radius: 999px;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s;
+}
+
+.carrusel-btn:hover { background: white; }
+
+.carrusel-btn--prev { left:  .75rem; }
+.carrusel-btn--next { right: .75rem; }

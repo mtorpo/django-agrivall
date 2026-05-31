@@ -42,6 +42,9 @@ html::-webkit-scrollbar{
                  BlinkMacSystemFont,
                  "Segoe UI",
                  sans-serif;
+
+    --radius: 1.5rem;
+    --small-radius: 0.5rem;
 }
 
 /* quitar decoración de anchors */
