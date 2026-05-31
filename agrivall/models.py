@@ -95,7 +95,8 @@ class Pedido(models.Model):
     # blank, null y unique no son incompatibles
     codigo_seguimiento = models.CharField(max_length=10, blank=True, null=True, unique=True, editable=False)
 
-    email = models.CharField(max_length=255, blank=True, null=True)
+    # para aprovechar el validador de mail
+    email = models.EmailField(max_length=255, blank=True, null=True)
 
     class Meta:
         db_table = "pedidos"

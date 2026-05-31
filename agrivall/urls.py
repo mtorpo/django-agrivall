@@ -13,7 +13,7 @@ urlpatterns = [
     # VIsta
     path('productos/', productos, name='productos'),    
     # Main function, gestión de todo
-    path('checkout/', checkout, name='checkout'),
+    path('carrito/', checkout, name='checkout'),
     path('pedido_confirmado/', pedido_confirmado, name='pedido_confirmado'),
     
     # AUTO CRUD

@@ -84,8 +84,14 @@
             </section>
 
         {% endif %}
-
-        <input type="checkbox" id="order-modal" class="modal-toggle">
+        
+        <!-- Forzamos abrir el modal cuando haya un fallo en los datos del form, como el mail -->
+        <input
+            type="checkbox"
+            id="order-modal"
+            class="modal-toggle"
+            {% if abrir_modal %}checked{% endif %}
+        >
 
         <section class="order-modal" aria-labelledby="order-modal-title">
 
@@ -110,6 +116,7 @@
                                 Nombre
                             </label>
                             {{ pedido_form.nombre }}
+                            {{ pedido_form.nombre.errors }}
                         </div>
                         
                         <div class="form-group">
@@ -117,6 +124,7 @@
                                 Email
                             </label>
                             {{ pedido_form.email }}
+                            {{ pedido_form.email.errors }}
                         </div>
 
                         <div class="form-group">
@@ -124,6 +132,7 @@
                                 Dirección
                             </label>
                             {{ pedido_form.direccion }}
+                            {{ pedido_form.direccion.errors }}
                         </div>
 
                         <div class="form-group">
@@ -131,6 +140,7 @@
                                 Código Postal
                             </label>
                             {{ pedido_form.cp }}
+                            {{ pedido_form.cp.errors }}
                         </div>
 
                         <div class="form-group">
@@ -138,6 +148,7 @@
                                 Teléfono
                             </label>
                             {{ pedido_form.telefono }}
+                            {{ pedido_form.telefono.errors }}
                         </div>
 
                         <div class="form-group">
@@ -145,15 +156,15 @@
                                 Método de pago
                             </label>
                             <select name="metodo_pago" id="id_metodo_pago" required>
-                                <option value="" selected disabled>Método de pago</option>
-                                <option value="bizum">Bizum</option>
-                                <option value="transferencia">Transferencia</option>
-                            </select>                   
+                                <option value="" {% if pedido_form.metodo_pago.value == None%} selected {% endif %} disabled>Método de pago</option>
+                                <option value="bizum" {% if pedido_form.metodo_pago.value == "bizum"%} selected {% endif %}>Bizum</option>
+                                <option value="transferencia" {% if pedido_form.metodo_pago.value == "transferencia"%} selected {% endif %}>Transferencia</option>
+                            </select> 
                         </div>
 
                         <div class="modal-total">
                             <span>Total</span>
-                            <strong>{{ total }} €</strong>
+                            <strong>{{ total }} € </strong>
                         </div>
 
                     </div>

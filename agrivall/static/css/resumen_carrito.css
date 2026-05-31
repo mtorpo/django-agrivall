@@ -309,3 +309,11 @@
         width: 100%;
     }
 }
+
+/* Error en el formulario */
+
+.errorlist {
+    color: red;
+    text-decoration: none;
+    list-style: none;
+}

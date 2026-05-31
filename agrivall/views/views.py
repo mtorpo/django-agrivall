@@ -108,8 +108,6 @@ def checkout(request):
 
     if request.method == 'POST':
 
-        client_message = "Error al finalizar el pedido."
-
         form = PedidoForm(request.POST, instance=cart)
        
         creado, pedido = crear_pedido_confirmado(form, total)
@@ -117,19 +115,27 @@ def checkout(request):
         if creado:
             notify_admin_mail(request, pedido) # notificar al admin del pedido
             notify_client_mail(pedido)
+
             client_message = "Pedido confirmado correctamente."
+            messages.success(request,client_message)
 
-        messages.success(
-            request,
-            client_message
-        )
+            return redirect('productos')
 
-        return redirect('productos')
     else:
         # Aquí se piden los datos para crear un pedido y generar el formulario
         form = PedidoForm(instance=cart)
 
-    return render(request, 'resumen_carrito.html', {'pedido_form': form, 'lineas': lineas, 'total': total})
+    # Si no se crea, se devuelve el formulario con errores, por ejemplo de mail inválido
+    return render(
+        request,
+        'resumen_carrito.html',
+        {
+            'pedido_form': form,
+            'lineas': lineas,
+            'total': total,
+            'abrir_modal': request.method == 'POST'
+        }
+    )
 
 @login_required
 def pedido_confirmado(request):
