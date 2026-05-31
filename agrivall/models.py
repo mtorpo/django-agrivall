@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 import os
 import uuid
 
+import secrets
+import string
+
 # TIPOS
 # models.CharField(max_length=255)
 # models.IntegerField()
@@ -17,25 +20,30 @@ import uuid
 # on_delete=models.CASCADE
 # on_delete=models.PROTECT
 
-def uuid_upload_to(directory):
-    """
-    upload to de Django espera o un string con el nombre del directorio, o una función a la que le pasará
-    instance y filename, y devolverá el path con el nombre del objeto. Esta función en ImageField se llama
-    def generate_filename(self, instance, filename):
-    """
-    def create_uuid_path(instance, filename):
-        rest, extension = os.path.splitext(filename)
+# Crear código de seguimiento
+codigo_segumiento_size = 10
+def generar_codigo_seguimiento():
+    caracteres = string.ascii_uppercase + string.digits
+    return ''.join(secrets.choice(caracteres) for _ in range(codigo_segumiento_size))
 
-        return f"{directory}/{uuid.uuid4()}{extension}"
 
-    return create_uuid_path
+# Upload de imágenes, para uuid filenames. Django no permite wrapers, por que la hacer makemigrations
+# no detecta funciones dentro de funciones
+def upload_producto(instance, filename):
+    _, extension = os.path.splitext(filename)
+    return f"productos/{uuid.uuid4()}{extension}"
+
+
+def upload_blog(instance, filename):
+    _, extension = os.path.splitext(filename)
+    return f"blog/{uuid.uuid4()}{extension}"
 
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()
     precio_unidad = models.DecimalField(max_digits=10, decimal_places=2)
-    imagen = models.ImageField(upload_to=uuid_upload_to("productos"), blank=True, null=True)
+    imagen = models.ImageField(upload_to=upload_producto, blank=True, null=True)
     peso_kg = models.IntegerField()
     variedad = models.CharField(max_length=100, blank=True, null=True)
     disponible = models.BooleanField(default=True, blank=False, null=False)
@@ -84,6 +92,10 @@ class Pedido(models.Model):
 
     metodo_pago = models.CharField(max_length=50, choices=METODO_PAGO, blank=True, null=True)
 
+    # blank, null y unique no son incompatibles
+    codigo_seguimiento = models.CharField(max_length=10, blank=True, null=True, unique=True, editable=False)
+
+    email = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         db_table = "pedidos"
@@ -150,7 +162,7 @@ class PostBlog(models.Model):
 
     titulo =  models.CharField(max_length=100, blank=False)
     noticia = models.TextField()
-    imagen = models.ImageField(upload_to=uuid_upload_to("blog"), blank=True, null=True)
+    imagen = models.ImageField(upload_to=upload_blog, blank=True, null=True)
     fecha_public = models.DateTimeField(auto_now_add=True)
     # blank y null a True para permitir el on_delete set_null
     tipo = models.ForeignKey(TipoPost, on_delete=models.SET_NULL, related_name="posts",null=True,blank=True)

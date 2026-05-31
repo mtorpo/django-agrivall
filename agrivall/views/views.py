@@ -15,8 +15,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages # para alertas
 
 # mailing al admin
-from agrivall.views.mailing import enviar_mail_pedido
+from agrivall.views.mailing import notify_admin_mail, notify_client_mail
 
+# Código de pedido
+from agrivall.models import generar_codigo_seguimiento
 
 
 def index(request):
@@ -58,6 +60,34 @@ def add_to_cart(request, product_id):
     return redirect('checkout')
 
 
+def crear_pedido_confirmado(form, total):
+
+    creado = True
+
+    if form.is_valid():
+        # crea el objeto pedido con los datos del cliente pero no lo guarda en la bdd, por el commit = False
+        pedido = form.save(commit=False) 
+        pedido.total = total
+        pedido.estado = 'confirmado'
+        #actualizamos la fecha de creación para que sea la de confirmación de pedido y no la de carrito
+        pedido.fecha_creacion = timezone.now() 
+
+        # Añadimos el código de seguimiento para que lo reciba cliente
+        if not pedido.codigo_seguimiento:
+            pedido.codigo_seguimiento = generar_codigo_seguimiento()
+        
+        pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
+
+    else:
+        print("FORM NO VÁLIDO")
+        print(form)
+        pedido = None
+        creado = False
+        
+    
+    return creado, pedido
+
+
 @login_required
 def checkout(request):
     """
@@ -77,24 +107,24 @@ def checkout(request):
     total = sum(linea.precio_unidad for linea in lineas)
 
     if request.method == 'POST':
+
+        client_message = "Error al finalizar el pedido."
+
         form = PedidoForm(request.POST, instance=cart)
-        if form.is_valid():
-            # crea el objeto pedido con los datos del cliente pero no lo guarda en la bdd, por el commit = False
-            pedido = form.save(commit=False) 
-            pedido.total = total
-            pedido.estado = 'confirmado'
-            #actualizamos la fecha de creación para que sea la de confirmación de pedido y no la de carrito
-            pedido.fecha_creacion = timezone.now() 
-            pedido.save() # ahora si se guarda en la bdd, directamente sobre el objeto
+       
+        creado, pedido = crear_pedido_confirmado(form, total)
 
-            enviar_mail_pedido(request, pedido) # notificar al admin del pedido
+        if creado:
+            notify_admin_mail(request, pedido) # notificar al admin del pedido
+            notify_client_mail(pedido)
+            client_message = "Pedido confirmado correctamente."
 
-            messages.success(
-                request,
-                "Pedido confirmado correctamente"
-            )
+        messages.success(
+            request,
+            client_message
+        )
 
-            return redirect('productos')
+        return redirect('productos')
     else:
         # Aquí se piden los datos para crear un pedido y generar el formulario
         form = PedidoForm(instance=cart)

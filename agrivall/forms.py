@@ -10,7 +10,7 @@ class ProductoForm(forms.ModelForm):
 class PedidoForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        fields = ['nombre', 'direccion', 'cp', 'telefono', 'metodo_pago']
+        fields = ['nombre', 'direccion', 'cp', 'telefono', 'metodo_pago', 'email']
         # campo total a mano
 
     # Esto es para indicar, que sean los campos REQUIRED SOLO en el form. Con django la forma habitual es no hacer blank ni null en el 
@@ -25,6 +25,7 @@ class PedidoForm(forms.ModelForm):
         self.fields['cp'].required = True
         self.fields['telefono'].required = True
         self.fields['metodo_pago'].required = True
+        self.fields['email'].required = True
 
 
 

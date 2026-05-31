@@ -49,10 +49,12 @@
 
                                 <tr>
                                     <th>ID</th>
+                                    <th>Email</th>
                                     <th>Cliente</th>
                                     <th>Dirección</th>
                                     <th>CP</th>
                                     <th>Fecha</th>
+                                    <th>Código seguimiento</th>
                                     <th>Estado</th>
                                     <th class="text-center">
                                         Acción
@@ -72,6 +74,10 @@
                                         </td>
 
                                         <td class="fw-semibold">
+                                            {{ pedido.email }}
+                                        </td>
+
+                                        <td class="fw-semibold">
                                             {{ pedido.nombre }}
                                         </td>
 
@@ -85,6 +91,10 @@
 
                                         <td>
                                             {{ pedido.fecha_creacion|date:"d/m/Y H:i" }}
+                                        </td>
+
+                                        <td>
+                                            {{ pedido.codigo_seguimiento }}
                                         </td>
 
                                         <td>
