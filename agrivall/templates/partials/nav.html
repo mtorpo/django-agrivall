@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="main-nav" id="mainNav">
 
     <div class="nav-content">
@@ -59,7 +60,12 @@
                 {% if user.is_authenticated %}
 
                     <a href="{% url 'checkout' %}" class="nav-cart">
-                        🛒 <span id="cart-count">{{ carrito_total }}</span>
+                        <img
+                            src="{% static 'images/carrito.svg' %}"
+                            alt="Cesta"
+                            class="cart-icon"
+                        >
+                        <span id="cart-count">{{ carrito_total }}</span>
                     </a>
 
                     {% if user.is_superuser %}

@@ -199,3 +199,29 @@ button.nav-button {
 
     background: var(--primary);
 }
+
+/* NUEVO ICONO CARRITO */
+.nav-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.cart-icon {
+    width: 28px;
+    height: 28px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    border-radius: 50%;
+    box-shadow: 0 0 5px yellowgreen;
+}
+
+#cart-count {
+    font-size: 16px;
+    line-height: 1;
+}
