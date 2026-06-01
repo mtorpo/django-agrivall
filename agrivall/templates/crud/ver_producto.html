@@ -1,4 +1,5 @@
 {% load static %}
+{% load l10n %}
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="dark">
 <head>
@@ -97,7 +98,8 @@
                                         type="number"
                                         step="0.01"
                                         name="precio_unidad"
-                                        value="{{ producto.precio_unidad }}"
+                                        {% comment %} deslocalizamos para que no convierta . a , en decimal {% endcomment %}
+                                        value="{{ producto.precio_unidad|unlocalize }}"
                                         class="form-control"
                                         required
                                     >

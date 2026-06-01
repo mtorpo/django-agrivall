@@ -3,7 +3,7 @@
    ========================================================= */
 
 .pagina {
-    width: min(1100px, 92%);
+    width: var(--main-width);
     margin: 0 auto;
     padding: 3rem 0 5rem;
 }

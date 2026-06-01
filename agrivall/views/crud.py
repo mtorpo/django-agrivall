@@ -68,7 +68,7 @@ def ver_producto(request):
     producto = Producto.objects.get(id=producto_id)
 
     if producto:
-        return render(request, "crud/ver_producto.html", {"producto": producto, "producto_id": producto_id})
+        return render(request, "crud/ver_producto.html", {"producto": producto})
     
 @user_passes_test(es_superuser)
 def editar_producto(request):
