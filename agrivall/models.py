@@ -27,7 +27,7 @@ def generar_codigo_seguimiento():
     return ''.join(secrets.choice(caracteres) for _ in range(codigo_segumiento_size))
 
 
-# Upload de imágenes, para uuid filenames. Django no permite wrapers, por que la hacer makemigrations
+# Upload de imágenes, para uuid filenames. Django no permite wrapers, por que al hacer makemigrations
 # no detecta funciones dentro de funciones
 def upload_producto(instance, filename):
     _, extension = os.path.splitext(filename)
@@ -156,6 +156,9 @@ class TipoPost(models.Model):
         ("cursos", "Cursos"),
     ]
     tipo = models.CharField(max_length=255, choices=TIPOS, default="libre")
+
+    def __str__(self):
+        return self.tipo
 
 class PostBlog(models.Model):
     class Meta:

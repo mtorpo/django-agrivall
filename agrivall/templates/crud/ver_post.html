@@ -1,0 +1,181 @@
+{% load static %}
+{% load l10n %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar post | Agrivall</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body class="bg-dark">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 col-lg-6">
+
+                <div class="card bg-black border-secondary shadow-lg rounded-4">
+
+                    <div class="card-body p-4">
+
+                        <h2 class="text-center mb-4">
+                            {% if post.id %}
+                                Editar post
+                            {% else %}
+                                Nuevo post
+                            {% endif %}
+                        </h2>
+
+                        <form
+                            method="post"
+                            enctype="multipart/form-data"
+                            action="{% if post.id %}{% url 'editar_post' %}{% else %}{% url 'crear_post' %}{% endif %}"
+                        >
+
+                            {% csrf_token %}
+
+                            <input
+                                type="hidden"
+                                name="post_id"
+                                value="{{ post.id }}"
+                            >
+
+                            {% if post.imagen %}
+                                <div class="text-center mb-4">
+
+                                    <img
+                                        src="{{ post.imagen.url }}"
+                                        class="img-fluid rounded-4 shadow"
+                                        style="max-height:250px;"
+                                        alt="{{ post.titulo }}"
+                                    >
+
+                                </div>
+                            {% endif %}
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Título
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="titulo"
+                                    value="{{ post.titulo }}"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Noticia
+                                </label>
+
+                                <textarea
+                                    name="noticia"
+                                    class="form-control"
+                                    rows="5"
+                                    required
+                                >{{ post.noticia }}</textarea>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Categoría
+                                </label>
+
+                                <select
+                                    name="tipo"
+                                    class="form-select"
+                                    required
+                                >
+                                    <option value="">Selecciona una categoría</option>
+
+                                    {% for tipo in tipos %}
+                                        <option
+                                            value="{{ tipo.id }}"
+                                            {% if post.tipo.id == tipo.id %}selected{% endif %}
+                                        >
+                                            {{ tipo.tipo }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Nueva imagen
+                                </label>
+
+                                <input
+                                    type="file"
+                                    name="imagen"
+                                    class="form-control"
+                                >
+
+                            </div>
+
+                            {% if post.imagen %}
+                                <div class="form-check mb-4">
+
+                                    <input
+                                        type="checkbox"
+                                        name="borrar_imagen"
+                                        class="form-check-input"
+                                        id="borrar"
+                                    >
+
+                                    <label
+                                        class="form-check-label"
+                                        for="borrar"
+                                    >
+                                        Eliminar imagen actual
+                                    </label>
+
+                                </div>
+                            {% endif %}
+
+                            <div class="d-flex gap-2 mt-5">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-success w-100"
+                                >
+                                    Guardar cambios
+                                </button>
+
+                                <a
+                                    href="{% url 'panel_posts' %}"
+                                    class="btn btn-outline-secondary w-100"
+                                >
+                                    Cancelar
+                                </a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

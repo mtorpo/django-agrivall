@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto, Pedido
+from .models import Producto, Pedido, PostBlog
 
 class ProductoForm(forms.ModelForm):
     class Meta:
@@ -26,6 +26,12 @@ class PedidoForm(forms.ModelForm):
         self.fields['telefono'].required = True
         self.fields['metodo_pago'].required = True
         self.fields['email'].required = True
+
+
+class PostBlogForm(forms.ModelForm):
+    class Meta:
+        model = PostBlog
+        fields = ['titulo', 'noticia', 'imagen', 'tipo']
 
 
 

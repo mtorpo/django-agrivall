@@ -2,7 +2,7 @@ from django.urls import path
 from .views.views import *
 from .views.blog import *
 from .views.casilla import *
-from .views.crud import dashboard, ver_producto, editar_producto, eliminar_producto, crear_producto, panel_productos, panel_pedidos, editar_estado_pedido
+from .views.crud import *
 
 urlpatterns = [
     # MAIN
@@ -42,5 +42,12 @@ urlpatterns = [
 
     # CRUD - pedidos
     path('panel_pedidos/', panel_pedidos, name="panel_pedidos"),
-    path('editar_estado_pedido/', editar_estado_pedido, name="editar_estado_pedido")
+    path('editar_estado_pedido/', editar_estado_pedido, name="editar_estado_pedido"),
+
+    # CRUD - blogs
+    path('panel_posts', panel_posts, name='panel_posts'),
+    path('ver_post', ver_post, name='ver_post'),
+    path('eliminar_post', eliminar_post, name='eliminar_post'),
+    path('editar_post', editar_post, name='editar_post'),
+    path('crear_post', crear_post, name='crear_post')
 ]
