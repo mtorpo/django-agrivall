@@ -20,10 +20,7 @@
 <main class="pagina">
 
 
-    <!-- =========================================================
-         HERO — Imagen de fondo con título y llamadas a la acción
-         ========================================================= -->
-
+    <!-- Imgane y título -->
     <section class="portada">
         <div class="portada-cuerpo">
 
@@ -47,10 +44,7 @@
     </section>
 
 
-    <!-- =========================================================
-         SOBRE NOSOTROS — Texto centrado con introducción breve
-         ========================================================= -->
-
+    <!-- SOBRE NOSOTROS -->
     <section class="sobre">
         <div class="sobre-cuerpo">
 
@@ -72,10 +66,7 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         TIENDA — Imagen izquierda, texto y CTA derecha
-         ========================================================= -->
-
+    <!-- TIENDA -->
     <section class="seccion-imagen">
 
         <div class="seccion-imagen-foto">
@@ -116,9 +107,7 @@
     </section>
 
 
-    <!-- =========================================================
-         CASA RURAL — Texto izquierda, carousel derecha (invertido)
-         ========================================================= -->
+    <!-- CASA RURAL (invertido) -->
 
     <section class="seccion-imagen">
 
@@ -148,8 +137,11 @@
         <div class="carrusel">
             <div class="carrusel-pista">
                 <img src="{% static 'images/casilla/house_forest.jpg' %}" alt="Casa rural exterior">
+                <img src="{% static 'images/casilla/casilla1.jpg' %}"   alt="Casa rural interior">
                 <img src="{% static 'images/casilla/casilla2.jpg' %}"   alt="Casa rural interior">
-                <img src="{% static 'images/casilla/casilla3.jpg' %}"   alt="Casa rural jardín">
+                <img src="{% static 'images/casilla/casilla3.jpg' %}"   alt="Casa rural interior">
+                <img src="{% static 'images/casilla/casilla4.jpg' %}"   alt="Casa rural jardín">
+                <img src="{% static 'images/casilla/casilla5.jpg' %}"   alt="Casa rural jardín">
             </div>
             <button class="carrusel-btn carrusel-btn--prev">&#8249;</button>
             <button class="carrusel-btn carrusel-btn--next">&#8250;</button>
@@ -158,9 +150,7 @@
     </section>
 
 
-    <!-- =========================================================
-         MAPA — Localización con mapa embebido
-         ========================================================= -->
+    <!-- MAPA -->
 
     <section class="map-section">
 
@@ -188,9 +178,7 @@
 {% include "partials/footer.html" %}
 
 
-<!-- =========================================================
-     CARRUSEL — Script autocontenido, sin dependencias
-     ========================================================= -->
+<!-- CARRUSEL -->
 <script>
 document.querySelectorAll('.carrusel').forEach(c => {
     const imgs = [...c.querySelectorAll('img')];

@@ -111,6 +111,10 @@ def eliminar_producto(request):
 
     producto = get_object_or_404(Producto, id=producto_id)
 
+    # borramos imagen de producto si este se borra
+    if producto.imagen:
+        producto.imagen.delete(save=False)
+
     producto.delete()
 
     return redirect("panel_productos")
