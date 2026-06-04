@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | Agrivall</title>
+
+    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+
+    <style>
+        .error-page{
+            min-height: 70vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        }
+
+        .error-page h1{
+            font-size:6rem;
+            margin:0;
+        }
+
+        .error-page h2{
+            margin-bottom:1rem;
+        }
+
+        .error-actions{
+            display:flex;
+            gap:1rem;
+            margin-top:2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="container">
+
+        <section class="error-page">
+
+            <h1>404</h1>
+
+            <h2>Página no encontrada</h2>
+
+            <p>
+                La página que buscas no existe o ha sido movida.
+            </p>
+
+            <div class="error-actions">
+
+                <a href="{% url 'index' %}" class="btn-green">
+                    Volver al inicio
+                </a>
+
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="btn-soft">
+                        Iniciar sesión
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

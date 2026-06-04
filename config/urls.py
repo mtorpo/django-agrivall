@@ -29,6 +29,10 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from agrivall.views.register import register
 
+# Esto sobrescribe a lo que llama django en caso de error, hace un import from agrivall.views import error_404
+# registramos nuestra función de view error, django en caso de que falle, buscará esta ruta pasada como texto
+handler404 = "agrivall.views.views.error_404"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("agrivall.urls")),

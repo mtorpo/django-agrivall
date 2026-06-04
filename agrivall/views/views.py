@@ -21,6 +21,14 @@ from agrivall.views.mailing import notify_admin_mail, notify_client_mail
 from agrivall.models import generar_codigo_seguimiento
 
 
+# Error 404 manda a html personalizado
+def error_404(request, exception):
+    return render(
+        request,
+        "404.html",
+        status=404
+    )
+
 def index(request):
     return render(request, "index.html")
 
