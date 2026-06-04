@@ -23,4 +23,8 @@ Thumbs.db
 
 reboot*.bat
 
+# Ignorar migraciones (quitar en producción)
+**/migrations/*.py
+
+# Pero conservar __init__.py
 !**/migrations/__init__.py
