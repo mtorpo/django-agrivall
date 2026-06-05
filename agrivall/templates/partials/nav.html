@@ -61,18 +61,12 @@
 
                     <a href="{% url 'checkout' %}" class="nav-cart">
                         <img
-                            src="{% static 'images/carrito.svg' %}"
+                            src="{% static 'images/shopping-basket.svg' %}"
                             alt="Cesta"
                             class="cart-icon"
                         >
                         <span id="cart-count">{{ carrito_total }}</span>
                     </a>
-
-                    {% if user.is_superuser %}
-                        <a href="{% url 'dashboard' %}" class="nav-button dashboard">
-                            Admin
-                        </a>
-                    {% endif %}
 
                     <span class="nav-user">
                         {{ user.username }}
@@ -85,6 +79,12 @@
                             Cerrar sesión
                         </button>
                     </form>
+
+                    {% if user.is_superuser %}
+                        <a href="{% url 'dashboard' %}" class="nav-button dashboard">
+                            Admin
+                        </a>
+                    {% endif %}
 
                 {% else %}
 
