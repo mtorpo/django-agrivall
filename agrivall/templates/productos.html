@@ -35,6 +35,24 @@
             </p>
         </section>
 
+        <section class="buscador">
+            <input type="search" name="" id="input-buscador" placeholder="Buscar">
+
+            {% if productos %}
+            
+            <select id="filtro-variedad">
+                <option value="">Todas las variedades</option>
+
+                {% for producto in productos %}
+                    <option value="{{ producto.variedad }}">
+                        {{ producto.variedad }}
+                    </option>
+                {% endfor %}
+            </select>
+            
+            {% endif %}
+        </section>
+
         <section class="zona-productos">
 
             <div class="rejilla-productos">
@@ -136,6 +154,39 @@
             });
         });
     </script>
+
+    <!-- BUSCADOR -->
+<script>
+    const inputBuscador = document.querySelector("#input-buscador");
+    const filtroVariedad = document.querySelector("#filtro-variedad");
+    const productos = document.querySelectorAll(".formulario-carrito");
+
+    function filtrarProductos() {
+        const busqueda = inputBuscador.value.trim().toLowerCase();
+        const variedadSeleccionada = filtroVariedad.value.trim().toLowerCase();
+
+        productos.forEach(formulario => {
+            const nombre = formulario.querySelector(".titulo-producto").textContent.toLowerCase();
+
+            const descripcion = formulario.querySelector(".descripcion-producto").textContent.toLowerCase();
+
+            const variedad = formulario.querySelector(".variedad-producto").textContent.replace("Variedad:", "").trim().toLowerCase();
+
+            const coincideBusqueda = nombre.includes(busqueda) ||
+                descripcion.includes(busqueda);
+
+            const coincideVariedad =
+                variedadSeleccionada === "" ||
+                variedad === variedadSeleccionada;
+
+            formulario.style.display =
+                coincideBusqueda && coincideVariedad ? "" : "none";
+        });
+    }
+
+    inputBuscador.addEventListener("input", filtrarProductos);
+    filtroVariedad.addEventListener("change", filtrarProductos);
+</script>
 
 </body>
 </html>
