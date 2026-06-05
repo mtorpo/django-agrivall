@@ -37,7 +37,12 @@ def productos(request):
     productos = Producto.objects.all() #No usamos el all por que devuelve objetos de la classe
     # render es como view en laravel, es para que cargue el html, 
     # pasamos request para poder usar variables de usuario
-    return render(request, "productos.html", {"productos": productos})
+
+    # esto permite devolver no objetos, si no una lista de ciertos campos, para luego poder aplicar distinct.
+    # realmente values_list devuelve una lista de tulpas de un valor, por eso se usa flat=true, para que una lista de valores.
+    # Aun que parezca una lista, realmente sigue siendo un QuerySet, por eso podemos usar distinct
+    variedades = Producto.objects.all().values_list("variedad", flat=True).distinct()
+    return render(request, "productos.html", {"productos": productos, "variedades": variedades})
 
 
 @login_required

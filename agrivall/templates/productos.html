@@ -38,14 +38,14 @@
         <section class="buscador">
             <input type="search" name="" id="input-buscador" placeholder="Buscar">
 
-            {% if productos %}
+            {% if variedades %}
             
             <select id="filtro-variedad">
                 <option value="">Todas las variedades</option>
 
-                {% for producto in productos %}
-                    <option value="{{ producto.variedad }}">
-                        {{ producto.variedad }}
+                {% for variedad in variedades %}
+                    <option value="{{ variedad }}">
+                        {{ variedad }}
                     </option>
                 {% endfor %}
             </select>
@@ -172,7 +172,8 @@
 
             const variedad = formulario.querySelector(".variedad-producto").textContent.replace("Variedad:", "").trim().toLowerCase();
 
-            const coincideBusqueda = nombre.includes(busqueda) ||
+            const coincideBusqueda =
+                nombre.includes(busqueda) ||
                 descripcion.includes(busqueda);
 
             const coincideVariedad =
