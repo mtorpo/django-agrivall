@@ -36,23 +36,36 @@
 
         <section class="seccion-blog">
             {% if posts %}
-                <div class="lista-articulos">
+                <div class="lista-posts">
                     {% for post in posts %}
-                        <article class="soft-card tarjeta-articulo">
-                            <div class="contenido-articulo">
+                        <article class="soft-card tarjeta-post">
+
+                            {% if post.imagen %}
+                                <img
+                                    src="{{ post.imagen.url }}"
+                                    alt="{{ post.titulo }}"
+                                    class="imagen-post"
+                                >
+                            {% else %}
+                                <img src="{% static 'images/logo-agrivall.png' %}"
+                                    class="imagen-post"
+                                    alt="imagen por defecto"
+                                >
+                            {% endif %}
+                            <div class="contenido-post">
                                 <span class="badge-green">
                                     {{ post.tipo.tipo }}
                                 </span>
 
-                                <h2 class="titulo-articulo">
+                                <h2 class="titulo-post">
                                     {{ post.titulo }}
                                 </h2>
 
-                                <p class="text-soft texto-articulo">
+                                <p class="text-soft texto-post">
                                     {{ post.noticia }}
                                 </p>
 
-                                <a href="#" class="btn-green-outline enlace-articulo">
+                                <a href="#" class="btn-green-outline enlace-post">
                                     Leer más
                                 </a>
                             </div>
