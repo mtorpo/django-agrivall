@@ -217,3 +217,24 @@
         flex-direction: column;
     }
 }
+
+
+
+/* CARACTERISTICAS */
+
+
+.caracteristicas {
+    border: solid 1px black;
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+    width: 50%;
+    padding: 1rem;
+}
+
+.caracteristicas ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
