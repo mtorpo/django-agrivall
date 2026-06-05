@@ -1,7 +1,8 @@
 .cabecera-blog {
-    width: min(900px, 92%);
+    width: min(820px, 92%);
     margin: 0 auto;
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 1.5rem;
+    text-align: left;
     text-align: center;
 }
 
@@ -10,82 +11,78 @@
     font-size: clamp(2rem, 4vw, 3rem);
 }
 
-.entradilla-blog {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-}
-
 .seccion-blog {
-    width: var(--main-width);
+    width: min(820px, 92%);
     margin: 0 auto;
-    padding: 2rem 0 4rem;
+    padding: 1rem 0 4rem;
 }
 
 .lista-posts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .tarjeta-post {
-    height: 100%;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+}
+
+.imagen-post {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 18px;
 }
 
 .contenido-post {
-    height: 100%;
-    padding: 1.5rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
 .titulo-post {
-    margin: 1rem 0 .75rem;
-    font-size: 1.3rem;
+    margin: .6rem 0 .5rem;
+    font-size: 1.35rem;
 }
 
 .texto-post {
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .enlace-post {
-    margin-top: auto;
-    display: inline-block;
+    margin-top: .25rem;
 }
 
-@media (min-width: 700px) {
-    .lista-posts {
-        grid-template-columns: repeat(2, 1fr);
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+@media (max-width: 700px) {
+    .cabecera-blog {
+        text-align: left;
+        padding-top: 2rem;
     }
-}
 
-@media (min-width: 1000px) {
-    .lista-posts {
-        grid-template-columns: repeat(3, 1fr);
+    .tarjeta-post {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-}
 
-
-/* Para que cuando no haya blog el main ocupe como mínimo el alto visible */
-
-body{
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-}
-
-main{
-    flex:1;
-}
-
-/* IMÁGENES DE POSTS */
-.imagen-post {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    .imagen-post {
+        height: 220px;
+    }
 }
