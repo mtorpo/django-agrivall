@@ -10,11 +10,24 @@ header {
     align-items: center;
     justify-content: space-between;
     background: #fdfdfb;
-    border-bottom: 1px solid rgba(0,0,0,.08);
-    padding: 1rem 10rem;
+    border-bottom: 2px solid rgba(0,0,0,.08);
+    padding: 1rem 5rem;
+    /* degradado en las esquinas a verde */
+    background:
+        linear-gradient(
+            120deg,
+            rgba(92, 133, 63, 0.35) 0%,
+            rgba(92, 133, 63, 0.15) 30%,
+            transparent 45%
+        ),
+        linear-gradient(
+            -120deg,
+            rgba(92, 133, 63, 0.35) 0%,
+            rgba(92, 133, 63, 0.15) 30%,
+            transparent 40%
+        ),
+        #fdfdfb;
 }
-
-
 /* BOTONES */
 
 .nav-button {
@@ -61,12 +74,19 @@ header {
 }
 
 /* LOGO */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 .nav-logo {
     color: var(--primary);
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: 1px;
     margin-right: 2rem;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal; 
 }
 
 /* PADRE NAVEGADOR */
@@ -87,8 +107,44 @@ header {
     justify-content: center;
     align-items: center;
     list-style: none;
-    gap: 2rem;
+    gap: 4rem;
 }
+
+
+/* TEST TRANSITION NAV */
+.nav-link a {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    padding-bottom: .25rem;
+    transition: color .3s ease;
+}
+
+.nav-link a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--primary);
+
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+.nav-link a:hover {
+    color: var(--primary-dark);
+}
+
+.nav-link a:hover::after,
+.nav-active::after {
+    width: 100%;
+}
+/* END TRANSITION NAV */
 
 /* Alineamos los li */
 .nav-list li {
@@ -148,7 +204,7 @@ header {
     font-style: italic;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 1060px) {
 
     header {
         padding-left: 3rem;
