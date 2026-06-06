@@ -132,6 +132,12 @@ header {
 }
 
 @media screen and (max-width: 550px) {
+
+    header {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
     /* mostramos bototnes de abrir y cerrar menú */
     .abrir-menu, 
     .cerrar-menu {
@@ -159,7 +165,7 @@ header {
         display: flex;
         flex-direction: column;
         align-items: end;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
