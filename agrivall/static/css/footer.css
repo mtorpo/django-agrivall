@@ -2,11 +2,7 @@
     width: 100%;
     margin-top: 5rem;
 
-    background: linear-gradient(
-        135deg,
-        #2e7d32,
-        #43a047
-    );
+    background: #43a047;
 
     color: white;
 }
@@ -15,7 +11,7 @@
     width: min(1200px, 92%);
     margin: auto;
 
-    padding: 3rem 0;
+    padding: 0 0 1rem 0;
 
     display: flex;
     justify-content: space-between;
@@ -58,4 +54,11 @@
     background: rgba(0,0,0,.12);
 
     font-size: .9rem;
+}
+
+/* SELLOS, IMÁGENES */
+
+.footer-brand .sellos {
+    display: flex;
+    gap: 1rem;
 }
