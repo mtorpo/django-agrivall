@@ -1,64 +1,58 @@
 {% load static %}
-<nav class="main-nav" id="mainNav">
+<header>
+    <a href="{% url 'index' %}" class="nav-logo">
+        AGRIVALL
+    </a>
 
-    <div class="nav-content">
+    <button class="abrir-menu" id="abrir">
+        <img src="{% static "icons/hamburger-menu.svg" %}" class="icono abrir" alt="Menú hamburguesa"/>
+    </button>
 
-        <a href="{% url 'index' %}" class="nav-logo">
-            AGRIVALL
-        </a>
+    <!-- Container principal -->
+    <nav class="nav" id="mainNav">
+        <button class="cerrar-menu" id="cerrar">
+            <img src="{% static "icons/close.svg" %}" class="icono cerrar" alt="Menú hamburguesa"/>
+        </button>
+        <ul class="nav-list">
+            <li class="nav-link">
+                <a
+                    href="{% url 'index' %}"
+                    class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}"
+                >
+                    Inicio
+                </a>
+            </li>
 
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <li class="nav-link">
+                <a
+                    href="{% url 'productos' %}"
+                    class="{% if request.resolver_match.url_name == 'productos' or request.GET.next == '/productos/' %}nav-active{% endif %}"
+                >
+                    Productos
+                </a>
+            </li>
 
-        <label for="nav-toggle" class="nav-toggle-label">
-            ☰
-        </label>
+            <li class="nav-link">
+                <a
+                    href="{% url 'casilla' %}"
+                    class="{% if request.resolver_match.url_name == 'casilla' %}nav-active{% endif %}"
+                >
+                    Casilla
+                </a>
+            </li>
 
-        <div class="nav-menu">
+            <li class="nav-link">
+                <a
+                    href="{% url 'blog' %}"
+                    class="{% if request.resolver_match.url_name == 'blog' %}nav-active{% endif %}"
+                >
+                    Blog
+                </a>
+            </li>
 
-            <ul class="nav-links">
 
+            {% if user.is_authenticated %}
                 <li>
-                    <a
-                        href="{% url 'index' %}"
-                        class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}"
-                    >
-                        Inicio
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="{% url 'productos' %}"
-                        class="{% if request.resolver_match.url_name == 'productos' or request.GET.next == '/productos/' %}nav-active{% endif %}"
-                    >
-                        Productos
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="{% url 'casilla' %}"
-                        class="{% if request.resolver_match.url_name == 'casilla' %}nav-active{% endif %}"
-                    >
-                        Casilla
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="{% url 'blog' %}"
-                        class="{% if request.resolver_match.url_name == 'blog' %}nav-active{% endif %}"
-                    >
-                        Blog
-                    </a>
-                </li>
-
-            </ul>
-
-            <div class="nav-actions">
-
-                {% if user.is_authenticated %}
-
                     <a href="{% url 'checkout' %}" class="nav-cart">
                         <img
                             src="{% static 'icons/shopping-basket.svg' %}"
@@ -67,41 +61,51 @@
                         >
                         <span id="cart-count">{{ carrito_total }}</span>
                     </a>
+                </li>
 
+                <li>
                     <span class="nav-user">
                         {{ user.username }}
-                    </span>
+                    </span></li>
 
+                <li>
                     <form method="post" action="{% url 'logout' %}" class="nav-form">
                         {% csrf_token %}
 
-                        <button type="submit" class="nav-button nav-button-outline">
+                        <button type="submit" class="nav-button nav-button-green">
                             Cerrar sesión
                         </button>
                     </form>
+                </li>
 
-                    {% if user.is_superuser %}
-                        <a href="{% url 'dashboard' %}" class="nav-button dashboard">
-                            Admin
-                        </a>
-                    {% endif %}
-
-                {% else %}
-
-                    <a href="{% url 'login' %}" class="nav-button nav-button-light">
-                        Iniciar sesión
+            {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'dashboard' %}" class="nav-button dashboard">
+                        Admin
                     </a>
+                </li>
+            {% endif %}
 
-                    <a href="{% url 'register' %}" class="nav-button nav-button-green">
-                        Registrarse
-                    </a>
 
-                {% endif %}
+        {% else %}
+            <li>
+                <a href="{% url 'login' %}" class="nav-button nav-button-light">
+                    Iniciar sesión
+                </a>
+            </li>
 
-            </div>
+            <li>
+                <a href="{% url 'register' %}" class="nav-button nav-button-green">
+                    Registrarse
+                </a>
+        {% endif %}
 
-        </div>
 
-    </div>
+        </ul>
+    </nav>
 
-</nav>
+</header>
+
+
+<script src="{% static "js/nav.js" %}">
+</script>
