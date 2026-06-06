@@ -116,12 +116,11 @@ header {
     position: relative;
     text-decoration: none;
     color: inherit;
-    font-weight: 500;
     padding-bottom: .25rem;
     transition: color .3s ease;
 }
 
-.nav-link a::after {
+.nav-active::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -136,11 +135,6 @@ header {
     transition: width .3s ease;
 }
 
-.nav-link a:hover {
-    color: var(--primary-dark);
-}
-
-.nav-link a:hover::after,
 .nav-active::after {
     width: 100%;
 }
@@ -150,6 +144,8 @@ header {
 .nav-list li {
     display: flex;
     align-items: center;
+    color: inherit;
+    font-weight: 500;
 }
 
 .nav-list li a {
