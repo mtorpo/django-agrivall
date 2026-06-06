@@ -207,8 +207,7 @@ header {
 @media screen and (max-width: 1060px) {
 
     header {
-        padding-left: 3rem;
-        padding-right: 3rem;
+        text-align: center;
     }
 
     /* mostramos bototnes de abrir y cerrar menú */
