@@ -71,28 +71,46 @@ header {
 
 /* PADRE NAVEGADOR */
 .nav {
+    /* Ocupa todo el espacio libre */
+    flex: 1;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 2rem;
 }
 
 /* NAV LINKS */
 .nav-list {
+    /* Ocupa todo el espacio libre (salvo el mínimo por los actions) */
+    flex: 1;
     display: flex;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     gap: 2rem;
-    align-items: center;
 }
 
 /* Alineamos los li */
 .nav-list li {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .nav-list li a {
     text-decoration: none;
 }
 
+.nav-link:hover {
+    color: var(--primary-dark);
+}
+
+/* ACCIONES DERECHA */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
 
 /* Imagen cart */
 .cart-icon {
@@ -109,19 +127,18 @@ header {
 
 /* Alinear imagen y conteo de productos  */
 .nav-cart {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
 }
 
 
 /* Abrir menú oculto en pc */
-.abrir-menu, .cerrar-menu {
-    display: none;
-}
 
-.nav-link:hover {
-    color: var(--primary-dark);
+.abrir-menu,
+.cerrar-menu {
+    display: none;
 }
 
 /* USERNAME */
@@ -139,7 +156,7 @@ header {
     }
 
     /* mostramos bototnes de abrir y cerrar menú */
-    .abrir-menu, 
+    .abrir-menu,
     .cerrar-menu {
         display: block;
         border: 0;
@@ -165,6 +182,8 @@ header {
         display: flex;
         flex-direction: column;
         align-items: end;
+        justify-content: flex-start;
+
         position: fixed;
         top: 0;
         right: 0;
@@ -194,11 +213,20 @@ header {
     }
 
     .nav-list {
+        flex: unset;
         flex-direction: column;
         align-items: end;
+        gap: 2rem;
     }
 
-    .nav-list li a {
+    .nav-actions {
+        flex-direction: column;
+        align-items: end;
+        gap: 1rem;
+    }
+
+    .nav-list li a,
+    .nav-actions a {
         color: #ececec;
     }
 
@@ -207,7 +235,7 @@ header {
         background: transparent;
         color: var(--primary-dark) !important;
         border: solid 1px var(--primary-dark);
-    }    
+    }
 
     /* icono hamburguesa */
     .icono {

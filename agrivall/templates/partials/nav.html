@@ -11,97 +11,82 @@
     <!-- Container principal -->
     <nav class="nav" id="mainNav">
         <button class="cerrar-menu" id="cerrar">
-            <img src="{% static "icons/close.svg" %}" class="icono cerrar" alt="Menú hamburguesa"/>
+            <img src="{% static 'icons/close.svg' %}" class="icono cerrar" alt="Cerrar menú"/>
         </button>
+
         <ul class="nav-list">
             <li class="nav-link">
-                <a
-                    href="{% url 'index' %}"
-                    class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}"
-                >
+                <a href="{% url 'index' %}"
+                class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}">
                     Inicio
                 </a>
             </li>
 
             <li class="nav-link">
-                <a
-                    href="{% url 'productos' %}"
-                    class="{% if request.resolver_match.url_name == 'productos' or request.GET.next == '/productos/' %}nav-active{% endif %}"
-                >
+                <a href="{% url 'productos' %}"
+                class="{% if request.resolver_match.url_name == 'productos' or request.GET.next == '/productos/' %}nav-active{% endif %}">
                     Productos
                 </a>
             </li>
 
             <li class="nav-link">
-                <a
-                    href="{% url 'casilla' %}"
-                    class="{% if request.resolver_match.url_name == 'casilla' %}nav-active{% endif %}"
-                >
+                <a href="{% url 'casilla' %}"
+                class="{% if request.resolver_match.url_name == 'casilla' %}nav-active{% endif %}">
                     Casilla
                 </a>
             </li>
 
             <li class="nav-link">
-                <a
-                    href="{% url 'blog' %}"
-                    class="{% if request.resolver_match.url_name == 'blog' %}nav-active{% endif %}"
-                >
+                <a href="{% url 'blog' %}"
+                class="{% if request.resolver_match.url_name == 'blog' %}nav-active{% endif %}">
                     Blog
                 </a>
             </li>
+        </ul>
 
+        <div class="nav-actions">
 
             {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'checkout' %}" class="nav-cart">
-                        <img
-                            src="{% static 'icons/shopping-basket.svg' %}"
-                            alt="Cesta"
-                            class="cart-icon"
-                        >
-                        <span id="cart-count">{{ carrito_total }}</span>
-                    </a>
-                </li>
 
-                <li>
-                    <span class="nav-user">
-                        {{ user.username }}
-                    </span></li>
+                <a href="{% url 'checkout' %}" class="nav-cart">
+                    <img
+                        src="{% static 'icons/shopping-basket.svg' %}"
+                        alt="Cesta"
+                        class="cart-icon"
+                    >
+                    <span id="cart-count">{{ carrito_total }}</span>
+                </a>
 
-                <li>
-                    <form method="post" action="{% url 'logout' %}" class="nav-form">
-                        {% csrf_token %}
+                <span class="nav-user">
+                    {{ user.username }}
+                </span>
 
-                        <button type="submit" class="nav-button nav-button-green">
-                            Cerrar sesión
-                        </button>
-                    </form>
-                </li>
+                <form method="post" action="{% url 'logout' %}" class="nav-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-button nav-button-green">
+                        Cerrar sesión
+                    </button>
+                </form>
 
-            {% if user.is_superuser %}
-                <li>
+                {% if user.is_superuser %}
                     <a href="{% url 'dashboard' %}" class="nav-button dashboard">
                         Admin
                     </a>
-                </li>
-            {% endif %}
+                {% endif %}
 
+            {% else %}
 
-        {% else %}
-            <li>
                 <a href="{% url 'login' %}" class="nav-button nav-button-light">
                     Iniciar sesión
                 </a>
-            </li>
 
-            <li>
                 <a href="{% url 'register' %}" class="nav-button nav-button-green">
                     Registrarse
                 </a>
-        {% endif %}
 
+            {% endif %}
 
-        </ul>
+        </div>
     </nav>
 
 </header>
