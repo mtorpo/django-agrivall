@@ -66,10 +66,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+
+    transition:.25s ease;
 }
 
 .tarjeta-semana:hover {
-    transform: none;
+    transform:translateY(-5px);
 }
 
 .tarjeta-semana.seleccionada {
@@ -264,4 +266,13 @@
 .icono-features {
     width: 22px;
     height: 22px;
+}
+
+/* Error de formulario */
+
+.error {
+    color: #b41825;
+    text-align: center;
+    /* background-color: #198754; */
+    margin: 0;
 }

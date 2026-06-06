@@ -81,7 +81,8 @@ h1,h2,h3,h4,h5,h6{
 
 /* ===== CARDS ===== */
 
-.soft-card{
+.soft-card,
+.soft-card-no-hover{
     background: var(--bg-card);
 
     border:none;

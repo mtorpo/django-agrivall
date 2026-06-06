@@ -65,7 +65,7 @@
 
         <div class="rejilla-casilla">
 
-            <section class="soft-card bloque-casilla" aria-labelledby="fechas-title">
+            <section class="soft-card-no-hover bloque-casilla" aria-labelledby="fechas-title">
 
                 <header class="cabecera-bloque-casilla">
                     <h2 id="fechas-title">
@@ -135,7 +135,7 @@
                 {% endif %}
             </section>
 
-            <section class="soft-card bloque-casilla" aria-labelledby="reserva-title">
+            <section class="soft-card-no-hover bloque-casilla" aria-labelledby="reserva-title">
 
                 <header class="cabecera-bloque-casilla">
                     <h2 id="reserva-title">
@@ -147,7 +147,8 @@
                     </p>
                 </header>
 
-                <form method="post" action="{% url 'casilla' %}" class="formulario-reserva">
+                <!-- JS borrará los campos almacenados en storage solo cuando se envíe el forumlario con limpiarReserva -->
+                <form method="post" action="{% url 'casilla' %}"class="formulario-reserva" onsubmit="limpiarReserva()">
                     {% csrf_token %}
 
                     <div class="campo-formulario">
@@ -158,8 +159,15 @@
                             id="nombre"
                             name="nombre"
                             placeholder="Tu nombre"
+                            value="{{ form.nombre.value|default:'' }}"
                             required
                         >
+                        {% if form.nombre.errors %}
+                            <p class="error">
+                                <!--erros.0 por que devuelve una lista-->
+                                {{ form.nombre.errors.0 }}
+                            </p>
+                        {% endif %}
                     </div>
 
                     <div class="campo-formulario">
@@ -170,8 +178,15 @@
                             id="telefono"
                             name="telefono"
                             placeholder="Teléfono de contacto"
+                            value="{{ form.telefono.value|default:'' }}"
                             required
                         >
+                        {% if form.telefono.errors %}
+                            <p class="error">
+                                <!--erros.0 por que devuelve una lista-->
+                                {{ form.telefono.errors.0 }}
+                            </p>
+                        {% endif %}
                     </div>
 
                     <div class="campo-formulario">
@@ -182,8 +197,15 @@
                             id="email"
                             name="email"
                             placeholder="tu@email.com"
+                            value="{{ form.email.value|default:'' }}"
                             required
                         >
+                        {% if form.email.errors %}
+                            <p class="error">
+                                <!--erros.0 por que devuelve una lista-->
+                                {{ form.email.errors.0 }}
+                            </p>
+                        {% endif %}
                     </div>
 
                     <div class="campo-formulario">
@@ -193,15 +215,23 @@
                             type="number"
                             id="semanaVisible"
                             placeholder="Semana"
+                            value="{{ form.semana_id.value|default:'' }}"
                             readonly
                             required
                         >
-
+                        
                         <input
                             type="hidden"
                             name="semana_id"
+                            value="{{ form.semana_id.value|default:'' }}"
                             id="semanaId"
                         >
+                        {% if form.semana_id.errors %}
+                            <p class="error">
+                                <!--erros.0 por que devuelve una lista-->
+                                {{ form.semana_id.errors.0 }}
+                            </p>
+                        {% endif %}
                     </div>
 
                     <div class="campo-formulario">
@@ -212,7 +242,13 @@
                             name="notas"
                             rows="4"
                             placeholder="Número de personas, dudas o preferencias..."
-                        ></textarea>
+                        >{{ form.notas.value|default:'' }}</textarea>
+                        {% if form.nombre.errors %}
+                            <p class="error">
+                                <!--erros.0 por que devuelve una lista-->
+                                {{ form.nombre.errors.0 }}
+                            </p>
+                        {% endif %}
                     </div>
 
                     <button type="submit" class="boton-reserva">
@@ -249,10 +285,55 @@
 
             semanaVisible.value = tarjeta.dataset.semana;
             semanaId.value = tarjeta.dataset.id;
+            
+            // Guardamos los datos del formulario hasta que se envie el formulario, para que no se pierdan al paginar
+            localStorage.setItem("casilla_semanaVisible", semanaVisible.value);
+            localStorage.setItem("casilla_semanaId", semanaId.value);
+
 
         });
 
     });
+</script>
+
+<!-- Añadimos local storage de js para almacenar los datos del formulario cuando se pagina -->
+<script>
+    const camposReserva = [
+        "nombre",
+        "telefono",
+        "email",
+        "semanaVisible",
+        "semanaId",
+        "notas"
+    ];
+
+    // Recuperar datos guardados
+    camposReserva.forEach(id => {
+
+        const campo = document.getElementById(id);
+
+        if (!campo) return;
+
+        const valorGuardado = localStorage.getItem("casilla_" + id);
+
+        if (valorGuardado) {
+            campo.value = valorGuardado;
+        }
+
+        // Guardar cambios
+        campo.addEventListener("input", () => {
+            localStorage.setItem("casilla_" + id, campo.value);
+        });
+
+    });
+
+    function limpiarReserva() {
+
+        camposReserva.forEach(id => {
+            localStorage.removeItem("casilla_" + id);
+        });
+
+    }
 </script>
 
 </body>

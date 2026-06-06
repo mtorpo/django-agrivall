@@ -34,6 +34,29 @@ class PostBlogForm(forms.ModelForm):
         fields = ['titulo', 'noticia', 'imagen', 'tipo']
 
 
+from django.core.validators import RegexValidator
+# Cuando creamos un formulario específico, no heredamos de un modelo (forms.ModelForm), por que si no Django espera
+# un modelo al llamar al form. En su lugar, heradamos de de forms.Form
+class ReservaCasillaForm(forms.Form):
+    """ Formulario para validar campos con django de la reserva de la casilla """
+    nombre = forms.CharField(max_length=100,required=True)
+
+    # Validador de teléfono simple
+    # Solo acepta números, espacios, +, (, ), -
+    telefono = forms.CharField(max_length=20,
+                               required=True,
+                               validators=[
+                                   RegexValidator(
+                                       regex=r'^[0-9+\-\s()]+$',
+                                        message="Introduce un teléfono válido."
+                                   )
+                               ])
+
+    email = forms.EmailField(required=True)
+
+    semana_id = forms.IntegerField(required=True)
+
+    notas = forms.CharField(required=False)
 
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
@@ -57,3 +80,4 @@ class LoginForm(AuthenticationForm):
 
 
 # class RegisterForm(UserCreationForm):
+
