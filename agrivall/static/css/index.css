@@ -5,7 +5,7 @@
 .pagina {
     width: var(--main-width);
     margin: 0 auto;
-    padding: 3rem 0 5rem;
+    padding: 0rem 0 5rem;
 }
 
 
@@ -14,8 +14,8 @@
    ========================================================= */
 
 .portada {
-    min-height: 520px;
-    border-radius: var(--radius);
+    min-height: 420px;
+    border-radius: var(--small-radius);
     padding: 2rem;
     margin-bottom: 3rem;
     display: flex;
