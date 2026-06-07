@@ -274,4 +274,12 @@ header.nav-header {
     }
 
 
+    span#cart-count {
+        color: white;
+    }
+
+    .nav-list li {
+        font-weight: 100;
+    }
+
 }
