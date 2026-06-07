@@ -1,0 +1,22 @@
+name: Deploy Agrivall
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy en VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: deploy
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd /opt/proyectos
+            chmod +x deploy_agrivall.sh
+            ./deploy_agrivall.sh
