@@ -45,8 +45,17 @@ html::-webkit-scrollbar{
 
     --radius: 1.5rem;
     --small-radius: 0.5rem;
+}
 
-    --main-width: min(1400px, 80%)
+/* Cuando sea tamaño móvil, el porcentaje pasa al 95%, en ordenador 80% y en muy grandes que no supere el 1400px */
+:root {
+    --main-width: min(1400px, 80%);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --main-width: 95%;
+    }
 }
 
 /* quitar decoración de anchors */
