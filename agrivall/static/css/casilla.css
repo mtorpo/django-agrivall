@@ -1,19 +1,39 @@
 .cabecera-casilla {
-    width: min(900px, 92%);
+    height: 350px;
+    /* width: 80%;  */
     margin: 0 auto;
     padding: 3rem 0 2rem;
     text-align: center;
+    
+    /* IMAGEN */
+    /* background-image: url("../images/casilla/casilla4.jpg"); */
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.30)
+        ),
+        url("../images/casilla/casilla4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 5px;
 }
 
 .titulo-casilla {
     margin: 1rem 0 .75rem;
     font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,.6);
 }
 
 .entradilla-casilla {
     max-width: 700px;
     margin: 0 auto;
     font-size: 1.1rem;
+    color: #f8d7da;
+    text-shadow: 0 2px 8px rgba(0,0,0,.6);
 }
 
 .zona-casilla {
@@ -229,7 +249,7 @@
     border: solid 1px #8a8b8f;
     border-radius: var(--border-radius);
     margin: 2rem auto;
-    width: 50%;
+    width: 80%;
     padding: 1rem;
 }
 
@@ -252,8 +272,8 @@
     display: flex;
     /* pantalla grande en fila y en pequeñas en varias */
     flex-wrap: wrap; 
-    justify-content: center;
-    gap: 1rem 2rem;
+    justify-content: space-around;
+    gap: 1rem 0rem;
 }
 
 .caracteristicas li {

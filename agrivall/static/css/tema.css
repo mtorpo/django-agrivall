@@ -63,6 +63,12 @@ body{
     font-family: var(--font-main);
 }
 
+/* Misma width y centrados a todos los main */
+main {
+    width: var(--main-width);
+    margin: 0 auto;
+}
+
 
 /* ===== TITULOS ===== */
 
