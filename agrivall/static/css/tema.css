@@ -46,7 +46,7 @@ html::-webkit-scrollbar{
     --radius: 1.5rem;
     --small-radius: 0.5rem;
 
-    --main-width: min(1400px, 92%)
+    --main-width: min(1400px, 80%)
 }
 
 /* quitar decoración de anchors */
