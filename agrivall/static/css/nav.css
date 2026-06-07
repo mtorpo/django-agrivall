@@ -10,23 +10,8 @@ header.nav-header {
     align-items: center;
     justify-content: space-between;
     background: #fdfdfb;
-    border-bottom: 2px solid rgba(0,0,0,.08);
+    border-bottom: 3px solid rgba(0,0,0,.08);
     padding: 1rem 5rem;
-    /* degradado en las esquinas a verde */
-    background:
-        linear-gradient(
-            120deg,
-            rgba(92, 133, 63, 0.35) 0%,
-            rgba(92, 133, 63, 0.15) 30%,
-            transparent 45%
-        ),
-        linear-gradient(
-            -120deg,
-            rgba(92, 133, 63, 0.35) 0%,
-            rgba(92, 133, 63, 0.15) 30%,
-            transparent 40%
-        ),
-        #fdfdfb;
 }
 /* BOTONES */
 
@@ -115,28 +100,14 @@ header.nav-header {
 .nav-link a {
     position: relative;
     text-decoration: none;
-    color: inherit;
     padding-bottom: .25rem;
     transition: color .3s ease;
 }
 
-.nav-active::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-
-    width: 0;
-    height: 3px;
-
-    background: var(--primary);
-
-    transform: translateX(-50%);
-    transition: width .3s ease;
-}
-
-.nav-active::after {
-    width: 100%;
+.nav-active {
+    color: var(--primary);
+    font-size: large;
+    font-weight: bold;
 }
 /* END TRANSITION NAV */
 
@@ -276,8 +247,7 @@ header.nav-header {
         gap: 1rem;
     }
 
-    .nav-list li a,
-    .nav-actions a {
+    .nav-list .nav-link {
         color: #ececec;
     }
 
