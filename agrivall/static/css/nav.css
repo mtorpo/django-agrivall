@@ -10,7 +10,7 @@ header.nav-header {
     align-items: center;
     justify-content: space-between;
     background: #fdfdfb;
-    border-bottom: 3px solid rgba(0,0,0,.08);
+    border-bottom: 2px solid rgba(0,0,0,.08);
     padding: 1rem 5rem;
 }
 /* BOTONES */
@@ -49,7 +49,7 @@ header.nav-header {
 
 .dashboard {
     background: blue;
-    border: solid 1px black;
+    border: solid 1px white;
     color: var(--bg-main);
 }
 
