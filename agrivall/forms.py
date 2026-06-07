@@ -74,10 +74,22 @@ class LoginForm(AuthenticationForm):
     }
 
 
-# Con el register solo para el bootstrap
-# from django.contrib.auth.forms import UserCreationForm
-# from django import forms
 
 
-# class RegisterForm(UserCreationForm):
+# Formulario de registro para crear usuario con los campos que queramos
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+class RegistroForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "email",
+            "password1",
+            "password2",
+        ]
 
