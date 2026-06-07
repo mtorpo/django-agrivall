@@ -1,217 +1,172 @@
-.main-nav {
-    background: #fdfdfb;
-    border-bottom: 1px solid rgba(0,0,0,.08);
-    padding: 1rem 1.5rem;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-content {
-    max-width: 1200px;
-    margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.nav-logo {
-    color: var(--primary);
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-right: 2rem;
-}
-
-.nav-toggle {
-    display: none;
-}
-
-.nav-toggle-label {
-    display: none;
-    margin-left: auto;
-
-    font-size: 1.8rem;
-    color: var(--primary);
-    cursor: pointer;
-}
-
-.nav-menu {
-    flex: 1;
-
+header.nav-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: #fdfdfb;
+    border-bottom: 2px solid rgba(0,0,0,.08);
+    padding: 1rem 5rem;
+    /* degradado en las esquinas a verde */
+    background:
+        linear-gradient(
+            120deg,
+            rgba(92, 133, 63, 0.35) 0%,
+            rgba(92, 133, 63, 0.15) 30%,
+            transparent 45%
+        ),
+        linear-gradient(
+            -120deg,
+            rgba(92, 133, 63, 0.35) 0%,
+            rgba(92, 133, 63, 0.15) 30%,
+            transparent 40%
+        ),
+        #fdfdfb;
+}
+/* BOTONES */
+
+.nav-button {
+
+    font-size: small;
+
+    background: var(--bg-main);
+
+    border: 1px solid rgba(0,0,0,.05);
+
+    border-radius: 999px;
+
+    padding: .5rem 1.5rem;
+
+    box-shadow: var(--shadow-soft);
+
+    transition: .3s;
 }
 
-.nav-links {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
+.nav-button-green {
+    background:var(--primary);
+    color: var(--bg-main);
+}
 
+.nav-button:hover{
+    background: var(--primary-soft-dark);
+    box-shadow: var(--shadow-hover);
+}
+
+.nav-button-green:hover{
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-hover);
+}
+
+.dashboard {
+    background: blue;
+    border: solid 1px black;
+    color: var(--bg-main);
+}
+
+.dashboard:hover {
+    background: rgb(11, 11, 137);
+    color: var(--bg-main);
+}
+
+/* LOGO */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.nav-logo {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-right: 2rem;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal; 
+}
+
+/* PADRE NAVEGADOR */
+.nav {
+    /* Ocupa todo el espacio libre */
+    flex: 1;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
-.nav-links a {
-    color: var(--text-main);
+/* NAV LINKS */
+.nav-list {
+    /* Ocupa todo el espacio libre (salvo el mínimo por los actions) */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 4rem;
+}
+
+
+/* TEST TRANSITION NAV */
+.nav-link a {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: .25rem;
+    transition: color .3s ease;
+}
+
+.nav-active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--primary);
+
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+.nav-active::after {
+    width: 100%;
+}
+/* END TRANSITION NAV */
+
+/* Alineamos los li */
+.nav-list li {
+    display: flex;
+    align-items: center;
+    color: inherit;
     font-weight: 500;
 }
 
-.nav-links a:hover {
-    color: var(--primary);
+.nav-list li a {
+    text-decoration: none;
 }
+
+.nav-link:hover {
+    color: var(--primary-dark);
+}
+
+/* ACCIONES DERECHA */
 
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: .8rem;
+    gap: 1.5rem;
 }
 
-.nav-cart {
-    font-weight: 500;
-}
-
-.nav-user {
-    color: var(--text-muted);
-    font-size: .9rem;
-}
-
-.nav-form {
-    margin: 0;
-}
-
-.nav-button {
-    display: inline-block;
-
-    padding: .45rem .9rem;
-
-    border-radius: 999px;
-
-    font-size: .9rem;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.nav-button-light {
-    border: 1px solid rgba(0,0,0,.25);
-}
-
-.nav-button-green {
-    background: var(--primary);
-    color: white;
-    border: 1px solid var(--primary);
-}
-
-.nav-button-outline {
-    background: transparent;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-}
-
-.nav-button-outline:hover {
-    background: var(--primary);
-    color: white;
-}
-
-button.nav-button {
-    background: transparent;
-    font-family: var(--font-main);
-}
-
-.dashboard {
-    background: transparent;
-    color: rgb(54, 54, 212);
-    border: 1px solid rgb(54, 54, 212);
-}
-
-.dashboard:hover {
-    background: rgb(54, 54, 212);
-    color: white;
-}
-
-/* móvil estilo Bootstrap */
-@media (max-width: 800px) {
-
-    .nav-logo {
-        margin-right: 0;
-    }
-
-    .nav-toggle-label {
-        display: block;
-    }
-
-    .nav-menu {
-        flex-basis: 100%;
-
-        max-height: 0;
-        overflow: hidden;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        transition: max-height .3s ease;
-    }
-
-    .nav-toggle:checked ~ .nav-menu {
-        max-height: 500px;
-        padding-top: 1rem;
-    }
-
-    .nav-links {
-        margin: 0;
-        flex-direction: column;
-        gap: .8rem;
-    }
-
-    .nav-actions {
-        margin-top: 1rem;
-
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: .8rem;
-    }
-}
-
-/* INDICADOR página seleccionada en el nav */
-.nav-links a{
-    position: relative;
-}
-
-.nav-active{
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.nav-active::after{
-    content: "";
-
-    position: absolute;
-
-    bottom: -6px;
-    left: 0;
-
-    width: 100%;
-    height: 3px;
-
-    border-radius: 999px;
-
-    background: var(--primary);
-}
-
-/* NUEVO ICONO CARRITO */
-.nav-cart {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-}
-
+/* Imagen cart */
 .cart-icon {
-    width: 28px;
-    height: 28px;
-    display: block;
+    max-width: 2rem;
     transition: transform 0.3s ease;
 }
 
@@ -221,7 +176,122 @@ button.nav-button {
     box-shadow: 0 0 5px yellowgreen;
 }
 
-#cart-count {
-    font-size: 16px;
-    line-height: 1;
+
+/* Alinear imagen y conteo de productos  */
+.nav-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+}
+
+
+/* Abrir menú oculto en pc */
+
+.abrir-menu,
+.cerrar-menu {
+    display: none;
+}
+
+/* USERNAME */
+
+.nav-user {
+    color: var(--primary-dark);
+    font-style: italic;
+}
+
+@media screen and (max-width: 1060px) {
+
+    header {
+        text-align: center;
+    }
+
+    /* mostramos bototnes de abrir y cerrar menú */
+    .abrir-menu,
+    .cerrar-menu {
+        display: block;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    /* Nuevo nav */
+    .nav {
+        z-index: 10000;
+        /* Esto es lo que muestra o oculta el nuevo nav */
+        opacity: 0;
+        /* no usamos hidden para que cuando se esconda lo haga con transición y no de golpe */
+        visibility: hidden;
+
+        /* transición de derecha a izquierda*/
+        transform: translateX(100%);
+        transform-origin: right;
+        transition: opacity .3s ease, transform .3s ease;
+
+
+        /* forma del nav */
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: flex-start;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1c1c1c;
+        padding: 2rem;
+        box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
+
+        /* para que no se pueda clickar si está hidden , ya que no usamos hidden*/
+        pointer-events: none;
+    }
+
+    .nav.visible {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateX(0);
+
+        /* Si se pueda clicar */
+        pointer-events: auto;
+    }
+
+    /* bloquear el scroll cuando se abra el menú */
+    body.bloquear-scroll {
+        overflow: hidden;
+        touch-action: none;
+    }
+
+    .nav-list {
+        flex: unset;
+        flex-direction: column;
+        align-items: end;
+        gap: 2rem;
+    }
+
+    .nav-actions {
+        flex-direction: column;
+        align-items: end;
+        gap: 1rem;
+    }
+
+    .nav-list li a,
+    .nav-actions a {
+        color: #ececec;
+    }
+
+    /* Sobreescribir los botones de acciones */
+    .nav-button {
+        background: transparent;
+        color: var(--primary-dark) !important;
+        border: solid 1px var(--primary-dark);
+    }
+
+    /* icono hamburguesa */
+    .icono {
+        max-width: 1.25rem;
+    }
+
+
 }
