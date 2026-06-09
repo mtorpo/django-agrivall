@@ -9,6 +9,24 @@
 }
 
 
+
+/* MED SUN */
+/* Sol cayendo para fundirse con las cerezas */
+body {
+    background:
+        radial-gradient(
+            circle at -10% -10%,
+            rgba(255, 190, 80, 0.85) 0%,
+            rgba(255, 220, 140, 0.55) 16%,
+            rgba(255, 240, 210, 0.20) 34%,
+            transparent 55%
+        ),
+        var(--bg-main);
+}
+
+
+
+
 /* =========================================================
    HERO — Portada con imagen de fondo
    ========================================================= */
@@ -20,8 +38,16 @@
     margin-bottom: 3rem;
     display: flex;
     align-items: flex-end;
-    color: white;
-    background: url("../images/casilla/house_forest.jpg") center / cover no-repeat;
+    color: rgb(255, 245, 245);
+    text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    /* background: url("../images/casilla/house_forest.jpg") center / cover no-repeat; */
+
+    background: url("../images/main_page_sunny.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     position: relative;
     overflow: hidden;
 }
@@ -30,7 +56,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, .35);
+    /* background: rgba(0, 0, 0, .20); */
 }
 
 .portada-cuerpo {
