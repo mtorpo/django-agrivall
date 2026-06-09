@@ -8,7 +8,7 @@
 }
 
 .footer-content{
-    width: min(1200px, 92%);
+    width: var(--main-width);
     margin: auto;
 
     padding: 0 0 1rem 0;
@@ -51,7 +51,7 @@
 
     padding: 0.2rem;
 
-    background: rgba(0,0,0,.12);
+    background: rgba(0, 0, 0, 0.251);
 
     font-size: .9rem;
 }
