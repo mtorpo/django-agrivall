@@ -84,7 +84,9 @@ body {
 .portada-texto {
     font-size: 1.1rem;
     margin-bottom: 1.75rem;
+    max-width: 50ch;
 }
+
 
 .acciones {
     display: flex;
