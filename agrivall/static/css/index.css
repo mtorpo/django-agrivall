@@ -11,7 +11,7 @@
 
 
 /* MED SUN */
-body {
+/* body {
     background:
         radial-gradient(
             circle at -10% -10%,
@@ -21,10 +21,10 @@ body {
             transparent 55%
         ),
         var(--bg-main);
-}
+} */
 
 /* LOW SUN */
-/* body {
+body {
     background:
         radial-gradient(
             circle at -10% -10%,
@@ -34,7 +34,7 @@ body {
             transparent 40%
         ),
         var(--bg-main);
-} */
+}
 
 
 /* =========================================================
