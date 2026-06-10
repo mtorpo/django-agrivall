@@ -198,6 +198,9 @@
     color: #666;
     border: none;
     cursor: not-allowed;
+     border-radius:999px;
+
+    padding:.7rem 1.5rem;
 }
 
 

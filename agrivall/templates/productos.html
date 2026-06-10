@@ -106,7 +106,7 @@
                                 <p class="variedad-producto">
                                     Variedad: {{ producto.variedad }}
                                 </p>
-                                {% if producto.disponible %}
+                                {% if producto.disponible and user.is_authenticated %}
                                     <button type="submit" class="btn-green boton-producto">
                                         Añadir al carrito
                                     </button>
