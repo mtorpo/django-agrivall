@@ -32,7 +32,7 @@ def error_404(request, exception):
 def index(request):
     return render(request, "index.html")
 
-@login_required
+# @login_required
 def productos(request):
     productos = Producto.objects.all() #No usamos el all por que devuelve objetos de la classe
     # render es como view en laravel, es para que cargue el html, 
