@@ -156,3 +156,6 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
 
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+# Eliminar la cookie de sesión al cerrar el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
