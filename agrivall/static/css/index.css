@@ -56,7 +56,9 @@ body {
     position: relative;
     overflow: hidden;
 }
-
+.portada-cuerpo a {
+    text-shadow: none;
+}
 .portada::before {
     content: "";
     position: absolute;

@@ -308,6 +308,12 @@
     .modal-footer .modal-confirm-button {
         width: 100%;
     }
+
+    /* Tamaño del modal */
+    .modal-box {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
 }
 
 /* Error en el formulario */
